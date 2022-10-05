@@ -23,7 +23,7 @@ const Home: NextPage = () => {
 
           <div className='text-center pt-2'>
             <p>
-              Drum grooves and good vibes! Live on Tuesdays and Thursdays from 5
+              Drum grooves and good vibes! Live on Tuesdays and Thursdays from 6
               to 9pm Central.
             </p>
             <p>Themed streams on Thursdays!</p>
