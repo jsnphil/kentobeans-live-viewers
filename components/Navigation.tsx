@@ -38,12 +38,16 @@ function Navigation() {
               <Nav.Link href='song-history' id='songHistoryLink' disabled>
                 Song History
               </Nav.Link>
-              <Nav.Link href='sotn' id='sotnLink' disabled>
-                Song of the Night
-              </Nav.Link>
-              <Nav.Link href='shop' id='shopLink'>
-                Shop
-              </Nav.Link>
+
+              <NavDropdown title='Song of the Night' id='sotnDropdown' disabled>
+                <NavDropdown.Item id='standingsLink' href='#action/3.1'>
+                  Standings
+                </NavDropdown.Item>
+                <NavDropdown.Item id='tournamentsLink' href='#action/3.2'>
+                  Tournaments
+                </NavDropdown.Item>
+              </NavDropdown>
+
               <NavDropdown title='Bean Rewards' id='rewardsDropdown' disabled>
                 <NavDropdown.Item id='livelearn' href='#action/3.1'>
                   Live Learn
@@ -52,6 +56,9 @@ function Navigation() {
                   DJ Hour
                 </NavDropdown.Item>
               </NavDropdown>
+              <Nav.Link href='shop' id='shopLink'>
+                Shop
+              </Nav.Link>
             </Nav>
           </Navbar.Collapse>
           {/* <Navbar.Collapse className='justify-content-end'>
