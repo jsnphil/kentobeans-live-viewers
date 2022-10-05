@@ -1,0 +1,15 @@
+[
+    {
+        "command": "livelearn",
+        "description": "Unlocks a live learn request where Kent will break down a song and learn it on stream.  Costs 1000 beans. Limit 5."
+    },
+    {
+        "command": "dj",
+        "description": "DJ the stream for up to 1 hour.  Costs 15000 beans, increasing by 1000 each time it is redeemed.  Limit 1"
+    },
+    {
+        "command": "dj cost",
+        "description": "Displays the current cost for the DJ hour reward"
+    }
+
+]

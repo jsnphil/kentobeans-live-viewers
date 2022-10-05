@@ -1,0 +1,46 @@
+[
+    {
+        "command": "history",
+        "description": "Displays a link in chat to the song request history"
+    },
+    {
+        "command": "standings",
+        "description": "Displays a link in chat to the Song of the Night standings"
+    },
+    {
+        "command": "shufflewins",
+        "description": "Displays the number of times you have won in the song request shuffle"
+    },
+    {
+        "command": "beans",
+        "description": "Display the amount of beans you have"
+    },
+    {
+        "command": "gamble [amount]",
+        "description": "Gamble the amount of beans given"
+    },
+    {
+        "command": "drumroll",
+        "description": "Spams the drum emote in chat"
+    },
+    {
+        "command": "pyro",
+        "description": "Spams the fire emote in chat"
+    },
+    {
+        "command": "drops",
+        "description": "Displays the number of times Kent has dropped a stick in chat"
+    },
+    {
+        "command": "breaks",
+        "description": "Displays the number of times Kent has broken a stick on stream"
+    },
+    {
+        "command": "quoteslist",
+        "description": "Displays a link in chat to the quotes listing page"
+    },
+    {
+        "command": "quote",
+        "description": "Displays a random quote from the quotes list"
+    }
+]

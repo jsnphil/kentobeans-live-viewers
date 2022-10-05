@@ -1,0 +1,33 @@
+[{
+    "command": "applause",
+    "description": "Plays the 'applause' sound effect in stream"
+},
+{
+    "command": "bummer",
+    "description": "Plays the 'bummer' sound effect in stream"
+},
+{
+    "command": "grasp",
+    "description": "Plays the 'grasp' sound effect in stream"
+},
+{
+    "command": "heyjoe",
+    "description": "Plays the 'heyjoe' sound effect in stream"
+},
+{
+    "command": "laugh",
+    "description": "Plays the 'laugh' sound effect in stream"
+},
+{
+    "command": "love",
+    "description": "Plays the 'love' sound effect in stream"
+},
+{
+    "command": "myman",
+    "description": "Plays the 'myman' sound effect in stream"
+},
+{
+    "command": "sad",
+    "description": "Plays the 'sad' sound effect in stream"
+}
+]
