@@ -6,6 +6,8 @@ import SongRequestCommands from '../data/songRequest.json';
 import SoundEffectsCommands from '../data/soundEffects.json';
 import RewardRedemptionCommands from '../data/rewardRedemptions.json';
 import OtherCommands from '../data/otherCommands.json';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCircleInfo } from '@fortawesome/free-solid-svg-icons';
 
 const Commands: NextPage = () => {
   const [commandState, setCommandState] = useState('songRequestCmds');
@@ -84,7 +86,10 @@ const Commands: NextPage = () => {
         {commandState === 'soundEffectCmds' && (
           <>
             <CommandTable commands={SoundEffectsCommands} />
-            <p>All sound effects cost 20 beans to redeem</p>
+            <p>
+              <FontAwesomeIcon icon={faCircleInfo} /> All sound effects cost 20
+              beans to redeem
+            </p>
           </>
         )}
 
