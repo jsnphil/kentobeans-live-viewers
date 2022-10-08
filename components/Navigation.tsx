@@ -35,7 +35,7 @@ function Navigation() {
               <Nav.Link href='songlist' id='songlistLink' disabled>
                 Stream Songlist
               </Nav.Link>
-              <Nav.Link href='song-history' id='songHistoryLink' disabled>
+              <Nav.Link href='song-history' id='songHistoryLink'>
                 Song History
               </Nav.Link>
 
