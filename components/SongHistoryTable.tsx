@@ -51,6 +51,10 @@ const SongHistoryTable = (props: any) => {
               <Col>{data.songTitle}</Col>
             </Row>
 
+            <Row>
+              <Col>Requested By: {data.requester}</Col>
+            </Row>
+
             {data.artist && (
               <Row>
                 <Col>Artist: {data.artist}</Col>
@@ -69,9 +73,6 @@ const SongHistoryTable = (props: any) => {
               </Row>
             )}
 
-            <Row>
-              <Col>Requested By: {data.requester}</Col>
-            </Row>
             <Row>
               <Col>Played On: {data.playDate}</Col>
             </Row>
