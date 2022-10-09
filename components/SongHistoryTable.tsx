@@ -127,6 +127,7 @@ const SongHistoryTable = (props: any) => {
       expandableRowsComponent={ExpandedComponent}
       responsive
       fixedHeader
+      highlightOnHover
     />
   );
 };
