@@ -1,60 +1,32 @@
 import { NextPage } from 'next';
-import { useMemo, useState } from 'react';
-import { Alert, Form, Spinner } from 'react-bootstrap';
-import DataTable from 'react-data-table-component';
-import styled from 'styled-components';
+import { Alert, Spinner } from 'react-bootstrap';
+import { TableColumn } from 'react-data-table-component';
 
 import useSWR from 'swr';
-import DataTableFilter from '../components/DataTableFilter';
 import SongHistoryTable from '../components/SongHistoryTable';
+import { formatDate } from '../libs/common';
+import { SongRequest } from '../libs/types';
 
-interface DataRow {
-  requester: string;
-  songTitle: string;
-  season: number;
-  playDate: string;
-  sotnContender: boolean;
-  sotnWinenr: boolean;
-  sotsWinner: boolean;
-}
-
-interface SongRequest {
-  _id: number;
-  youtubeId: string;
-  requester: string;
-  songTitle: string;
-  season: number;
-  playDate: string;
-  sotnContender: boolean;
-  sotnWinenr: boolean;
-  sotsWinner: boolean;
-}
-
-const columns = [
+const columns: TableColumn<SongRequest>[] = [
   {
     id: 'requester',
     name: 'Requested By',
-    selector: (row: DataRow) => row.requester,
+    selector: (row: SongRequest) => row.requester,
     sortable: true
   },
   {
     id: 'requestTitle',
     name: 'Request Title',
-    selector: (row: DataRow) => row.songTitle,
+    selector: (row: SongRequest) => row.songTitle,
     sortable: true
   },
   {
     id: 'playDate',
     name: 'Played On',
-    selector: (row: DataRow) => row.playDate,
+    selector: (row: SongRequest) => row.playDate,
     sortable: true,
     right: true,
-    format: (row: DataRow) => {
-      const date = new Date(row.playDate);
-      return [date.getMonth() + 1, date.getDate(), date.getFullYear()].join(
-        '/'
-      );
-    }
+    format: (row: SongRequest) => formatDate(row.playDate)
   }
 ];
 
@@ -78,7 +50,7 @@ const SongHistory: NextPage = () => {
       <>
         <div className='pt-5 d-flex align-items-center justify-content-center'>
           <Spinner animation='border' role='status'>
-            <span className='visually-hidden'>Loading Song History</span>
+            <span className='visually-hidden'>Loading Song History...</span>
           </Spinner>
         </div>
       </>

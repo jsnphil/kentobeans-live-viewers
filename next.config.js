@@ -5,14 +5,8 @@ const nextConfig = {
 };
 
 module.exports = {
-  async redirects() {
-    return [
-      {
-        source: '/shop',
-        destination: 'https://www.kentobeans.store/',
-        permanent: true
-      }
-    ];
+  images: {
+    domains: ['twitch.tv']
   }
 };
 

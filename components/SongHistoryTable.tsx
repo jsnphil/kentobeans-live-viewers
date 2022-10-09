@@ -1,19 +1,29 @@
 import { useMemo, useState } from 'react';
 import Iframe from 'react-iframe';
 
-import DataTable, { TableColumn } from 'react-data-table-component';
+import DataTable, {
+  ExpanderComponentProps,
+  TableColumn
+} from 'react-data-table-component';
 import DateTableFilter from './DataTableFilter';
-import { Col, Row } from 'react-bootstrap';
+import { Button, Card, Col, Row } from 'react-bootstrap';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAward, faTrophy, faCrown } from '@fortawesome/free-solid-svg-icons';
+import { formatDate } from '../libs/common';
+import { SongRequest, SongRequestDataRow } from '../libs/types';
 
-const SongHistoryTable = (props: any) => {
+export interface SongHistoryTableProps {
+  data: SongRequest[];
+  columns: TableColumn<SongRequest>[];
+}
+
+const SongHistoryTable = (props: SongHistoryTableProps) => {
   const [filterText, setFilterText] = useState('');
   const [resetPaginationToggle, setResetPaginationToggle] = useState(false);
 
   const filteredItems = props.data.filter(
-    (item: any) =>
+    (item: SongRequest) =>
       JSON.stringify(item).toLowerCase().indexOf(filterText.toLowerCase()) !==
       -1
   );
@@ -35,52 +45,44 @@ const SongHistoryTable = (props: any) => {
     );
   }, [filterText, resetPaginationToggle]);
 
-  const ExpandedComponent = ({ data }: any) => (
+  const SongInfoCard = ({ data }: ExpanderComponentProps<SongRequest>) => (
     <>
-      <div className='container d-flex py-5 align-items-center justify-content-center'>
-        <Row>
-          <Col span={6} className='my-auto mx-auto'>
+      <Card className='text-center'>
+        <Card.Body>
+          <Card.Title>{data.songTitle}</Card.Title>
+
+          <Card.Text className='pt-2'>
             <Iframe
               url={`https://www.youtube.com/embed/${data.youtubeId}`}
-              title={data.title}
+              title={data.songTitle}
               loading={'lazy'}
             />
-          </Col>
-          <Col span={6} className='align-items-center'>
-            <Row>
-              <Col>{data.songTitle}</Col>
-            </Row>
-
+          </Card.Text>
+          <Card.Text>
             <Row>
               <Col>Requested By: {data.requester}</Col>
             </Row>
-
             {data.artist && (
               <Row>
                 <Col>Artist: {data.artist}</Col>
               </Row>
             )}
-
             {data.featuredArtist && (
               <Row>
                 <Col>Feat. Artist: {data.featuredArtist}</Col>
               </Row>
             )}
-
             {data.songYear && (
               <Row>
                 <Col>Year: {data.songYear}</Col>
               </Row>
             )}
-
             <Row>
-              <Col>Played On: {data.playDate}</Col>
+              <Col>Played On: {formatDate(data.playDate)}</Col>
             </Row>
-
             <Row>
               <Col>Song of the Night Season: {data.season}</Col>
             </Row>
-
             {data.sotnContender && (
               <Row>
                 <Col>
@@ -89,7 +91,6 @@ const SongHistoryTable = (props: any) => {
                 </Col>
               </Row>
             )}
-
             {data.sotnWinner && (
               <Row>
                 <Col>
@@ -98,7 +99,6 @@ const SongHistoryTable = (props: any) => {
                 </Col>
               </Row>
             )}
-
             {data.sotsWinner && (
               <Row>
                 <Col>
@@ -107,9 +107,9 @@ const SongHistoryTable = (props: any) => {
                 </Col>
               </Row>
             )}
-          </Col>
-        </Row>
-      </div>
+          </Card.Text>
+        </Card.Body>
+      </Card>
     </>
   );
 
@@ -125,7 +125,7 @@ const SongHistoryTable = (props: any) => {
       subHeader
       subHeaderComponent={subHeaderComponent}
       expandableRows
-      expandableRowsComponent={ExpandedComponent}
+      expandableRowsComponent={SongInfoCard}
       responsive
       fixedHeader
       highlightOnHover
