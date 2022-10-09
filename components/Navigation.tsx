@@ -56,9 +56,6 @@ function Navigation() {
                   DJ Hour
                 </NavDropdown.Item>
               </NavDropdown>
-              <Nav.Link href='shop' id='shopLink'>
-                Shop
-              </Nav.Link>
             </Nav>
           </Navbar.Collapse>
           {/* <Navbar.Collapse className='justify-content-end'>
