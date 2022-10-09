@@ -84,7 +84,7 @@ const SongHistoryTable = (props: any) => {
             {data.sotnContender && (
               <Row>
                 <Col>
-                  <FontAwesomeIcon icon={faTrophy} /> &nbsp; Song of the Night
+                  <FontAwesomeIcon icon={faAward} /> &nbsp; Song of the Night
                   Contender
                 </Col>
               </Row>
@@ -93,7 +93,7 @@ const SongHistoryTable = (props: any) => {
             {data.sotnWinner && (
               <Row>
                 <Col>
-                  <FontAwesomeIcon icon={faAward} /> &nbsp; Song of the Night
+                  <FontAwesomeIcon icon={faTrophy} /> &nbsp; Song of the Night
                   Winner
                 </Col>
               </Row>
