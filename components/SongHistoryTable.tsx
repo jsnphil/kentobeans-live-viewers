@@ -41,7 +41,7 @@ const SongHistoryTable = (props: any) => {
         <Row>
           <Col span={6} className='my-auto mx-auto'>
             <Iframe
-              url={`http://www.youtube.com/embed/${data.youtubeId}`}
+              url={`https://www.youtube.com/embed/${data.youtubeId}`}
               title={data.title}
               loading={'lazy'}
             />
