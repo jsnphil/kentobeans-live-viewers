@@ -56,7 +56,11 @@ const SongRequestTable = (props: SongRequestProps) => {
               <span>&nbsp;</span>
             </>
           )}
-          <a href={'https://youtu.be/' + request.song} target='_blank'>
+          <a
+            href={'https://youtu.be/' + request.song}
+            target='_blank'
+            rel='noreferrer'
+          >
             {request.title}
           </a>
         </td>
