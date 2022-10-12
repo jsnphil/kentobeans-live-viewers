@@ -3,6 +3,7 @@ import { Alert, Spinner } from 'react-bootstrap';
 import { TableColumn } from 'react-data-table-component';
 
 import useSWR from 'swr';
+import LoadingSpinner from '../components/LoadingSpinner';
 import SongHistoryTable from '../components/SongHistoryTable';
 import { formatDate } from '../libs/common';
 import { SongRequest } from '../libs/types';
@@ -46,15 +47,7 @@ const SongHistory: NextPage = () => {
   }
 
   if (!data) {
-    return (
-      <>
-        <div className='pt-5 d-flex align-items-center justify-content-center'>
-          <Spinner animation='border' role='status'>
-            <span className='visually-hidden'>Loading Song History...</span>
-          </Spinner>
-        </div>
-      </>
-    );
+    return <LoadingSpinner message={'Loading Song History...'} />;
   }
 
   const requests = data.songRequests as SongRequest[];
