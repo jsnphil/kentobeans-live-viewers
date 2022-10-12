@@ -261,3 +261,7 @@ html{overflow-y: scroll;}
 .songRequestTable a:visited {color: #0E1336;}  
 .songRequestTable a:hover {color: #F57E20}  
 .songRequestTable a:active {color: #F57E20}  
+
+.songTableHighlight {
+	background-color: #cfb53b;
+}

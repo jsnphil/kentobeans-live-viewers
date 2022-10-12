@@ -157,7 +157,11 @@ const StreamSongList: NextPage = () => {
       )}
 
       <div className='queueHeading'>Requests</div>
-      <SongRequestTable requests={songList} showIndex={false} />
+      <SongRequestTable
+        requests={songList}
+        showIndex={false}
+        showRemoveButton={false}
+      />
 
       <div>
         <p>
@@ -170,10 +174,18 @@ const StreamSongList: NextPage = () => {
       </div>
 
       <div className='queueHeading'>Song of the Night Contenders</div>
-      <SongRequestTable requests={contenders} showIndex={false} />
+      <SongRequestTable
+        requests={contenders}
+        showIndex={false}
+        showRemoveButton={false}
+      />
 
       <div className='queueHeading'>Played Requests</div>
-      <SongRequestTable requests={songHistory} showIndex={true} />
+      <SongRequestTable
+        requests={songHistory}
+        showIndex={true}
+        showRemoveButton={false}
+      />
     </>
   );
 };

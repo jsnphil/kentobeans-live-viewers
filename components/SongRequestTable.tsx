@@ -1,6 +1,12 @@
-import { Table } from 'react-bootstrap';
+import { Button, Table } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStar, faTicket, faDice } from '@fortawesome/free-solid-svg-icons';
+import {
+  faStar,
+  faTicket,
+  faDice,
+  faTrash
+} from '@fortawesome/free-solid-svg-icons';
+import { useSession } from 'next-auth/react';
 
 export interface SongRequest {
   song: string;
@@ -15,13 +21,21 @@ export interface SongRequest {
 interface SongRequestProps {
   requests: SongRequest[];
   showIndex: boolean;
+  showRemoveButton: boolean;
 }
 
 const SongRequestTable = (props: SongRequestProps) => {
-  const flag = false;
+  const session = useSession();
   const requestRows = props.requests.map((request, index) => (
     <>
-      <tr className='songRequestTable' key={request.song}>
+      <tr
+        className={
+          isLoggedInUserRequest(request.requester, session.data?.user?.name)
+            ? 'songTableHighlight'
+            : ''
+        }
+        key={request.song}
+      >
         <td>{(props.showIndex || request.bump === 'true') && ++index}</td>
         <td>
           {request.bump === 'true' && (
@@ -48,14 +62,21 @@ const SongRequestTable = (props: SongRequestProps) => {
         </td>
         <td>{request.requester}</td>
         <td>{request.duration}</td>
-        {flag && <td>Remove Button</td>}
+        {isLoggedInUserRequest(request.requester, session.data?.user?.name) &&
+          props.showRemoveButton && (
+            <td>
+              <Button variant='danger' size='sm'>
+                <FontAwesomeIcon icon={faTrash} />
+              </Button>
+            </td>
+          )}
       </tr>
     </>
   ));
 
   return (
     <>
-      <Table borderless hover size='sm'>
+      <Table className='songRequestTable' borderless hover size='sm'>
         <tbody>{requestRows}</tbody>
       </Table>
     </>
@@ -63,3 +84,10 @@ const SongRequestTable = (props: SongRequestProps) => {
 };
 
 export default SongRequestTable;
+
+function isLoggedInUserRequest(
+  requester: string,
+  sessionUser: string | null | undefined
+) {
+  return sessionUser && requester.toLowerCase() === sessionUser.toLowerCase();
+}
