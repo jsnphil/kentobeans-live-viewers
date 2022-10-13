@@ -5,7 +5,10 @@ import { useState, useEffect, useCallback } from 'react';
 import { Spinner, Table } from 'react-bootstrap';
 import useWebSocket, { ReadyState, Options } from 'react-use-websocket';
 import LoadingSpinner from '../components/LoadingSpinner';
-import SongRequestTable, { SongRequest } from '../components/SongRequestTable';
+import SongRequestTable, {
+  SongListRequest,
+  SongRequest
+} from '../components/SongRequestTable';
 
 interface QueueInfo {
   status: 'Closed|Open';
@@ -26,10 +29,10 @@ const StreamSongList: NextPage = () => {
     useState(0);
   const [remainingBeanBumps, setRemainingBeanBumps] = useState(0);
 
-  const [songList, setSongList] = useState([]);
-  const [songHistory, setSongHistory] = useState([]);
-  const [currentSong, setCurrentSong] = useState();
-  const [contenders, setContenders] = useState([]);
+  const [songList, setSongList] = useState<SongListRequest[]>([]);
+  const [songHistory, setSongHistory] = useState<SongListRequest[]>([]);
+  const [currentSong, setCurrentSong] = useState<SongRequest>();
+  const [contenders, setContenders] = useState<SongListRequest[]>([]);
 
   //Public API that will echo messages sent to it back to the client
   const [socketUrl, setSocketUrl] = useState(

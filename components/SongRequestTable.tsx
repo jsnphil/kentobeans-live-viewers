@@ -8,7 +8,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { useSession } from 'next-auth/react';
 
-export interface SongRequest {
+export interface SongListRequest {
   song: string;
   title: string;
   duration: string;
@@ -19,7 +19,7 @@ export interface SongRequest {
 }
 
 interface SongRequestProps {
-  requests: SongRequest[];
+  requests: SongListRequest[];
   showIndex: boolean;
   showRemoveButton: boolean;
 }
