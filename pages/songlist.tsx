@@ -5,10 +5,7 @@ import { useState, useEffect, useCallback } from 'react';
 import { Spinner, Table } from 'react-bootstrap';
 import useWebSocket, { ReadyState, Options } from 'react-use-websocket';
 import LoadingSpinner from '../components/LoadingSpinner';
-import SongRequestTable, {
-  SongListRequest,
-  SongRequest
-} from '../components/SongRequestTable';
+import SongRequestTable, { SongListItem } from '../components/SongRequestTable';
 
 interface QueueInfo {
   status: 'Closed|Open';
@@ -20,7 +17,7 @@ interface QueueInfo {
   beanBumpsLeft: number;
 }
 
-const emptySongList: SongRequest[] = [];
+const emptySongList: SongListItem[] = [];
 
 const StreamSongList: NextPage = () => {
   const [queueStatus, setQueueStatus] = useState('Closed');
@@ -29,10 +26,10 @@ const StreamSongList: NextPage = () => {
     useState(0);
   const [remainingBeanBumps, setRemainingBeanBumps] = useState(0);
 
-  const [songList, setSongList] = useState<SongListRequest[]>([]);
-  const [songHistory, setSongHistory] = useState<SongListRequest[]>([]);
-  const [currentSong, setCurrentSong] = useState<SongRequest>();
-  const [contenders, setContenders] = useState<SongListRequest[]>([]);
+  const [songList, setSongList] = useState<SongListItem[]>([]);
+  const [songHistory, setSongHistory] = useState<SongListItem[]>([]);
+  const [currentSong, setCurrentSong] = useState<SongListItem>();
+  const [contenders, setContenders] = useState<SongListItem[]>([]);
 
   //Public API that will echo messages sent to it back to the client
   const [socketUrl, setSocketUrl] = useState(
@@ -102,7 +99,7 @@ const StreamSongList: NextPage = () => {
         setContenders(websocketMessage.playlist);
       }
     }
-  });
+  }, [lastJsonMessage, lastMessage, sendMessage, refreshData]);
 
   const connectionStatus = {
     [ReadyState.CONNECTING]: 'Connecting',
