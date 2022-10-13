@@ -144,6 +144,7 @@ const StreamSongList: NextPage = () => {
                   <a
                     href={'https://youtu.be/' + currentSong.song}
                     target='_blank'
+                    rel='noreferrer'
                   >
                     {currentSong.title}
                   </a>
