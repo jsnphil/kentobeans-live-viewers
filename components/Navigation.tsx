@@ -32,7 +32,7 @@ function Navigation() {
               <Nav.Link href='request-rules' id='requestRulesLink'>
                 Request Rules
               </Nav.Link>
-              <Nav.Link href='songlist' id='songlistLink' disabled>
+              <Nav.Link href='songlist' id='songlistLink'>
                 Stream Songlist
               </Nav.Link>
               <Nav.Link href='song-history' id='songHistoryLink'>
