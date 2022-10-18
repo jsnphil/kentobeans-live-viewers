@@ -41,7 +41,7 @@ const StreamSongList: NextPage = () => {
       onOpen: () =>
         sendMessage(
           JSON.stringify({
-            readauth: 'xy3gUrovotadazBoRmRq6zIgQyUk8G'
+            readauth: 'xy3gUrovotadazBoRmRq6zIgQyUk8G' // Move to getStaticProps()
           })
         ),
       shouldReconnect: (closeEvent) => true
