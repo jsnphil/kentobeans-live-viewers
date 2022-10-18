@@ -39,11 +39,49 @@ function Navigation() {
                 Song History
               </Nav.Link>
 
-              <NavDropdown title='Song of the Night' id='sotnDropdown' disabled>
-                <NavDropdown.Item id='standingsLink' href='#action/3.1'>
+              <NavDropdown title='Song of the Night' id='sotnDropdown'>
+                <NavDropdown.Item
+                  id='sotnStandingsLink'
+                  href='/song-of-the-night/'
+                >
                   Standings
                 </NavDropdown.Item>
-                <NavDropdown.Item id='tournamentsLink' href='#action/3.2'>
+                <NavDropdown.Item
+                  id='sotnUsersLink'
+                  href='/song-of-the-night/users'
+                  disabled
+                >
+                  User Stats
+                </NavDropdown.Item>
+                <NavDropdown.Item
+                  id='sotnSongsLink'
+                  href='/song-of-the-night/songs-stats'
+                  disabled
+                >
+                  Song Stats
+                </NavDropdown.Item>
+                <NavDropdown.Item
+                  id='sotnSongsLink'
+                  href='/song-of-the-night/songs'
+                  disabled
+                >
+                  All Songs
+                </NavDropdown.Item>
+                <NavDropdown.Divider />
+                <NavDropdown.Item
+                  id='playlistLink'
+                  href='/song-of-the-night/playlists'
+                  disabled
+                >
+                  Playlists
+                </NavDropdown.Item>
+                <NavDropdown.Divider />
+
+                <NavDropdown.Item
+                  id='tournamentsLink'
+                  href='#action/3.2'
+                  disabled
+                >
                   Tournaments
                 </NavDropdown.Item>
               </NavDropdown>

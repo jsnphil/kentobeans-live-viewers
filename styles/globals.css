@@ -118,7 +118,7 @@ html{overflow-y: scroll;}
 
 .selected{
 	background-color: #0E1336;
-	color: #FFFFFF;
+	color: #FFFFFF !important;
 }
 
 
@@ -265,3 +265,4 @@ html{overflow-y: scroll;}
 .songTableHighlight {
 	background-color: #cfb53b;
 }
+
