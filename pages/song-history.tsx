@@ -8,6 +8,8 @@ import SongHistoryTable from '../components/SongHistoryTable';
 import { formatDate } from '../libs/common';
 import { SongRequest } from '../libs/types';
 
+const kentobotApiHost = process.env.KENTOBOT_API_HOST;
+
 const columns: TableColumn<SongRequest>[] = [
   {
     id: 'requester',
@@ -34,7 +36,7 @@ const columns: TableColumn<SongRequest>[] = [
 const SongHistory: NextPage = () => {
   const fetcher = (url: string) => fetch(url).then((r) => r.json());
   const { data, error } = useSWR(
-    'https://41omotk1zh.execute-api.us-east-1.amazonaws.com/dev/song-requests',
+    `https://${kentobotApiHost}/dev/song-requests`,
     fetcher
   );
 
