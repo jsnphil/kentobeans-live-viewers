@@ -3,8 +3,57 @@ import { useState } from 'react';
 import { Form } from 'react-bootstrap';
 import styles from './sotn.module.css';
 
+type SotnProps = {
+  data: SotnWinner[];
+};
+
+type SotnWinner = {
+  readonly youtubeId: string;
+  readonly requester: string;
+};
+
+const kentobotApiHost = process.env.KENTOBOT_API_HOST;
+
+export async function getServerSideProps() {
+  const res = await fetch(
+    `https://${kentobotApiHost}/dev/song-of-the-night/winners`
+  );
+  const data = await res.json();
+
+  // console.log(JSON.stringify(data, null, 2));
+
+  let winnersMap = new Map<string, any[]>();
+
+  data.winners.forEach((winner, index) => {
+    const requester = winner.requester.toLowerCase();
+
+    if (winnersMap.has(requester)) {
+      winnersMap.get(requester)?.push(winner);
+    } else {
+      winnersMap.set(requester, [winner]);
+    }
+  });
+
+  // console.log(`Mapped winners: ${winnersMap}`);
+
+  const keys = winnersMap.keys();
+
+  for (let key of keys) {
+    console.log(`Key ${key}`);
+    console.log(`Number of wins: ${winnersMap.get(key)?.length}`);
+
+    console.log(JSON.stringify(winnersMap.get(key), null, 2));
+  }
+
+  return {
+    props: {
+      winners: JSON.parse(winnersMap)
+    }
+  };
+}
+
 const currentSeason = '12'; // TODO Get from AWS?
-const SongOfTheNightStandings: NextPage = () => {
+const SongOfTheNightStandings: NextPage = ({ winners }) => {
   const [seasonState, setSeasonState] = useState(currentSeason);
 
   const handleMenuChange = async (event: any) => {
@@ -179,7 +228,15 @@ const SongOfTheNightStandings: NextPage = () => {
             </Form.Group>
           </Form>
         </div> */}
-        Standings for Season {seasonState}
+        <p>Standings for Season {seasonState}</p>
+        {/* <p>Number of winners: {winners.length}</p>
+        <ul>
+          {winners.map((winner, index) => (
+            <li key={winner.index}>{winner.requester}</li>
+          ))}
+        </ul> */}
+
+        <pre>{winners}</pre>
       </main>
     </>
   );
