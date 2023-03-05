@@ -68,11 +68,7 @@ function Navigation() {
                   All Songs
                 </NavDropdown.Item>
                 <NavDropdown.Divider />
-                <NavDropdown.Item
-                  id='playlistLink'
-                  href='/song-of-the-night/playlists'
-                  disabled
-                >
+                <NavDropdown.Item id='playlistLink' href='/sotn-playlists'>
                   Playlists
                 </NavDropdown.Item>
                 <NavDropdown.Divider />
