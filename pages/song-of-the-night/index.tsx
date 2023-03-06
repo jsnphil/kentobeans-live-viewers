@@ -1,6 +1,6 @@
 import { NextPage } from 'next';
 import { useState } from 'react';
-import { Form } from 'react-bootstrap';
+import { Accordion, Form } from 'react-bootstrap';
 import styles from './sotn.module.css';
 
 type SotnProps = {
@@ -8,23 +8,35 @@ type SotnProps = {
 };
 
 type SotnWinner = {
-  readonly youtubeId: string;
+  readonly requestId: string;
   readonly requester: string;
+  readonly youtubeId: string;
+  readonly artist: string;
+  readonly year: string;
+  readonly featuredArtist: string;
+  readonly sotsWinner: boolean;
+  readonly streamDate: string;
+  readonly title?: string;
+};
+
+type SotnWinnerData = {
+  readonly username: string;
+  readonly songs: SotnWinner[];
 };
 
 const kentobotApiHost = process.env.KENTOBOT_API_HOST;
 
 export async function getServerSideProps() {
+  // TODO extract this into a function(s) that can be called from the state changes as well
+
   const res = await fetch(
     `https://${kentobotApiHost}/dev/song-of-the-night/winners`
   );
   const data = await res.json();
 
-  // console.log(JSON.stringify(data, null, 2));
-
   let winnersMap = new Map<string, any[]>();
 
-  data.winners.forEach((winner, index) => {
+  data.winners.forEach((winner: SotnWinner, index: number) => {
     const requester = winner.requester.toLowerCase();
 
     if (winnersMap.has(requester)) {
@@ -34,20 +46,28 @@ export async function getServerSideProps() {
     }
   });
 
-  // console.log(`Mapped winners: ${winnersMap}`);
+  let sotnWinners: SotnWinnerData[] = [];
 
-  const keys = winnersMap.keys();
+  winnersMap.forEach((songs, key) => {
+    songs.sort(
+      (song1: SotnWinner, song2: SotnWinner) =>
+        new Date(song2.streamDate).getTime() -
+        new Date(song1.streamDate).getTime()
+    );
 
-  for (let key of keys) {
-    console.log(`Key ${key}`);
-    console.log(`Number of wins: ${winnersMap.get(key)?.length}`);
+    sotnWinners.push({
+      username: key,
+      songs: songs
+    });
+  });
 
-    console.log(JSON.stringify(winnersMap.get(key), null, 2));
-  }
+  sotnWinners.sort(
+    (winner1, winner2) => winner2.songs.length - winner1.songs.length
+  );
 
   return {
     props: {
-      winners: JSON.parse(winnersMap)
+      winners: sotnWinners
     }
   };
 }
@@ -229,17 +249,52 @@ const SongOfTheNightStandings: NextPage = ({ winners }) => {
           </Form>
         </div> */}
         <p>Standings for Season {seasonState}</p>
-        {/* <p>Number of winners: {winners.length}</p>
-        <ul>
-          {winners.map((winner, index) => (
-            <li key={winner.index}>{winner.requester}</li>
-          ))}
-        </ul> */}
+        <p>Number of winners: {winners.length}</p>
 
-        <pre>{winners}</pre>
+        {/* <pre>{JSON.stringify(winners, null, 2)}</pre> */}
+
+        <Accordion defaultActiveKey='0'>
+          {winners.map((winner: SotnWinnerData, index: string) => (
+            <Accordion.Item eventKey={index} key={index}>
+              <Accordion.Header>
+                {winner.username} - {winner.songs.length} wins
+              </Accordion.Header>
+              <Accordion.Body>
+                <table>
+                  <tbody>
+                    <>
+                      {console.log(winner.songs)}
+
+                      {winner.songs!.map((song: SotnWinner, index: number) => (
+                        <tr key={index}>
+                          <td>{song.title}</td>
+                          <td>
+                            {getArtistValue(song.artist, song.featuredArtist)}
+                          </td>
+                          <td>{song.streamDate}</td>
+                        </tr>
+                      ))}
+                    </>
+                  </tbody>
+                </table>
+              </Accordion.Body>
+            </Accordion.Item>
+          ))}
+        </Accordion>
       </main>
     </>
   );
+};
+
+const getArtistValue = (artist: string, featArtist?: string): string => {
+  if (featArtist) {
+    return `${artist.replaceAll('|', ' & ')} feat. ${featArtist.replaceAll(
+      '|',
+      ' & '
+    )}`;
+  } else {
+    return artist.replaceAll('|', ' & ');
+  }
 };
 
 export default SongOfTheNightStandings;
