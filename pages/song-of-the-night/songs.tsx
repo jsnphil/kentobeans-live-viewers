@@ -74,6 +74,7 @@ const SongOfTheNightSongs: NextPage = ({ winners }) => {
                   <a
                     href={`https://youtu.be/${song.youtubeId}`}
                     target='_blank'
+                    rel='noreferrer'
                   >
                     {`${index + 1} - ${song.title}`}
                   </a>
