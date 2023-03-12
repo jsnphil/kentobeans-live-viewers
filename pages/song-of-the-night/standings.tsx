@@ -319,12 +319,13 @@ const SongOfTheNightStandings: NextPage = ({ winners }) => {
                   </Col>
                 </Row>
                 {winner.songs!.map((song: SotnWinner, index: number) => (
-                  <div className={`${styles.winnerRow}`}>
+                  <div className={`${styles.winnerRow}`} key={index}>
                     <Row>
                       <Col xs={4}>
                         <a
                           href={`https://youtu.be/${song.youtubeId}`}
                           target='_blank'
+                          rel='noreferrer'
                         >
                           {song.title}
                         </a>
