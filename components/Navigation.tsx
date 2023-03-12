@@ -26,44 +26,43 @@ function Navigation() {
           <Navbar.Collapse id='responsive-navbar-nav'>
             <Nav className='me-auto'>
               <Nav.Link href='/'>Home</Nav.Link>
-              <Nav.Link href='commands' id='commandsLink'>
+              <Nav.Link href='../commands' id='commandsLink'>
                 Kentobot Commands
               </Nav.Link>
-              <Nav.Link href='request-rules' id='requestRulesLink'>
+              <Nav.Link href='../request-rules' id='requestRulesLink'>
                 Request Rules
               </Nav.Link>
-              <Nav.Link href='songlist' id='songlistLink'>
+              <Nav.Link href='../songlist' id='songlistLink'>
                 Stream Songlist
               </Nav.Link>
-              <Nav.Link href='song-history' id='songHistoryLink'>
+              <Nav.Link href='../song-history' id='songHistoryLink'>
                 Song History
               </Nav.Link>
 
               <NavDropdown title='Song of the Night' id='sotnDropdown'>
                 <NavDropdown.Item
                   id='sotnStandingsLink'
-                  href='/song-of-the-night/'
+                  href='song-of-the-night/standings'
                 >
                   Standings
                 </NavDropdown.Item>
                 <NavDropdown.Item
                   id='sotnUsersLink'
-                  href='/song-of-the-night/users'
+                  href='../song-of-the-night/users'
                   disabled
                 >
                   User Stats
                 </NavDropdown.Item>
                 <NavDropdown.Item
                   id='sotnSongsLink'
-                  href='/song-of-the-night/songs-stats'
+                  href='../song-of-the-night/songs-stats'
                   disabled
                 >
                   Song Stats
                 </NavDropdown.Item>
                 <NavDropdown.Item
                   id='sotnSongsLink'
-                  href='/song-of-the-night/songs'
-                  disabled
+                  href='../song-of-the-night/songs'
                 >
                   All Songs
                 </NavDropdown.Item>
