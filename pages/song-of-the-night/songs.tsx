@@ -68,7 +68,7 @@ const SongOfTheNightSongs: NextPage = ({ winners }) => {
             </Row>
           </div>
           {winners.map((song: SotnWinner, index: number) => (
-            <div className={`${styles.winnerRow}`}>
+            <div className={`${styles.winnerRow}`} key={index}>
               <Row>
                 <Col xs={4}>
                   <a
