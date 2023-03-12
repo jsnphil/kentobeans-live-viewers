@@ -23,3 +23,81 @@
 	width: 100%;
 	border-bottom: 0px;
 }
+
+.userHeading {
+	font-size: 15px;
+	font-weight: bold;
+	color: #FFFFFF;
+	letter-spacing: 1px;
+	text-align: center;
+	background-color: #523877;
+}
+
+.winnersheading {
+	background-color: #5C9240;
+	font-size: 15px;
+    font-weight: bold;
+    color: #FFFFFF;
+    letter-spacing: 1px;
+    /* text-align: center; */
+    border: 2px solid #0E1336;
+    line-height: 28px;
+}
+
+.heading {
+	border-top-left-radius: 8px;
+	border-bottom-left-radius: 8px;
+	border-top-right-radius: 8px;
+	border-bottom-right-radius: 8px;
+}
+
+.winnerRow {
+	color: #0E1336;
+}
+
+.winnerRow:hover {
+	background-color: #AAAAAA;
+	text-decoration: none;
+	color: #0E1336 !important;
+}
+
+.winnerRow:active {
+	text-decoration: none;
+	color: #0E1336 !important;
+}
+
+.winnerRow:link {
+	text-decoration: none;
+	color: #0E1336 !important;
+}
+
+.winnerRow:visited {
+	text-decoration: none;
+	color: #0E1336 !important;
+}
+
+/**/
+.a:hover {
+	background-color: #AAAAAA;
+	text-decoration: none;
+	color: #0E1336 !important;
+}
+
+.a:active {
+	text-decoration: none;
+	color: #0E1336 !important;
+}
+
+.a:link {
+	text-decoration: none;
+	color: #0E1336 !important;
+}
+
+.a:visited {
+	text-decoration: none;
+	color: #0E1336 !important;
+}
+
+.mostRecent {
+	background-color: #4376BB;	
+}
