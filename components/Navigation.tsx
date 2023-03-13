@@ -5,23 +5,9 @@ import Image from 'next/image';
 import { Nav, NavDropdown } from 'react-bootstrap';
 import { signOut, useSession } from 'next-auth/react';
 import UserNavItem from './UserNavItem';
-import { useRouter } from 'next/router';
-
-const getLinkPrefix = () => {
-  const router = useRouter();
-  if (router.asPath.startsWith('/song-of-the-night')) {
-    console.log('On a SOTN page');
-  }
-  return '';
-};
 
 function Navigation() {
   const { data: session } = useSession();
-
-  const router = useRouter();
-  console.log(`asPath: ${router.asPath}`);
-  console.log(`pathname: ${router.pathname}`);
-  console.log(`basePath: ${router.basePath}`);
 
   return (
     <>
