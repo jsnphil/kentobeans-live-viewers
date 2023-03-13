@@ -5,7 +5,7 @@ import styles from './sotn.module.css';
 import sotnData from '../../data/sotn-response.json';
 
 type SotnProps = {
-  data: SotnWinner[];
+  winners: SotnWinnerData[];
 };
 
 type SotnWinner = {
@@ -33,8 +33,8 @@ export async function getServerSideProps() {
   const res = await fetch(
     `https://${kentobotApiHost}/dev/song-of-the-night/winners`
   );
-  const data = await res.json();
-  // const data = JSON.parse(JSON.stringify(sotnData));
+  // const data = await res.json();
+  const data = JSON.parse(JSON.stringify(sotnData));
 
   let winnersMap = new Map<string, any[]>();
 
@@ -74,7 +74,7 @@ export async function getServerSideProps() {
 }
 
 const currentSeason = '12'; // TODO Get from AWS?
-const SongOfTheNightStandings: NextPage = ({ winners }) => {
+const SongOfTheNightStandings: NextPage<SotnProps> = ({ winners }) => {
   const [seasonState, setSeasonState] = useState(currentSeason);
 
   const handleMenuChange = async (event: any) => {
@@ -136,8 +136,11 @@ const SongOfTheNightStandings: NextPage = ({ winners }) => {
           </div>
 
           <Accordion defaultActiveKey='0'>
-            {winners.map((winner: SotnWinnerData, index: string) => (
-              <Accordion.Item eventKey={index} key={index}>
+            {winners.map((winner: SotnWinnerData, index: number) => (
+              <Accordion.Item
+                eventKey={new Number(index).toString()}
+                key={index}
+              >
                 <Accordion.Header>
                   {winner.username} - {winner.songs.length}{' '}
                   {winner.songs.length == 1 ? 'win' : 'wins'}
@@ -310,7 +313,7 @@ const SongOfTheNightStandings: NextPage = ({ winners }) => {
                 <Col>Stream Date</Col>
               </Row>
             </div>
-            {winners.map((winner: SotnWinnerData, index: string) => (
+            {winners.map((winner: SotnWinnerData, index: number) => (
               <div className='pb-5 rounded-circle' key={index}>
                 <Row>
                   <Col className={`${styles.userHeading} ${styles.heading}`}>

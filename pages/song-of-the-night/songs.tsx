@@ -5,7 +5,7 @@ import styles from './sotn.module.css';
 import sotnData from '../../data/sotn-response.json';
 
 type SotnProps = {
-  data: SotnWinner[];
+  winners: SotnWinner[];
 };
 
 type SotnWinner = {
@@ -27,7 +27,7 @@ type SotnWinnerData = {
 
 const kentobotApiHost = process.env.KENTOBOT_API_HOST;
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const res = await fetch(
     `https://${kentobotApiHost}/dev/song-of-the-night/winners`
   );
@@ -48,7 +48,7 @@ export async function getStaticProps() {
   };
 }
 
-const SongOfTheNightSongs: NextPage = ({ winners }) => {
+const SongOfTheNightSongs: NextPage<SotnProps> = ({ winners }) => {
   console.log(winners);
   return (
     <>
