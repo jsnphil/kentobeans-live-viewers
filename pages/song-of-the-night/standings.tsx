@@ -167,6 +167,7 @@ const SongOfTheNightStandings: NextPage<SotnProps> = ({ winners }) => {
         </div>
         <div className='d-none d-xl-block mb-5'>
           <div className='container d-flex aligns-items-center justify-content-center mb-5'>
+            {/* TODO Convert this to CSS in sotn.modules.css file */}
             <div id='menuTop' className='innerContainer'>
               <button
                 name='season12'
