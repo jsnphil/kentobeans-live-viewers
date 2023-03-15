@@ -49,7 +49,6 @@ function Navigation() {
                 <NavDropdown.Item
                   id='sotnUsersLink'
                   href='../song-of-the-night/users'
-                  disabled
                 >
                   User Stats
                 </NavDropdown.Item>
