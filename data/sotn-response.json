@@ -10,7 +10,8 @@
       "featuredArtist": null,
       "sotsWinner": false,
       "title": "My Sharona",
-      "playDate": "2019-06-11T06:06:29.936Z"
+      "playDate": "2019-06-11T06:06:29.936Z",
+      "season": 3
     },
     {
       "requestId": "08f1c470-cd0d-48d0-b31c-bfa53144465f",
@@ -21,7 +22,8 @@
       "featuredArtist": null,
       "sotsWinner": false,
       "title": "Damn!",
-      "playDate": "2021-12-31T00:02:52.069Z"
+      "playDate": "2021-12-31T00:02:52.069Z",
+      "season": 10
     },
     {
       "requestId": "954d2884-609e-4c5d-ab61-796b28883309",
@@ -32,7 +34,8 @@
       "featuredArtist": null,
       "sotsWinner": false,
       "title": "Roosevelt - Strangers (Official Audio)",
-      "playDate": "2021-04-24T00:11:39.107Z"
+      "playDate": "2021-04-24T00:11:39.107Z",
+      "season": 9
     },
     {
       "requestId": "1688e506-8249-4d0b-becf-4cac94ae039e",
@@ -43,7 +46,8 @@
       "featuredArtist": "OMMIEH",
       "sotsWinner": false,
       "title": "#NuDisco | Flamingo Cartel, Revolucien & DJ Taro Feat. OMMIEH - Fire In Your Eyes",
-      "playDate": "2022-04-07T23:45:20.665Z"
+      "playDate": "2022-04-07T23:45:20.665Z",
+      "season": 11
     },
     {
       "requestId": "12ca8161-9098-49e9-8660-0809c59c358a",
@@ -54,7 +58,8 @@
       "featuredArtist": null,
       "sotsWinner": false,
       "playDate": "2021-05-12T00:48:57.380Z",
-      "title": "I Don't Like Mondays. / A GIRL IN THE CITY (Audio)"
+      "title": "I Don't Like Mondays. / A GIRL IN THE CITY (Audio)",
+      "season": 9
     },
     {
       "requestId": "1dc01aff-66b6-463c-8d37-eeb72933c34b",
@@ -65,7 +70,8 @@
       "featuredArtist": null,
       "sotsWinner": false,
       "title": "Fickle Friends - Pretty Great",
-      "playDate": "2021-05-14T23:56:10.408Z"
+      "playDate": "2021-05-14T23:56:10.408Z",
+      "season": 9
     },
     {
       "requestId": "4b2e0a6d-1d47-4c90-8228-b1e1d76cf8e3",
@@ -76,7 +82,8 @@
       "featuredArtist": null,
       "sotsWinner": false,
       "playDate": "2021-05-18T23:18:46.471Z",
-      "title": "Remi Wolf - Disco Man (Official Video)"
+      "title": "Remi Wolf - Disco Man (Official Video)",
+      "season": 9
     },
     {
       "requestId": "06720063-3558-41e5-b32a-08750d044103",
@@ -87,7 +94,8 @@
       "featuredArtist": null,
       "sotsWinner": false,
       "title": "Spencer Sutherland - Sweater (Official Video)",
-      "playDate": "2021-05-07T00:01:54.053Z"
+      "playDate": "2021-05-07T00:01:54.053Z",
+      "season": 9
     },
     {
       "requestId": "041460c4-5c40-478f-b8cc-3cd22c0823d4",
@@ -98,7 +106,8 @@
       "featuredArtist": null,
       "sotsWinner": false,
       "title": "Sir Woman - Highroad",
-      "playDate": "2021-06-18T23:28:08.300Z"
+      "playDate": "2021-06-18T23:28:08.300Z",
+      "season": 9
     },
     {
       "requestId": "430cf6b1-0292-4ced-837c-51916b93d444",
@@ -109,7 +118,8 @@
       "featuredArtist": null,
       "sotsWinner": false,
       "title": "Dragostea din tei",
-      "playDate": "2019-04-12T06:06:29.939Z"
+      "playDate": "2019-04-12T06:06:29.939Z",
+      "season": 2
     },
     {
       "requestId": "88921848-6419-4cf3-8b6c-d8a4d5bdfe47",
@@ -120,7 +130,8 @@
       "featuredArtist": null,
       "sotsWinner": false,
       "title": "Scorpions-Hurricane 2000",
-      "playDate": "2019-06-11T06:06:29.940Z"
+      "playDate": "2019-06-11T06:06:29.940Z",
+      "season": 3
     },
     {
       "requestId": "22b245dd-4680-4f86-be7e-88c08fa5caa4",
@@ -131,7 +142,8 @@
       "featuredArtist": null,
       "sotsWinner": false,
       "title": "Neon Capital - '1985' (Official Audio)",
-      "playDate": "2022-09-01T23:54:02.722Z"
+      "playDate": "2022-09-01T23:54:02.722Z",
+      "season": 11
     },
     {
       "requestId": "30de4882-0125-4d42-ba05-e0018e5ce664",
@@ -142,7 +154,8 @@
       "featuredArtist": null,
       "sotsWinner": false,
       "title": "Madelyn Grant - Reasons [Official Music Video]",
-      "playDate": "2021-05-21T01:19:58.583Z"
+      "playDate": "2021-05-21T01:19:58.583Z",
+      "season": 9
     },
     {
       "requestId": "87d4a0aa-74ba-456f-9430-cd8e546432c8",
@@ -153,7 +166,8 @@
       "featuredArtist": "David Shaw",
       "sotsWinner": false,
       "title": "Naughty Professor feat. David Shaw of The Revivalists ~ Stray",
-      "playDate": "2021-06-07T23:50:23.282Z"
+      "playDate": "2021-06-07T23:50:23.282Z",
+      "season": 9
     },
     {
       "requestId": "e0e730cc-920a-4256-a466-e3b0ea59f03c",
@@ -164,7 +178,8 @@
       "featuredArtist": "Lenno",
       "sotsWinner": false,
       "title": "Hanging with You (Lenno Remix)",
-      "playDate": "2021-06-25T00:13:02.111Z"
+      "playDate": "2021-06-25T00:13:02.111Z",
+      "season": 9
     },
     {
       "requestId": "37ed256c-b949-4be4-a80b-8ceb3b1842a9",
@@ -175,7 +190,8 @@
       "featuredArtist": null,
       "sotsWinner": false,
       "title": "DVNA - Sushi In Tokyo",
-      "playDate": "2022-04-22T00:33:08.699Z"
+      "playDate": "2022-04-22T00:33:08.699Z",
+      "season": 11
     },
     {
       "requestId": "d0d84a66-e82e-4d7b-9de7-446577b2cf1a",
@@ -186,7 +202,8 @@
       "featuredArtist": null,
       "sotsWinner": false,
       "title": "More To Give",
-      "playDate": "2022-04-27T00:33:41.227Z"
+      "playDate": "2022-04-27T00:33:41.227Z",
+      "season": 11
     },
     {
       "requestId": "273472c5-f587-4e19-b40c-5277e6b47e1d",
@@ -197,7 +214,8 @@
       "featuredArtist": "Lazywax",
       "sotsWinner": false,
       "title": "Miami Horror - Luv Is Not Enough (Lazywax Remix)",
-      "playDate": "2022-06-09T23:51:41.439Z"
+      "playDate": "2022-06-09T23:51:41.439Z",
+      "season": 11
     },
     {
       "requestId": "f825e460-819e-45ae-aeef-fb142cd26b44",
@@ -208,7 +226,8 @@
       "featuredArtist": null,
       "sotsWinner": false,
       "title": "Cody Dear - The Last Disco [Official Music Video]",
-      "playDate": "2022-07-19T23:42:06.617Z"
+      "playDate": "2022-07-19T23:42:06.617Z",
+      "season": 11
     },
     {
       "requestId": "44f06b78-b41c-428c-a161-ddb978634da2",
@@ -219,7 +238,8 @@
       "featuredArtist": null,
       "sotsWinner": false,
       "title": "Nuela Charles - Worthy (Official Music Video)",
-      "playDate": "2022-09-14T00:20:18.857Z"
+      "playDate": "2022-09-14T00:20:18.857Z",
+      "season": 11
     },
     {
       "requestId": "b3b3783f-4bc6-42e4-8398-4815a1eb8424",
@@ -230,7 +250,8 @@
       "featuredArtist": null,
       "sotsWinner": false,
       "title": "Dancin - Emily Bear (Audio Only)",
-      "playDate": "2021-04-16T01:13:25.709Z"
+      "playDate": "2021-04-16T01:13:25.709Z",
+      "season": 9
     },
     {
       "requestId": "b7f0379d-1a7b-412c-9684-3051e3cb0ecb",
@@ -241,7 +262,8 @@
       "featuredArtist": null,
       "sotsWinner": false,
       "title": "MANCHILD - Emily Bear (Audio Only)",
-      "playDate": "2021-04-29T23:08:38.790Z"
+      "playDate": "2021-04-29T23:08:38.790Z",
+      "season": 9
     },
     {
       "requestId": "5fa44158-da39-406e-bb9a-207beef19101",
@@ -252,7 +274,8 @@
       "featuredArtist": null,
       "sotsWinner": false,
       "title": "TWICE - SAY SOMETHING「Audio」",
-      "playDate": "2022-06-29T00:56:46.276Z"
+      "playDate": "2022-06-29T00:56:46.276Z",
+      "season": 11
     },
     {
       "requestId": "990ec3cb-c88a-436b-af26-effa2e086306",
@@ -263,7 +286,8 @@
       "featuredArtist": "Emily C. Browning",
       "sotsWinner": false,
       "title": "Juke on Jelly - Cory Wong ft. Emily C. Browning - Live in MPLS",
-      "playDate": "2020-10-07T01:16:18.758Z"
+      "playDate": "2020-10-07T01:16:18.758Z",
+      "season": 8
     },
     {
       "requestId": "3506ac0f-90c0-42d0-92d2-63902c97e3a4",
@@ -274,7 +298,8 @@
       "featuredArtist": null,
       "sotsWinner": false,
       "title": "Michael Jackson - Bad (Shortened Version)",
-      "playDate": "2020-11-22T00:48:57.230Z"
+      "playDate": "2020-11-22T00:48:57.230Z",
+      "season": 8
     },
     {
       "requestId": "cdf85bae-458c-4b27-be80-c9fd7fecd6a4",
@@ -285,7 +310,8 @@
       "featuredArtist": null,
       "sotsWinner": false,
       "title": "Back to the Future - The Power of Love (Huey Lewis and the News)",
-      "playDate": "2019-05-11T06:06:29.940Z"
+      "playDate": "2019-05-11T06:06:29.940Z",
+      "season": 2
     },
     {
       "requestId": "cf425717-0ced-4294-b808-d86b8725e138",
@@ -296,7 +322,8 @@
       "featuredArtist": null,
       "sotsWinner": false,
       "title": "Earth, Wind &amp; Fire - Boogie Wonderland (Official Music Video)",
-      "playDate": "2021-06-07T23:55:38.736Z"
+      "playDate": "2021-06-07T23:55:38.736Z",
+      "season": 9
     },
     {
       "requestId": "c32f3b60-6123-4d5a-b9c6-794781f196bc",
@@ -307,7 +334,8 @@
       "featuredArtist": null,
       "sotsWinner": false,
       "title": "\"Side By Side\" - Collin Miller & the Brother Nature - Official Music Video",
-      "playDate": "2019-03-24T06:06:29.936Z"
+      "playDate": "2019-03-24T06:06:29.936Z",
+      "season": 2
     },
     {
       "requestId": "e98e68aa-aaa8-461e-b31f-79a777512b04",
@@ -318,7 +346,8 @@
       "featuredArtist": null,
       "sotsWinner": false,
       "title": "The Motet - \"Supernova\" / Red Rocks 2017 Recap",
-      "playDate": "2019-03-31T06:06:29.936Z"
+      "playDate": "2019-03-31T06:06:29.936Z",
+      "season": 2
     },
     {
       "requestId": "e005852e-f065-470f-b0bc-a8037f4f2805",
@@ -329,7 +358,8 @@
       "featuredArtist": null,
       "sotsWinner": false,
       "title": "Royce Wood Junior - Clanky Love (Official Lyric Video)",
-      "playDate": "2021-05-13T22:17:56.464Z"
+      "playDate": "2021-05-13T22:17:56.464Z",
+      "season": 9
     },
     {
       "requestId": "be90d46e-385f-46b1-857a-534c065d4d1a",
@@ -340,7 +370,8 @@
       "featuredArtist": "Maysa",
       "sotsWinner": false,
       "title": "All For You (feat. Maysa)",
-      "playDate": "2021-06-04T22:50:00.370Z"
+      "playDate": "2021-06-04T22:50:00.370Z",
+      "season": 9
     },
     {
       "requestId": "767432f2-a991-44b7-abf2-c526d2ac6db3",
@@ -351,7 +382,8 @@
       "featuredArtist": null,
       "sotsWinner": false,
       "title": "Heat",
-      "playDate": "2021-10-30T00:41:27.935Z"
+      "playDate": "2021-10-30T00:41:27.935Z",
+      "season": 10
     },
     {
       "requestId": "42aad01d-46d9-4fbe-9a88-d0ec3fa9cd78",
@@ -362,7 +394,8 @@
       "featuredArtist": null,
       "sotsWinner": false,
       "title": "Yola - ''Dancing Away In Tears'' [Official Audio]",
-      "playDate": "2021-11-02T23:25:02.167Z"
+      "playDate": "2021-11-02T23:25:02.167Z",
+      "season": 10
     },
     {
       "requestId": "77fbe35e-efe5-407a-b296-bb5dfe398feb",
@@ -373,7 +406,8 @@
       "featuredArtist": null,
       "sotsWinner": false,
       "title": "Sammy Rae - ''Last Christmas'' (Official Music Video)(Wham! Cover)",
-      "playDate": "2021-12-21T00:01:43.126Z"
+      "playDate": "2021-12-21T00:01:43.126Z",
+      "season": 10
     },
     {
       "requestId": "9343f463-c384-4852-a9c9-ad5ddf2a454d",
