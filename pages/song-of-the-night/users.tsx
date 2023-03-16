@@ -30,22 +30,16 @@ type SotnStats = {
   lastStreamWinNumber: number;
 };
 
-// TODO Go back to strings, replace with '-' in the UI code below
 type WinGap = {
   longest: number;
   shortest: number;
   current: number;
 };
 
-type SotnWinnerData = {
-  readonly username: string;
-  readonly songs: SotnWinner[];
-};
-
 const kentobotApiHost = process.env.KENTOBOT_API_HOST;
 
 export async function getServerSideProps() {
-  // TODO extract this into a function(s) that can be called from the state changes as well
+  // TODO extract this into a function(s) that can be called from the state changes as well?
 
   const res = await fetch(
     `https://${kentobotApiHost}/dev/song-of-the-night/winners`
@@ -68,18 +62,13 @@ export async function getServerSideProps() {
     if (winnersMap.has(requester)) {
       const user = winnersMap.get(requester);
 
-      console.log(JSON.stringify(user, null, 2));
-
       user!.wins++;
 
       // Determine Gaps (in Days)
-      const gapDays =
-        user!.lastWinDate === undefined
-          ? 0
-          : getDateDiff(
-              new Date(user!.lastWinDate!),
-              new Date(winner.playDate)
-            );
+      const gapDays = getDateDiff(
+        new Date(user!.lastWinDate!),
+        new Date(winner.playDate)
+      );
 
       user!.daysGap.longest =
         user!.daysGap.longest === 0
@@ -152,7 +141,7 @@ export async function getServerSideProps() {
   };
 }
 
-const getDateDiff = (date1: Date, date2: Date) => {
+export const getDateDiff = (date1: Date, date2: Date) => {
   const _MS_PER_DAY = 1000 * 60 * 60 * 24;
 
   const utc1 = Date.UTC(date1.getFullYear(), date1.getMonth(), date1.getDate());
@@ -162,7 +151,6 @@ const getDateDiff = (date1: Date, date2: Date) => {
 };
 
 const SongOfTheNightUsers: NextPage<SotnProps> = ({ winners }) => {
-  console.log(JSON.stringify(winners, null, 2));
   return (
     <>
       <main>
@@ -172,49 +160,100 @@ const SongOfTheNightUsers: NextPage<SotnProps> = ({ winners }) => {
           </div>
         </div>
         <div className='d-none d-xl-block mb-5'>
-          <div className='container d-flex aligns-items-center justify-content-center mb-5'>
-            <Container>
-              <Row>
-                <Col
-                  className={`${styles.winnersheading} ${styles.heading}`}
-                  xs={{ span: 3, offset: 6 }}
-                >
-                  Gap (Days)
-                </Col>
-                <Col
-                  className={`${styles.winnersheading} ${styles.heading}`}
-                  xs={3}
-                >
-                  Gap (Streams)
-                </Col>
-              </Row>
-              <Row className={`${styles.winnersheading} ${styles.heading}`}>
-                <Col xs={4}>User</Col>
-                <Col xs={1}>Wins</Col>
-                <Col xs={1}>Streak</Col>
-                <Col xs={1}>Largest</Col>
-                <Col xs={1}>Smallest</Col>
-                <Col xs={1}>Current</Col>
-                <Col xs={1}>Largest</Col>
-                <Col xs={1}>Smallest</Col>
-                <Col xs={1}>Current</Col>
-              </Row>
-              {winners.map((winner: SotnStats, index: number) => (
-                <Link href={`/song-of-the-night/users/${winner.user}`}>
-                  <Row className={`${styles.winnerRow}`} key={index}>
-                    <Col xs={4}>{winner.user}</Col>
-                    <Col xs={1}>{winner.wins}</Col>
-                    <Col xs={1}>{winner.streak}</Col>
-                    <Col xs={1}>{winner.daysGap.longest}</Col>
-                    <Col xs={1}>{winner.daysGap.shortest}</Col>
-                    <Col xs={1}>{winner.daysGap.current}</Col>
-                    <Col xs={1}>{winner.streamGap.longest}</Col>
-                    <Col xs={1}>{winner.streamGap.shortest}</Col>
-                    <Col xs={1}>{winner.streamGap.current}</Col>
-                  </Row>
-                </Link>
-              ))}
-            </Container>
+          <div className={`${styles.sotnTable}`}>
+            <div className='container d-flex aligns-items-center justify-content-center mb-5'>
+              <Container>
+                <Row>
+                  <Col
+                    className={`${styles.winnersheading} ${styles.roundedTopLeft} text-center`}
+                    xs={{ span: 3, offset: 6 }}
+                  >
+                    Gap (Days)
+                  </Col>
+                  <Col
+                    className={`${styles.winnersheading} ${styles.roundedTopRight} text-center`}
+                    xs={3}
+                  >
+                    Gap (Streams)
+                  </Col>
+                </Row>
+                <Row className={`${styles.roundedTopLeft}`}>
+                  <Col
+                    className={`${styles.winnersheading} ${styles.roundedTopLeft} ${styles.roundedBottomLeft}`}
+                    xs={4}
+                  >
+                    User
+                  </Col>
+                  <Col className={`${styles.winnersheading}`} xs={1}>
+                    Wins
+                  </Col>
+                  <Col className={`${styles.winnersheading}`} xs={1}>
+                    Streak
+                  </Col>
+                  <Col className={`${styles.winnersheading}`} xs={1}>
+                    Largest
+                  </Col>
+                  <Col className={`${styles.winnersheading}`} xs={1}>
+                    Smallest
+                  </Col>
+                  <Col className={`${styles.winnersheading}`} xs={1}>
+                    Current
+                  </Col>
+                  <Col className={`${styles.winnersheading}`} xs={1}>
+                    Largest
+                  </Col>
+                  <Col className={`${styles.winnersheading}`} xs={1}>
+                    Smallest
+                  </Col>
+                  <Col
+                    className={`${styles.winnersheading} ${styles.roundedBottomRight}`}
+                    xs={1}
+                  >
+                    Current
+                  </Col>
+                </Row>
+                {winners.map((winner: SotnStats, index: number) => (
+                  <Link
+                    href={`/song-of-the-night/users/${winner.user}`}
+                    key={index}
+                  >
+                    <Row className={`${styles.winnerRow}`} key={index}>
+                      <Col xs={4}>{winner.user}</Col>
+                      <Col xs={1}>{winner.wins}</Col>
+                      <Col xs={1}>{winner.streak}</Col>
+                      <Col xs={1}>
+                        {winner.daysGap.longest === 0
+                          ? '-'
+                          : winner.daysGap.longest}
+                      </Col>
+                      <Col xs={1}>
+                        {winner.daysGap.shortest === 0
+                          ? '-'
+                          : winner.daysGap.shortest}
+                      </Col>
+                      <Col xs={1}>
+                        {winner.daysGap.current ? '0' : winner.daysGap.current}
+                      </Col>
+                      <Col xs={1}>
+                        {winner.streamGap.longest === 0
+                          ? '-'
+                          : winner.streamGap.longest}
+                      </Col>
+                      <Col xs={1}>
+                        {winner.streamGap.shortest === 0
+                          ? '-'
+                          : winner.streamGap.longest}
+                      </Col>
+                      <Col xs={1}>
+                        {winner.streamGap.current === 0
+                          ? '-'
+                          : winner.streamGap.current}
+                      </Col>
+                    </Row>
+                  </Link>
+                ))}
+              </Container>
+            </div>
           </div>
         </div>
       </main>

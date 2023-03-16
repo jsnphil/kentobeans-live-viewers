@@ -44,10 +44,20 @@
     line-height: 28px;
 }
 
-.heading {
+/* Move these to global  */
+.roundedTopLeft {
 	border-top-left-radius: 8px;
-	border-bottom-left-radius: 8px;
+}
+
+.roundedTopRight {
 	border-top-right-radius: 8px;
+}
+
+.roundedBottomLeft {
+	border-bottom-left-radius: 8px;
+}
+
+.roundedBottomRight {
 	border-bottom-right-radius: 8px;
 }
 
@@ -61,41 +71,24 @@
 	color: #0E1336 !important;
 }
 
-.winnerRow:active {
+.sotnTable a:link {
 	text-decoration: none;
-	color: #0E1336 !important;
+	color: #0E1336;
 }
 
-.winnerRow:link {
+.sotnTable a:visited {
 	text-decoration: none;
-	color: #0E1336 !important;
+	color: #0E1336;
 }
 
-.winnerRow:visited {
-	text-decoration: none;
-	color: #0E1336 !important;
+.sotnTable a:hover {
+	text-decoration: none; 
+	color: #0E1336;
 }
 
-/**/
-.a:hover {
-	background-color: #AAAAAA;
+.sotnTable a:active {
 	text-decoration: none;
-	color: #0E1336 !important;
-}
-
-.a:active {
-	text-decoration: none;
-	color: #0E1336 !important;
-}
-
-.a:link {
-	text-decoration: none;
-	color: #0E1336 !important;
-}
-
-.a:visited {
-	text-decoration: none;
-	color: #0E1336 !important;
+	color: #0E1336;
 }
 
 .mostRecent {
