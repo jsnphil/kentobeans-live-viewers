@@ -1,39 +1,13 @@
 import { NextPage } from 'next';
 import Link from 'next/link';
 import { Col, Container, Row } from 'react-bootstrap';
+import { SotnStats, SotnWinner } from '../../@types';
 import sotnData from '../../data/sotn-response.json';
+import { getDateDiff } from '../../utils/sotn-utils';
 import styles from './sotn.module.css';
 
 type SotnProps = {
   winners: SotnStats[];
-};
-
-type SotnWinner = {
-  readonly requestId: string;
-  readonly requester: string;
-  readonly youtubeId: string;
-  readonly artist: string;
-  readonly year: string;
-  readonly featuredArtist: string;
-  readonly sotsWinner: boolean;
-  readonly playDate: string;
-  readonly title?: string;
-};
-
-type SotnStats = {
-  user: string;
-  wins: number;
-  streak: number;
-  streamGap: WinGap;
-  daysGap: WinGap;
-  lastWinDate: string;
-  lastStreamWinNumber: number;
-};
-
-type WinGap = {
-  longest: number;
-  shortest: number;
-  current: number;
 };
 
 const kentobotApiHost = process.env.KENTOBOT_API_HOST;
@@ -140,15 +114,6 @@ export async function getServerSideProps() {
     }
   };
 }
-
-export const getDateDiff = (date1: Date, date2: Date) => {
-  const _MS_PER_DAY = 1000 * 60 * 60 * 24;
-
-  const utc1 = Date.UTC(date1.getFullYear(), date1.getMonth(), date1.getDate());
-  const utc2 = Date.UTC(date2.getFullYear(), date2.getMonth(), date2.getDate());
-
-  return Math.floor((utc2 - utc1) / _MS_PER_DAY);
-};
 
 const SongOfTheNightUsers: NextPage<SotnProps> = ({ winners }) => {
   return (

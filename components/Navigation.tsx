@@ -7,7 +7,7 @@ import { signOut, useSession } from 'next-auth/react';
 import UserNavItem from './UserNavItem';
 import { useRouter } from 'next/router';
 
-const navLink = (linkPath: string) => {
+const useNavLink = (linkPath: string) => {
   const router = useRouter();
   const activePage = router.asPath;
 
@@ -41,49 +41,52 @@ function Navigation() {
           <Navbar.Collapse id='responsive-navbar-nav'>
             <Nav className='me-auto'>
               <Nav.Link href='/'>Home</Nav.Link>
-              <Nav.Link href={navLink('commands')} id='commandsLink'>
+              <Nav.Link href={useNavLink('commands')} id='commandsLink'>
                 Kentobot Commands
               </Nav.Link>
-              <Nav.Link href={navLink('request-rules')} id='requestRulesLink'>
+              <Nav.Link
+                href={useNavLink('request-rules')}
+                id='requestRulesLink'
+              >
                 Request Rules
               </Nav.Link>
-              <Nav.Link href={navLink('song-list')} id='songlistLink'>
+              <Nav.Link href={useNavLink('song-list')} id='songlistLink'>
                 Stream Songlist
               </Nav.Link>
-              <Nav.Link href={navLink('song-history')} id='songHistoryLink'>
+              <Nav.Link href={useNavLink('song-history')} id='songHistoryLink'>
                 Song History
               </Nav.Link>
 
               <NavDropdown title='Song of the Night' id='sotnDropdown'>
                 <NavDropdown.Item
                   id='sotnStandingsLink'
-                  href={navLink('song-of-the-night/standings')}
+                  href={useNavLink('song-of-the-night/standings')}
                 >
                   Standings
                 </NavDropdown.Item>
                 <NavDropdown.Item
                   id='sotnUsersLink'
-                  href={navLink('song-of-the-night/users')}
+                  href={useNavLink('song-of-the-night/users')}
                 >
                   User Stats
                 </NavDropdown.Item>
                 <NavDropdown.Item
                   id='sotnSongsLink'
-                  href={navLink('song-of-the-night/song-stats')}
+                  href={useNavLink('song-of-the-night/song-stats')}
                   disabled
                 >
                   Song Stats
                 </NavDropdown.Item>
                 <NavDropdown.Item
                   id='sotnSongsLink'
-                  href={navLink('song-of-the-night/songs')}
+                  href={useNavLink('song-of-the-night/songs')}
                 >
                   All Songs
                 </NavDropdown.Item>
                 <NavDropdown.Divider />
                 <NavDropdown.Item
                   id='playlistLink'
-                  href={navLink('song-of-the-night/playlists')}
+                  href={useNavLink('song-of-the-night/playlists')}
                 >
                   Playlists
                 </NavDropdown.Item>
