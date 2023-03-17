@@ -187,10 +187,9 @@ const SotnUserStats: NextPage<SotnUserStats> = ({ stats, wins }) => {
                 </Row>
               </div>
               {wins.map((songsBySeason: SeasonSongs, index: number) => (
-                <div className='pb-3'>
+                <div className='pb-3' key={index}>
                   <Row
                     className={`${styles.winnersheading} ${styles.roundedTopLeft} ${styles.roundedBottomLeft} ${styles.roundedTopRight} ${styles.roundedBottomRight}`}
-                    key={index}
                   >
                     <Col className={styles.userHeading}>
                       Season {songsBySeason.season}
