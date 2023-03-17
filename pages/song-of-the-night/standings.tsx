@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { Accordion, Col, Container, Form, Row } from 'react-bootstrap';
 import styles from './sotn.module.css';
 import sotnData from '../../data/sotn-response.json';
+import { getArtistValue, getDate } from '../../utils/sotn-utils';
 
 type SotnProps = {
   winners: SotnWinnerData[];
@@ -86,30 +87,6 @@ const SongOfTheNightStandings: NextPage<SotnProps> = ({ winners }) => {
   const seasons = [];
   for (let season = Number.parseInt(currentSeason); season >= 1; season--) {
     seasons.push(season);
-  }
-
-  // TODO Move to a utility
-  function getDate(playDate: string) {
-    const date = new Date(playDate);
-
-    const monthNames = [
-      'Jan',
-      'Feb',
-      'Mar',
-      'Apr',
-      'May',
-      'Jun',
-      'Jul',
-      'Aug',
-      'Sep',
-      'Oct',
-      'Nov',
-      'Dec'
-    ];
-
-    return `${
-      monthNames[date.getMonth()]
-    } ${date.getDate()}, ${date.getFullYear()}`;
   }
 
   return (
@@ -349,18 +326,6 @@ const SongOfTheNightStandings: NextPage<SotnProps> = ({ winners }) => {
       </main>
     </>
   );
-};
-
-// TODO Move this to a utility
-const getArtistValue = (artist: string, featArtist?: string): string => {
-  if (featArtist) {
-    return `${artist.replaceAll('|', ' & ')} feat. ${featArtist.replaceAll(
-      '|',
-      ' & '
-    )}`;
-  } else {
-    return artist.replaceAll('|', ' & ');
-  }
 };
 
 export default SongOfTheNightStandings;

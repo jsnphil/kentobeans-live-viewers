@@ -1,0 +1,28 @@
+export type SotnWinner = {
+  readonly requestId: string;
+  readonly requester: string;
+  readonly youtubeId: string;
+  readonly artist: string;
+  readonly year: string;
+  readonly featuredArtist: string;
+  readonly sotsWinner: boolean;
+  readonly playDate: string;
+  readonly title?: string;
+  readonly season: number;
+};
+
+export type SotnStats = {
+  user: string;
+  wins: number;
+  streak: number;
+  streamGap: WinGap;
+  daysGap: WinGap;
+  lastWinDate: string;
+  lastStreamWinNumber: number;
+};
+
+export type WinGap = {
+  longest: number;
+  shortest: number;
+  current: number;
+};
