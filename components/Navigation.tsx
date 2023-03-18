@@ -50,7 +50,7 @@ function Navigation() {
               >
                 Request Rules
               </Nav.Link>
-              <Nav.Link href={useNavLink('song-list')} id='songlistLink'>
+              <Nav.Link href={useNavLink('songlist')} id='songlistLink'>
                 Stream Songlist
               </Nav.Link>
               <Nav.Link href={useNavLink('song-history')} id='songHistoryLink'>
