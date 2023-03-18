@@ -28,6 +28,8 @@ type SotnWinnerData = {
 
 const kentobotApiHost = process.env.KENTOBOT_API_HOST;
 
+const seasonNumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+
 export async function getServerSideProps() {
   // TODO extract this into a function(s) that can be called from the state changes as well
 
@@ -85,6 +87,7 @@ const SongOfTheNightStandings: NextPage<SotnProps> = ({ winners }) => {
   };
 
   const seasons = [];
+  const seasonButtons = [];
   for (let season = Number.parseInt(currentSeason); season >= 1; season--) {
     seasons.push(season);
   }
@@ -112,216 +115,116 @@ const SongOfTheNightStandings: NextPage<SotnProps> = ({ winners }) => {
             </Form>
           </div>
 
-          <Accordion defaultActiveKey='0'>
-            {winners.map((winner: SotnWinnerData, index: number) => (
-              <Accordion.Item
-                eventKey={new Number(index).toString()}
-                key={index}
-              >
-                <Accordion.Header>
-                  {winner.username} - {winner.songs.length}{' '}
-                  {winner.songs.length == 1 ? 'win' : 'wins'}
-                </Accordion.Header>
-                <Accordion.Body>
-                  {winner.songs!.map((song: SotnWinner, index: number) => (
-                    <Row key={index}>
-                      <Col>
-                        <a
-                          href={`https://youtu.be/${song.youtubeId}`}
-                          target='_blank'
-                          rel='noreferrer'
-                        >
-                          {song.title}
-                        </a>
-                      </Col>
-                      <Col>{getDate(song.playDate)}</Col>
-                    </Row>
-                  ))}
-                </Accordion.Body>
-              </Accordion.Item>
-            ))}
-          </Accordion>
+          <div className={`${styles.sotnTable}`}>
+            <Accordion defaultActiveKey='0'>
+              {winners.map((winner: SotnWinnerData, index: number) => (
+                <Accordion.Item
+                  eventKey={new Number(index).toString()}
+                  key={index}
+                >
+                  <Accordion.Header>
+                    {winner.username} - {winner.songs.length}{' '}
+                    {winner.songs.length == 1 ? 'win' : 'wins'}
+                  </Accordion.Header>
+                  <Accordion.Body>
+                    {winner.songs!.map((song: SotnWinner, index: number) => (
+                      <a
+                        href={`https://youtu.be/${song.youtubeId}`}
+                        target='_blank'
+                        rel='noreferrer'
+                        key={index}
+                      >
+                        <Row>
+                          <Col>{song.title}</Col>
+                          <Col>{getDate(song.playDate)}</Col>
+                        </Row>
+                      </a>
+                    ))}
+                  </Accordion.Body>
+                </Accordion.Item>
+              ))}
+            </Accordion>
+          </div>
         </div>
         <div className='d-none d-xl-block mb-5'>
           <div className='container d-flex aligns-items-center justify-content-center mb-5'>
             {/* TODO Convert this to CSS in sotn.modules.css file */}
             <div id='menuTop' className='innerContainer'>
-              <button
-                name='season12'
-                className={`button ${styles.sotnSeasonButton} leftButtonA ${
-                  seasonState === '12' ? 'selected' : ''
-                }`}
-                onClick={(e) => {
-                  setSeasonState('12');
-                }}
-              >
-                12
-              </button>
-              <button
-                className={`button ${styles.sotnSeasonButton} midButton ${
-                  seasonState === '11' ? 'selected' : ''
-                }`}
-                onClick={(e) => {
-                  setSeasonState('11');
-                }}
-              >
-                11
-              </button>
+              {seasons.map((seasonNumber, index) => (
+                <button
+                  name={`season${seasonNumber}`}
+                  className={`button ${styles.sotnSeasonButton} ${
+                    seasonState === Number(seasonNumber).toString()
+                      ? 'selected'
+                      : ''
+                  }
+                  
+                  ${
+                    index === 0
+                      ? `${styles.roundedBottomLeft} ${styles.roundedTopLeft}`
+                      : ''
+                  }
 
-              <button
-                className={`button ${styles.sotnSeasonButton} midButton ${
-                  seasonState === '10' ? 'selected' : ''
-                }`}
-                onClick={(e) => {
-                  setSeasonState('10');
-                }}
-              >
-                10
-              </button>
-
-              <button
-                className={`button ${styles.sotnSeasonButton} midButton ${
-                  seasonState === '9' ? 'selected' : ''
-                }`}
-                onClick={(e) => {
-                  setSeasonState('9');
-                }}
-              >
-                9
-              </button>
-
-              <button
-                className={`button ${styles.sotnSeasonButton} midButton ${
-                  seasonState === '8' ? 'selected' : ''
-                }`}
-                onClick={(e) => {
-                  setSeasonState('8');
-                }}
-              >
-                8
-              </button>
-
-              <button
-                className={`button ${styles.sotnSeasonButton} midButton ${
-                  seasonState === '7' ? 'selected' : ''
-                }`}
-                onClick={(e) => {
-                  setSeasonState('7');
-                }}
-              >
-                7
-              </button>
-
-              <button
-                className={`button ${styles.sotnSeasonButton} midButton ${
-                  seasonState === '6' ? 'selected' : ''
-                }`}
-                onClick={(e) => {
-                  setSeasonState('6');
-                }}
-              >
-                6
-              </button>
-
-              <button
-                className={`button ${styles.sotnSeasonButton} midButton ${
-                  seasonState === '5' ? 'selected' : ''
-                }`}
-                onClick={(e) => {
-                  setSeasonState('5');
-                }}
-              >
-                5
-              </button>
-
-              <button
-                className={`button ${styles.sotnSeasonButton} midButton ${
-                  seasonState === '4' ? 'selected' : ''
-                }`}
-                onClick={(e) => {
-                  setSeasonState('4');
-                }}
-              >
-                4
-              </button>
-
-              <button
-                className={`button ${styles.sotnSeasonButton} midButton ${
-                  seasonState === '3' ? 'selected' : ''
-                }`}
-                onClick={(e) => {
-                  setSeasonState('3');
-                }}
-              >
-                3
-              </button>
-
-              <button
-                className={`button ${styles.sotnSeasonButton} midButton ${
-                  seasonState === '2' ? 'selected' : ''
-                }`}
-                onClick={(e) => {
-                  setSeasonState('2');
-                }}
-              >
-                2
-              </button>
-
-              <button
-                className={`button ${styles.sotnSeasonButton} rightButtonA ${
-                  seasonState === '1' ? 'selected' : ''
-                }`}
-                onClick={(e) => {
-                  setSeasonState('1');
-                }}
-              >
-                1
-              </button>
+                  ${
+                    index === seasons.length - 1
+                      ? `${styles.roundedBottomRight} ${styles.roundedTopRight}`
+                      : ''
+                  }
+                  
+                  `}
+                  onClick={(e) => {
+                    setSeasonState(Number(seasonNumber).toString());
+                  }}
+                  key={index}
+                >
+                  {seasonNumber}
+                </button>
+              ))}
             </div>
           </div>
 
-          <Container>
-            <div className='pb-3'>
-              <Row
-                className={`${styles.winnersheading} ${styles.roundedTopLeft} ${styles.roundedBottomLeft} ${styles.roundedTopRight} ${styles.roundedBottomRight}`}
-              >
-                <Col xs={4}>Song Title</Col>
-                <Col xs={4}>Artist</Col>
-                <Col>Year</Col>
-                <Col>Stream Date</Col>
-              </Row>
-            </div>
-            {winners.map((winner: SotnWinnerData, index: number) => (
-              <div className='pb-5 rounded-circle' key={index}>
-                <Row>
-                  <Col className={`${styles.userHeading} ${styles.heading}`}>
-                    {winner.username} - {winner.songs.length}{' '}
-                    {winner.songs.length == 1 ? 'win' : 'wins'}
-                  </Col>
+          <div className={`${styles.sotnTable}`}>
+            <Container>
+              <div className='pb-3'>
+                <Row
+                  className={`${styles.winnersheading} ${styles.roundedTopLeft} ${styles.roundedBottomLeft} ${styles.roundedTopRight} ${styles.roundedBottomRight}`}
+                >
+                  <Col xs={4}>Song Title</Col>
+                  <Col xs={4}>Artist</Col>
+                  <Col>Year</Col>
+                  <Col>Stream Date</Col>
                 </Row>
-                {winner.songs!.map((song: SotnWinner, index: number) => (
-                  <div className={`${styles.winnerRow}`} key={index}>
-                    <Row>
-                      <Col xs={4}>
-                        <a
-                          href={`https://youtu.be/${song.youtubeId}`}
-                          target='_blank'
-                          rel='noreferrer'
-                        >
-                          {song.title}
-                        </a>
-                      </Col>
-                      <Col xs={4}>
-                        {getArtistValue(song.artist, song.featuredArtist)}
-                      </Col>
-                      <Col>{song.year}</Col>
-                      <Col>{getDate(song.playDate)}</Col>
-                    </Row>
-                  </div>
-                ))}
               </div>
-            ))}
-          </Container>
+              {winners.map((winner: SotnWinnerData, index: number) => (
+                <div className='pb-5 rounded-circle' key={index}>
+                  <Row>
+                    <Col className={`${styles.userHeading} ${styles.heading}`}>
+                      {winner.username} - {winner.songs.length}{' '}
+                      {winner.songs.length == 1 ? 'win' : 'wins'}
+                    </Col>
+                  </Row>
+                  {winner.songs!.map((song: SotnWinner, index: number) => (
+                    <div className={`${styles.winnerRow}`} key={index}>
+                      <a
+                        href={`https://youtu.be/${song.youtubeId}`}
+                        target='_blank'
+                        rel='noreferrer'
+                      >
+                        <Row>
+                          <Col xs={4}>{song.title}</Col>
+                          <Col xs={4}>
+                            {getArtistValue(song.artist, song.featuredArtist)}
+                          </Col>
+                          <Col>{song.year}</Col>
+                          <Col>{getDate(song.playDate)}</Col>
+                        </Row>
+                      </a>
+                    </div>
+                  ))}
+                </div>
+              ))}
+            </Container>
+          </div>
         </div>
       </main>
     </>
