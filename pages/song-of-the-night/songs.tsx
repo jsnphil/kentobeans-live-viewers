@@ -4,6 +4,7 @@ import styles from './sotn.module.css';
 
 import sotnData from '../../data/sotn-response.json';
 import { getArtistValue, getDate } from '../../utils/sotn-utils';
+import { useKentobot } from '../../utils/kentobotApi';
 
 type SotnProps = {
   winners: SotnWinner[];
@@ -26,14 +27,15 @@ type SotnWinnerData = {
   readonly songs: SotnWinner[];
 };
 
-const kentobotApiHost = process.env.KENTOBOT_API_HOST;
+const kentobotApiHost = process.env.NEXT_PUBLIC_KENTOBOT_API_HOST;
 
 export async function getServerSideProps() {
   const res = await fetch(
     `https://${kentobotApiHost}/dev/song-of-the-night/winners`
   );
-  // const data = await res.json();
-  const data = JSON.parse(JSON.stringify(sotnData));
+  const data = await res.json();
+
+  // const data = JSON.parse(JSON.stringify(sotnData));
 
   let sotnWinners: SotnWinnerData[] = [];
 
