@@ -10,7 +10,10 @@ import { config } from '@fortawesome/fontawesome-svg-core';
 import '@fortawesome/fontawesome-svg-core/styles.css';
 config.autoAddCss = false;
 
-function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
+function KentobeansLiveApp({
+  Component,
+  pageProps: { session, ...pageProps }
+}: AppProps) {
   return (
     <SSRProvider>
       <SessionProvider session={session}>
@@ -36,4 +39,4 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
   );
 }
 
-export default MyApp;
+export default KentobeansLiveApp;

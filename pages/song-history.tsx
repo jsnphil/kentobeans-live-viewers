@@ -7,6 +7,7 @@ import LoadingSpinner from '../components/LoadingSpinner';
 import SongHistoryTable from '../components/SongHistoryTable';
 import { formatDate } from '../libs/common';
 import { SongRequest } from '../libs/types';
+import { useKentobot } from '../utils/kentobotApi';
 
 const kentobotApiHost = process.env.KENTOBOT_API_HOST;
 
@@ -34,11 +35,7 @@ const columns: TableColumn<SongRequest>[] = [
 ];
 
 const SongHistory: NextPage = () => {
-  const fetcher = (url: string) => fetch(url).then((r) => r.json());
-  const { data, error } = useSWR(
-    `https://${kentobotApiHost}/dev/song-requests`,
-    fetcher
-  );
+  const { data, error, isLoading } = useKentobot('song-requests');
 
   {
     error && (
@@ -48,11 +45,11 @@ const SongHistory: NextPage = () => {
     );
   }
 
-  if (!data) {
+  if (!data && isLoading) {
     return <LoadingSpinner message={'Loading Song History...'} />;
   }
 
-  const requests = data.songRequests as SongRequest[];
+  const requests = data?.songRequests as SongRequest[];
 
   return (
     <>
