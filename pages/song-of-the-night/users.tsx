@@ -10,7 +10,7 @@ type SotnProps = {
   winners: SotnStats[];
 };
 
-const kentobotApiHost = process.env.KENTOBOT_API_HOST;
+const kentobotApiHost = process.env.NEXT_PUBLIC_KENTOBOT_API_HOST;
 
 export async function getServerSideProps() {
   // TODO extract this into a function(s) that can be called from the state changes as well?
