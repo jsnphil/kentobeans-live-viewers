@@ -66,24 +66,6 @@ html{overflow-y: scroll;}
 	background-color: #523877;
 }
 
-/** End New Styles **/
-
-#menuTop{padding-top: 20px;}
-
-#container{
-	width: 1000px;
-	display: inline-block;
-	text-align: center;
-}
-
-.innerContainer{
-	display: inline-block;
-	text-align: center;
-	margin: 0px;
-	padding: 0px;
-}
-
-
 .button {
 	cursor: pointer;
 	background-color: #CCCCCC;
@@ -116,151 +98,29 @@ html{overflow-y: scroll;}
 	/* border: 2px solid #F57E20; */
 }
 
-
-.leftButtonA{
-	border-top-left-radius: 8px;
-	border-bottom-left-radius: 8px;
-}
-
-.rightButtonA{
-	border-top-right-radius: 8px;
-	border-bottom-right-radius: 8px;
-	border-left: 0px;
-	margin-left: -2px;
-}
-
-.leftButtonB{
-	border-bottom-left-radius: 8px;
-}
-
-.rightButtonB{
-	border-bottom-right-radius: 8px;
-	border-left: 0px;
-	margin-left: -2px;
-}
-
-.midButton{
-	border-left: 0px;
-	margin-left: -2px;
-}
-
 .selected{
 	background-color: #0E1336;
 	color: #FFFFFF !important;
 }
 
+/** End New Styles **/
 
-.titleSummary{
-	width: 200px;
-	font-size: 15px;
-	font-weight: bold;
-	color: #FFFFFF;
-	letter-spacing: 1px;
-	text-align: center;
-	box-sizing: border-box;
-	border: 2px solid #0E1336;
-	border-right: 0px;
+#menuTop{padding-top: 20px;}
+
+#container{
+	width: 1000px;
 	display: inline-block;
-	padding-left: 10px;
-	padding-right: 10px;
-	padding-top: 0px;
-	padding-bottom: 0px;
-	height: 32px;
-	line-height: 28px;
-	float:left;
-	margin-top: 20px;
+	text-align: center;
 }
 
-/* Remove this? */
-.dataSummary{
-	width: 200px;
-	font-size: 15px;
-	font-weight: bold;
-	color: #FFFFFF;
-	background-color: #888888;
-	letter-spacing: 1px;
-	text-align: center;
-	box-sizing: border-box;
-	border: 2px solid #0E1336;
-	border-right: 0px;
+.innerContainer{
 	display: inline-block;
-	padding-left: 10px;
-	padding-right: 10px;
-	padding-top: 0px;
-	padding-bottom: 0px;
-	border-top:0px;
-	height: 32px;
-	line-height: 28px;
-	float:left;
-}
-
-.endCell{
-	border-right:2px solid #0E1336;
-}
-
-/* Remove these */
-/* #titleQueueTitle{width: 750px; border-right: 0px; text-align: left;}
-#titleQueueArtist{width: 170px; border-right: 0px; text-align: left;}
-#titleQueueLength{width: 80px;}
-
-.dataQueuePosition{width: 50px; border-right: 0px; text-align: left;}
-.dataQueueTitle{width: 750px; border-right: 0px; text-align: left;}
-.dataQueueTitleShortened{width: 700px; border-right: 0px; text-align: left;}
-.dataQueueArtist{width: 170px; border-right: 0px; text-align: left;}
-.dataQueueLength{width: 80px; text-align: right;}*/
-
-.bgPurple{background-color: #523877;}
-.bgOrange{background-color: #F57E20;}
-.bgGreen{background-color: #5C9240;}
-.bgDarkGray{background-color: #999999;}
-
-.roundTL{border-top-left-radius: 8px;}
-.roundTR{border-top-right-radius: 8px;}
-.roundBL{border-bottom-left-radius: 8px;}
-.roundBR{border-bottom-right-radius: 8px;} 
-
-
-.songlistSummaryHeading {
-	font-size: 15px;
-	font-weight: bold;
-	color: #FFFFFF;
-	letter-spacing: 1px;
 	text-align: center;
-	background-color: #523877;
+	margin: 0px;
+	padding: 0px;
 }
 
 
 
 
 
-.queueHeading {
-	border-top-right-radius: 8px;
-	border-bottom-right-radius: 8px;
-	border-bottom-left-radius: 8px;
-	border-top-left-radius: 8px;
-	background-color: #523877;
-	font-size: 15px;
-	font-weight: bold;
-	color: #FFFFFF;
-	letter-spacing: 1px;
-	vertical-align: middle;
-	padding-left: 10px;
-}
-
-.songRequestTable {
-	/* font-size: 13px;
-	font-weight: bold; */
-	color: #0E1336;
-	letter-spacing: 1px;
-	text-align: left;
-	
-}
-
-.songRequestTable a:link {color: #0E1336;}  
-.songRequestTable a:visited {color: #0E1336;}  
-.songRequestTable a:hover {color: #F57E20}  
-.songRequestTable a:active {color: #F57E20}  
-
-.songTableHighlight {
-	background-color: #cfb53b;
-}

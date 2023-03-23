@@ -134,11 +134,11 @@ const SotnUserStats: NextPage<SotnUserStats> = ({ stats, wins }) => {
             Small screen view
           </div>
         </div>
-        <div className='d-none d-xl-block mb-5'>
+        <div className='d-none d-xl-block'>
           <h1>{stats.user}</h1>
           <h2>User Summary</h2>
           <hr />
-          <div className='container d-flex aligns-items-center justify-content-center mb-5'>
+          <div className='container d-flex aligns-items-center justify-content-center mb-3'>
             <Table>
               <tbody>
                 <tr>
@@ -173,12 +173,14 @@ const SotnUserStats: NextPage<SotnUserStats> = ({ stats, wins }) => {
             </Table>
           </div>
           <hr />
-          <h2>Winning Songs by Season</h2>
+          <div className='mb-3'>
+            <h2>Winning Songs by Season</h2>
+          </div>
           <div className={`${styles.sotnTable}`}>
             <Container>
               <div className='pb-3'>
                 <Row
-                  className={`${styles.winnersheading} ${styles.roundedTopLeft} ${styles.roundedBottomLeft} ${styles.roundedTopRight} ${styles.roundedBottomRight} pb-`}
+                  className={`${styles.winnersheading} roundedTopLeft roundedBottomLeft roundedTopRight roundedBottomRight`}
                 >
                   <Col xs={4}>Song Title</Col>
                   <Col xs={4}>Artist</Col>
@@ -189,9 +191,9 @@ const SotnUserStats: NextPage<SotnUserStats> = ({ stats, wins }) => {
               {wins.map((songsBySeason: SeasonSongs, index: number) => (
                 <div className='pb-3' key={index}>
                   <Row
-                    className={`${styles.winnersheading} ${styles.roundedTopLeft} ${styles.roundedBottomLeft} ${styles.roundedTopRight} ${styles.roundedBottomRight}`}
+                    className={`${styles.winnersheading} roundedTopLeft roundedBottomLeft roundedTopRight roundedBottomRight`}
                   >
-                    <Col className={styles.userHeading}>
+                    <Col className='subheading'>
                       Season {songsBySeason.season}
                     </Col>
                   </Row>
