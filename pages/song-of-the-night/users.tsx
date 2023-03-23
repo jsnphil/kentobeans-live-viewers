@@ -119,32 +119,32 @@ const SongOfTheNightUsers: NextPage<SotnProps> = ({ winners }) => {
   return (
     <>
       <main>
-        <div className='container d-xl-none d-xl-block mb-5 mt-5  aligns-items-center justify-content-center'>
+        <div className='container d-xl-none d-xl-block mt-5  aligns-items-center justify-content-center'>
           <div className='container mb-5 mt-5 aligns-items-center justify-content-center'>
             Small screen view
           </div>
         </div>
-        <div className='d-none d-xl-block mb-5'>
+        <div className='d-none d-xl-block'>
           <div className={`${styles.sotnTable}`}>
-            <div className='container d-flex aligns-items-center justify-content-center mb-5'>
+            <div className='container d-flex aligns-items-center justify-content-center'>
               <Container>
                 <Row>
                   <Col
-                    className={`${styles.winnersheading} ${styles.roundedTopLeft} text-center`}
+                    className={`${styles.winnersheading} roundedTopLeft text-center`}
                     xs={{ span: 3, offset: 6 }}
                   >
                     Gap (Days)
                   </Col>
                   <Col
-                    className={`${styles.winnersheading} ${styles.roundedTopRight} text-center`}
+                    className={`${styles.winnersheading} roundedTopRight text-center`}
                     xs={3}
                   >
                     Gap (Streams)
                   </Col>
                 </Row>
-                <Row className={`${styles.roundedTopLeft}`}>
+                <Row className='roundedTopLeft'>
                   <Col
-                    className={`${styles.winnersheading} ${styles.roundedTopLeft} ${styles.roundedBottomLeft}`}
+                    className={`${styles.winnersheading} roundedTopLeft roundedBottomLeft`}
                     xs={4}
                   >
                     User

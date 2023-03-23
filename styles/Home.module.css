@@ -19,6 +19,8 @@
   border-top: 1px solid #eaeaea;
   justify-content: center;
   align-items: center;
+  color: #FFFFFF !important;
+
 
 
 }
@@ -31,13 +33,14 @@
 }
 
 .title a {
-  color: #0070f3;
+  color: #ffffff;
   text-decoration: none;
 }
 
 .title a:hover,
 .title a:focus,
 .title a:active {
+  color: #ffffff;
   text-decoration: underline;
 }
 

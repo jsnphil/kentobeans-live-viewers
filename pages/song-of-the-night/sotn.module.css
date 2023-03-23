@@ -24,14 +24,14 @@
 	border-bottom: 0px;
 }
 
-.userHeading {
+/* .userHeading {
 	font-size: 15px;
 	font-weight: bold;
 	color: #FFFFFF;
 	letter-spacing: 1px;
 	text-align: center;
 	background-color: #523877;
-}
+} */
 
 .winnersheading {
 	background-color: #5C9240;
@@ -44,22 +44,7 @@
     line-height: 28px;
 }
 
-/* Move these to global  */
-.roundedTopLeft {
-	border-top-left-radius: 8px;
-}
 
-.roundedTopRight {
-	border-top-right-radius: 8px;
-}
-
-.roundedBottomLeft {
-	border-bottom-left-radius: 8px;
-}
-
-.roundedBottomRight {
-	border-bottom-right-radius: 8px;
-}
 
 .winnerRow {
 	color: #0E1336;

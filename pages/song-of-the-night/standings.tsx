@@ -146,18 +146,18 @@ const SongOfTheNightStandings: NextPage<SotnProps> = ({ winners }) => {
             </Accordion>
           </div>
         </div>
-        <div className='d-none d-xl-block mb-5'>
+        <div className='d-none d-xl-block'>
           <div className='container d-flex aligns-items-center justify-content-center mb-5'>
             {/* TODO Convert this to CSS in sotn.modules.css file */}
-            <div id='menuTop' className='innerContainer'>
-              {seasons.map((seasonNumber, index) => (
-                <button
-                  name={`season${seasonNumber}`}
-                  className={`button ${styles.sotnSeasonButton} ${
-                    seasonState === Number(seasonNumber).toString()
-                      ? 'selected'
-                      : ''
-                  }
+            {/* <div id='menuTop' className='innerContainer'> */}
+            {seasons.map((seasonNumber, index) => (
+              <button
+                name={`season${seasonNumber}`}
+                className={`button ${styles.sotnSeasonButton} ${
+                  seasonState === Number(seasonNumber).toString()
+                    ? 'selected'
+                    : ''
+                }
                   
                   ${
                     index === 0
@@ -172,22 +172,22 @@ const SongOfTheNightStandings: NextPage<SotnProps> = ({ winners }) => {
                   }
                   
                   `}
-                  onClick={(e) => {
-                    setSeasonState(Number(seasonNumber).toString());
-                  }}
-                  key={index}
-                >
-                  {seasonNumber}
-                </button>
-              ))}
-            </div>
+                onClick={(e) => {
+                  setSeasonState(Number(seasonNumber).toString());
+                }}
+                key={index}
+              >
+                {seasonNumber}
+              </button>
+            ))}
+            {/* </div> */}
           </div>
 
           <div className={`${styles.sotnTable}`}>
             <Container>
               <div className='pb-3'>
                 <Row
-                  className={`${styles.winnersheading} ${styles.roundedTopLeft} ${styles.roundedBottomLeft} ${styles.roundedTopRight} ${styles.roundedBottomRight}`}
+                  className={`${styles.winnersheading} roundedTopLeft roundedBottomLeft roundedTopRight roundedBottomRight`}
                 >
                   <Col xs={4}>Song Title</Col>
                   <Col xs={4}>Artist</Col>
@@ -198,7 +198,7 @@ const SongOfTheNightStandings: NextPage<SotnProps> = ({ winners }) => {
               {winners.map((winner: SotnWinnerData, index: number) => (
                 <div className='pb-5 rounded-circle' key={index}>
                   <Row>
-                    <Col className={`${styles.userHeading} ${styles.heading}`}>
+                    <Col className='subheading roundedTopLeft roundedBottomLeft roundedTopRight roundedBottomRight'>
                       {winner.username} - {winner.songs.length}{' '}
                       {winner.songs.length == 1 ? 'win' : 'wins'}
                     </Col>

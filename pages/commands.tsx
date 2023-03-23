@@ -38,7 +38,7 @@ const Commands: NextPage = () => {
             <div id='menuTop' className='innerContainer'>
               <button
                 name='songRequestCmds'
-                className={`button buttonMenu leftButtonA ${
+                className={`button buttonMenu roundedTopLeft roundedBottomLeft ${
                   commandState === 'songRequestCmds' ? 'selected' : ''
                 }`}
                 onClick={(e) => {
@@ -48,7 +48,7 @@ const Commands: NextPage = () => {
                 Song Requests
               </button>
               <button
-                className={`button buttonMenu midButton ${
+                className={`button buttonMenu  ${
                   commandState === 'soundEffectCmds' ? 'selected' : ''
                 }`}
                 onClick={(e) => {
@@ -58,7 +58,7 @@ const Commands: NextPage = () => {
                 Sound Effects
               </button>
               <button
-                className={`button buttonMenu midButton ${
+                className={`button buttonMenu  ${
                   commandState === 'rewardRedepemtionCmds' ? 'selected' : ''
                 }`}
                 onClick={(e) => {
@@ -68,7 +68,7 @@ const Commands: NextPage = () => {
                 Reward Redemption
               </button>
               <button
-                className={`button buttonMenu rightButtonA ${
+                className={`button buttonMenu roundedTopRight roundedBottomRight ${
                   commandState === 'otherCmds' ? 'selected' : ''
                 }`}
                 onClick={(e) => {
