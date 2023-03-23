@@ -2,10 +2,11 @@ import { faDice, faStar, faTicket } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import type { NextPage } from 'next';
 import { useState, useEffect, useCallback } from 'react';
-import { Spinner, Table } from 'react-bootstrap';
+import { Col, Container, Row, Spinner, Table } from 'react-bootstrap';
 import useWebSocket, { ReadyState, Options } from 'react-use-websocket';
 import LoadingSpinner from '../components/LoadingSpinner';
 import SongRequestTable, { SongListItem } from '../components/SongRequestTable';
+import styles from '../styles/songlist.module.css';
 
 interface QueueInfo {
   status: 'Closed|Open';
@@ -113,6 +114,113 @@ const StreamSongList: NextPage = () => {
 
   return (
     <>
+      <div>
+        <Container>
+          <div className={`${styles.songlistSummary} pb-3 text-center`}>
+            <Row
+              className={`${styles.songlistSummaryHeading} py-2 px-2 roundedTopLeft  roundedTopRight `}
+            >
+              <Col>Queue Status</Col>
+              <Col>Songs Played</Col>
+              <Col>Bean Bumps</Col>
+              <Col>Point Bumps</Col>
+            </Row>
+            <Row
+              className={`${styles.songlistSummaryData} py-2 px-2 fs-6 roundedBottomLeft roundedBottomRight`}
+            >
+              <Col>{queueStatus}</Col>
+              <Col>{playedSongs}</Col>
+              <Col>{remainingBeanBumps}</Col>
+              <Col>{remainingChannelPointBumps}</Col>
+            </Row>
+          </div>
+        </Container>
+        <div id='nowPlaying' className='mb-3'>
+          <Container>
+            <Row>
+              <Col
+                className={`subheading roundedTopLeft roundedBottomLeft roundedTopRight roundedBottomRight text-center`}
+              >
+                Now Playing
+              </Col>
+            </Row>
+            <Row>
+              {currentSong ? (
+                <>
+                  <Col>
+                    <a
+                      href={`https://youtu.be/${currentSong.song}`}
+                      target='_blank'
+                      rel='noreferrer'
+                    >
+                      {currentSong.title}
+                    </a>
+                  </Col>
+                  <Col>{currentSong.requester}</Col>
+                  <Col>{currentSong.duration}</Col>
+                </>
+              ) : (
+                <Col>Nothing playing</Col>
+              )}
+            </Row>
+          </Container>
+        </div>
+
+        <div id='songQueue' className='mb-3'>
+          <Container>
+            <Row>
+              <Col
+                className={`subheading roundedTopLeft roundedBottomLeft roundedTopRight roundedBottomRight text-center`}
+              >
+                Request Queue
+              </Col>
+            </Row>
+            <Row>{/* <Col>Requests go here</Col> */}</Row>
+            <div className='mt-3 text-center'>
+              <Row>
+                <Col>
+                  <FontAwesomeIcon icon={faStar} /> Bumped Request
+                </Col>
+                <Col>
+                  <FontAwesomeIcon icon={faDice} /> Shuffle Winner
+                </Col>
+                <Col>
+                  <FontAwesomeIcon icon={faTicket} /> Shuffle Entrant
+                </Col>
+              </Row>
+            </div>
+          </Container>
+        </div>
+
+        <div id='sotnContenders' className='mb-3'>
+          <Container>
+            <Row>
+              <Col
+                className={`subheading roundedTopLeft roundedBottomLeft roundedTopRight roundedBottomRight text-center`}
+              >
+                Song of the Night Contenders
+              </Col>
+            </Row>
+            <Row>{/* <Col>Requests go here</Col> */}</Row>
+          </Container>
+        </div>
+
+        <div id='playedRequests' className='mb-3'>
+          <Container>
+            <Row>
+              <Col
+                className={`subheading roundedTopLeft roundedBottomLeft roundedTopRight roundedBottomRight text-center`}
+              >
+                Played Requests
+              </Col>
+            </Row>
+            <Row>{/* <Col>Requests go here</Col> */}</Row>
+          </Container>
+        </div>
+      </div>
+
+      {/* <hr />
+      <p>OLD CODE</p>
       <Table bordered>
         <thead>
           <tr className='songlistSummaryHeading'>
@@ -132,7 +240,7 @@ const StreamSongList: NextPage = () => {
         </tbody>
       </Table>
 
-      <div className='queueHeading'>Now Playing</div>
+      <div className='queueHeading mb-5'>Now Playing</div>
 
       {currentSong && (
         <>
@@ -186,7 +294,7 @@ const StreamSongList: NextPage = () => {
         requests={songHistory}
         showIndex={true}
         showRemoveButton={false}
-      />
+      /> */}
     </>
   );
 };

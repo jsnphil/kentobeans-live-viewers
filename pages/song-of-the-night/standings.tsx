@@ -26,7 +26,7 @@ type SotnWinnerData = {
   readonly songs: SotnWinner[];
 };
 
-const kentobotApiHost = process.env.KENTOBOT_API_HOST;
+const kentobotApiHost = process.env.NEXT_PUBLIC_KENTOBOT_API_HOST;
 
 const seasonNumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 
