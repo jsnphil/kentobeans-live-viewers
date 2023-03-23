@@ -1,5 +1,4 @@
 import { Alert } from 'react-bootstrap';
-import Footer from './Footer';
 import Navbar from './Navigation';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faWarning } from '@fortawesome/free-solid-svg-icons';
