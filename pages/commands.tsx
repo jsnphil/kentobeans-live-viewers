@@ -8,6 +8,7 @@ import RewardRedemptionCommands from '../data/rewardRedemptions.json';
 import OtherCommands from '../data/otherCommands.json';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleInfo } from '@fortawesome/free-solid-svg-icons';
+import styles from '../styles/commands.module.css';
 
 const Commands: NextPage = () => {
   const [commandState, setCommandState] = useState('songRequestCmds');
@@ -38,8 +39,10 @@ const Commands: NextPage = () => {
             <div id='menuTop' className='innerContainer'>
               <button
                 name='songRequestCmds'
-                className={`button buttonMenu roundedTopLeft roundedBottomLeft ${
-                  commandState === 'songRequestCmds' ? 'selected' : ''
+                className={`${styles.button} ${
+                  styles.buttonMenu
+                } roundedTopLeft roundedBottomLeft ${
+                  commandState === 'songRequestCmds' ? `${styles.selected}` : ''
                 }`}
                 onClick={(e) => {
                   setCommandState('songRequestCmds');
@@ -48,8 +51,8 @@ const Commands: NextPage = () => {
                 Song Requests
               </button>
               <button
-                className={`button buttonMenu  ${
-                  commandState === 'soundEffectCmds' ? 'selected' : ''
+                className={`${styles.button} ${styles.buttonMenu}  ${
+                  commandState === 'soundEffectCmds' ? `${styles.selected}` : ''
                 }`}
                 onClick={(e) => {
                   setCommandState('soundEffectCmds');
@@ -58,8 +61,10 @@ const Commands: NextPage = () => {
                 Sound Effects
               </button>
               <button
-                className={`button buttonMenu  ${
-                  commandState === 'rewardRedepemtionCmds' ? 'selected' : ''
+                className={`${styles.button} ${styles.buttonMenu}  ${
+                  commandState === 'rewardRedepemtionCmds'
+                    ? `${styles.selected}`
+                    : ''
                 }`}
                 onClick={(e) => {
                   setCommandState('rewardRedepemtionCmds');
@@ -68,7 +73,9 @@ const Commands: NextPage = () => {
                 Reward Redemption
               </button>
               <button
-                className={`button buttonMenu roundedTopRight roundedBottomRight ${
+                className={`${styles.button} ${
+                  styles.buttonMenu
+                } roundedTopRight roundedBottomRight ${
                   commandState === 'otherCmds' ? 'selected' : ''
                 }`}
                 onClick={(e) => {
