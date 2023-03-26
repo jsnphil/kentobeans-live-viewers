@@ -161,13 +161,13 @@ const SongOfTheNightStandings: NextPage<SotnProps> = ({ winners }) => {
                   
                   ${
                     index === 0
-                      ? `${styles.roundedBottomLeft} ${styles.roundedTopLeft}`
+                      ? `${styles.roundedBottomLeft} roundedTopLeft roundedBottomLeft`
                       : ''
                   }
 
                   ${
                     index === seasons.length - 1
-                      ? `${styles.roundedBottomRight} ${styles.roundedTopRight}`
+                      ? `${styles.roundedBottomRight} roundedTopRight roundedBottomRight`
                       : ''
                   }
                   

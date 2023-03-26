@@ -62,7 +62,9 @@ const SongOfTheNightSongs: NextPage<SotnProps> = ({ winners }) => {
         <div className={`${styles.sotnTable}`}>
           <Container>
             <div className='pb-3'>
-              <Row className={`${styles.winnersheading} ${styles.heading}`}>
+              <Row
+                className={`${styles.winnersheading} ${styles.heading} roundedTopLeft roundedBottomLeft roundedTopRight roundedBottomRight`}
+              >
                 <Col className='roundTL' xs={4}>
                   Song Title
                 </Col>

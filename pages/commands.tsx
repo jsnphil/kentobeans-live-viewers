@@ -39,11 +39,10 @@ const Commands: NextPage = () => {
             <div id='menuTop' className='innerContainer'>
               <button
                 name='songRequestCmds'
-                className={`${styles.button} ${
-                  styles.buttonMenu
-                } roundedTopLeft roundedBottomLeft ${
-                  commandState === 'songRequestCmds' ? `${styles.selected}` : ''
-                }`}
+                className={`button buttonMenu
+ roundedTopLeft roundedBottomLeft ${
+   commandState === 'songRequestCmds' ? 'selected' : ''
+ }`}
                 onClick={(e) => {
                   setCommandState('songRequestCmds');
                 }}
@@ -51,8 +50,8 @@ const Commands: NextPage = () => {
                 Song Requests
               </button>
               <button
-                className={`${styles.button} ${styles.buttonMenu}  ${
-                  commandState === 'soundEffectCmds' ? `${styles.selected}` : ''
+                className={`button buttonMenu  ${
+                  commandState === 'soundEffectCmds' ? `selected` : ''
                 }`}
                 onClick={(e) => {
                   setCommandState('soundEffectCmds');
@@ -61,10 +60,8 @@ const Commands: NextPage = () => {
                 Sound Effects
               </button>
               <button
-                className={`${styles.button} ${styles.buttonMenu}  ${
-                  commandState === 'rewardRedepemtionCmds'
-                    ? `${styles.selected}`
-                    : ''
+                className={`button buttonMenu ${
+                  commandState === 'rewardRedepemtionCmds' ? 'selected' : ''
                 }`}
                 onClick={(e) => {
                   setCommandState('rewardRedepemtionCmds');
@@ -73,16 +70,14 @@ const Commands: NextPage = () => {
                 Reward Redemption
               </button>
               <button
-                className={`${styles.button} ${
-                  styles.buttonMenu
-                } roundedTopRight roundedBottomRight ${
+                className={`button buttonMenu roundedTopRight roundedBottomRight ${
                   commandState === 'otherCmds' ? 'selected' : ''
                 }`}
                 onClick={(e) => {
                   setCommandState('otherCmds');
                 }}
               >
-                Other{' '}
+                Other
               </button>
             </div>
           </div>

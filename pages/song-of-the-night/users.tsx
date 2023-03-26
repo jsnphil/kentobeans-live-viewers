@@ -1,9 +1,9 @@
 import { NextPage } from 'next';
 import Link from 'next/link';
-import { Col, Container, Row } from 'react-bootstrap';
+import { Accordion, Col, Container, Row, Table } from 'react-bootstrap';
 import { SotnStats, SotnWinner } from '../../@types';
 import sotnData from '../../data/sotn-response.json';
-import { getDateDiff } from '../../utils/sotn-utils';
+import { getDate, getDateDiff } from '../../utils/sotn-utils';
 import styles from './sotn.module.css';
 
 type SotnProps = {
@@ -121,7 +121,56 @@ const SongOfTheNightUsers: NextPage<SotnProps> = ({ winners }) => {
       <main>
         <div className='container d-xl-none d-xl-block mt-5  aligns-items-center justify-content-center'>
           <div className='container mb-5 mt-5 aligns-items-center justify-content-center'>
-            Small screen view
+            {winners.map((winner: SotnStats, index: number) => (
+              <>
+                <Accordion defaultActiveKey='0'>
+                  {winners.map((winner: SotnStats, index: number) => (
+                    <Accordion.Item
+                      eventKey={new Number(index).toString()}
+                      key={index}
+                    >
+                      <Accordion.Header>
+                        {winner.user} - {winner.wins}{' '}
+                        {winner.wins == 1 ? 'win' : 'wins'}
+                      </Accordion.Header>
+                      <Accordion.Body>
+                        <Table>
+                          <tbody>
+                            <tr>
+                              <td>Song of the Night Wins</td>
+                              <td>{winner.wins}</td>
+                            </tr>
+                            <tr>
+                              <td>Season Championship Wins</td>
+                              <td>-</td>
+                            </tr>
+                            <tr>
+                              <td>Song of the Season Wins</td>
+                              <td>-</td>
+                            </tr>
+                            <tr>
+                              <td>Most Recent Win</td>
+                              <td>-</td>
+                            </tr>
+                          </tbody>
+                        </Table>
+                        <Container>
+                          <Row>
+                            <Col className='text-center'>
+                              <Link
+                                href={`/song-of-the-night/users/${winner.user}`}
+                              >
+                                More Stats
+                              </Link>
+                            </Col>
+                          </Row>
+                        </Container>
+                      </Accordion.Body>
+                    </Accordion.Item>
+                  ))}
+                </Accordion>
+              </>
+            ))}
           </div>
         </div>
         <div className='d-none d-xl-block'>
@@ -171,7 +220,7 @@ const SongOfTheNightUsers: NextPage<SotnProps> = ({ winners }) => {
                     Smallest
                   </Col>
                   <Col
-                    className={`${styles.winnersheading} ${styles.roundedBottomRight}`}
+                    className={`${styles.winnersheading} roundedBottomRight`}
                     xs={1}
                   >
                     Current
