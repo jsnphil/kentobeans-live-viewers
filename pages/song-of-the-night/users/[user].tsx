@@ -173,7 +173,7 @@ const SotnUserStats: NextPage<SotnUserStats> = ({ stats, wins }) => {
         <div className='container d-xl-none d-xl-block mb-5 mt-5  aligns-items-center justify-content-center'>
           <div className='container mb-5 mt-5 aligns-items-center justify-content-center'>
             {wins.map((songsBySeason: SeasonSongs, index: number) => (
-              <Accordion defaultActiveKey='0'>
+              <Accordion defaultActiveKey='0' key={index}>
                 <Accordion.Item
                   eventKey={new Number(index).toString()}
                   key={index}
@@ -192,7 +192,7 @@ const SotnUserStats: NextPage<SotnUserStats> = ({ stats, wins }) => {
                       <tbody>
                         {songsBySeason.songs.map(
                           (song: SotnWinner, songIndex: number) => (
-                            <tr>
+                            <tr key={songIndex}>
                               <td>{song.title}</td>
                               <td>{song.playDate}</td>
                             </tr>
