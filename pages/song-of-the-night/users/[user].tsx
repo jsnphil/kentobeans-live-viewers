@@ -1,7 +1,7 @@
 import { NextPage } from 'next';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { Col, Container, Row, Table } from 'react-bootstrap';
+import { Accordion, Col, Container, Row, Table } from 'react-bootstrap';
 import { SotnStats, SotnWinner } from '../../../@types';
 import styles from '../sotn.module.css';
 import sotnData from '../../../data/sotn-user-response.json';
@@ -129,53 +129,84 @@ const SotnUserStats: NextPage<SotnUserStats> = ({ stats, wins }) => {
   return (
     <>
       <main>
+        <h1>{stats.user}</h1>
+        <h2>User Summary</h2>
+        <hr />
+        <div className='container d-flex aligns-items-center justify-content-center mb-3'>
+          <Table>
+            <tbody>
+              <tr>
+                <td>Song of the Night Wins</td>
+                <td>{stats.wins}</td>
+              </tr>
+              <tr>
+                <td>Season Championship Wins</td>
+                <td>-</td>
+              </tr>
+              <tr>
+                <td>Song of the Season Wins</td>
+                <td>-</td>
+              </tr>
+              <tr>
+                <td>Longest Win Streak</td>
+                <td>{stats.streak}</td>
+              </tr>
+              <tr>
+                <td>Most Recent Win</td>
+                <td>-</td>
+              </tr>
+              <tr>
+                <td>Longest Gap Between Wins</td>
+                <td>-</td>
+              </tr>
+              <tr>
+                <td>Shortest Gap Between Wins</td>
+                <td>-</td>
+              </tr>
+            </tbody>
+          </Table>
+        </div>
+        <hr />
+        <div className='mb-3'>
+          <h2>Winning Songs by Season</h2>
+        </div>
         <div className='container d-xl-none d-xl-block mb-5 mt-5  aligns-items-center justify-content-center'>
           <div className='container mb-5 mt-5 aligns-items-center justify-content-center'>
-            Small screen view
+            {wins.map((songsBySeason: SeasonSongs, index: number) => (
+              <Accordion defaultActiveKey='0'>
+                <Accordion.Item
+                  eventKey={new Number(index).toString()}
+                  key={index}
+                >
+                  <Accordion.Header>
+                    Season {songsBySeason.season}
+                  </Accordion.Header>
+                  <Accordion.Body>
+                    <Table>
+                      <thead>
+                        <tr>
+                          <td>Song Title</td>
+                          <td>Stream Date</td>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {songsBySeason.songs.map(
+                          (song: SotnWinner, songIndex: number) => (
+                            <tr>
+                              <td>{song.title}</td>
+                              <td>{song.playDate}</td>
+                            </tr>
+                          )
+                        )}
+                      </tbody>
+                    </Table>
+                  </Accordion.Body>
+                </Accordion.Item>
+              </Accordion>
+            ))}
           </div>
         </div>
         <div className='d-none d-xl-block'>
-          <h1>{stats.user}</h1>
-          <h2>User Summary</h2>
-          <hr />
-          <div className='container d-flex aligns-items-center justify-content-center mb-3'>
-            <Table>
-              <tbody>
-                <tr>
-                  <td>Song of the Night Wins</td>
-                  <td>{stats.wins}</td>
-                </tr>
-                <tr>
-                  <td>Season Championship Wins</td>
-                  <td>-</td>
-                </tr>
-                <tr>
-                  <td>Song of the Season Wins</td>
-                  <td>-</td>
-                </tr>
-                <tr>
-                  <td>Longest Win Streak</td>
-                  <td>{stats.streak}</td>
-                </tr>
-                <tr>
-                  <td>Most Recent Win</td>
-                  <td>-</td>
-                </tr>
-                <tr>
-                  <td>Longest Gap Between Wins</td>
-                  <td>-</td>
-                </tr>
-                <tr>
-                  <td>Shortest Gap Between Wins</td>
-                  <td>-</td>
-                </tr>
-              </tbody>
-            </Table>
-          </div>
-          <hr />
-          <div className='mb-3'>
-            <h2>Winning Songs by Season</h2>
-          </div>
           <div className={`${styles.sotnTable}`}>
             <Container>
               <div className='pb-3'>
@@ -222,6 +253,9 @@ const SotnUserStats: NextPage<SotnUserStats> = ({ stats, wins }) => {
               ))}
             </Container>
           </div>
+        </div>
+        <div className='mb-2'>
+          <Link href='../users'>&lt;&lt; Back to users</Link>
         </div>
       </main>
     </>
