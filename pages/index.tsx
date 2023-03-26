@@ -14,8 +14,8 @@ const Home: NextPage = () => {
               id='kentobeansLogo'
               src={logo}
               alt='Kentobeans Logo'
-              width={500}
-              height={500}
+              width={400}
+              height={400}
             />
           </div>
 
