@@ -26,3 +26,18 @@ export type WinGap = {
   shortest: number;
   current: number;
 };
+
+export type SongRequest = {
+  youtubeId: string;
+  title: string;
+  length?: number;
+  plays: SongPlay[];
+};
+
+export type SongPlay = {
+  playDate: string;
+  requester: string;
+  sotnContender?: boolean;
+  sotnWinner?: boolean;
+  sotsWinner?: boolean;
+};

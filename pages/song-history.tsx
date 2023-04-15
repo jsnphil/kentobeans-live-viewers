@@ -1,36 +1,17 @@
 import { NextPage } from 'next';
-import { Alert, Spinner } from 'react-bootstrap';
+import { Alert } from 'react-bootstrap';
 import { TableColumn } from 'react-data-table-component';
-
-import useSWR from 'swr';
 import LoadingSpinner from '../components/LoadingSpinner';
 import SongHistoryTable from '../components/SongHistoryTable';
-import { formatDate } from '../libs/common';
-import { SongRequest } from '../libs/types';
 import { useKentobot } from '../utils/kentobotApi';
-
-const kentobotApiHost = process.env.KENTOBOT_API_HOST;
+import { SongRequest } from '../@types';
 
 const columns: TableColumn<SongRequest>[] = [
   {
-    id: 'requester',
-    name: 'Requested By',
-    selector: (row: SongRequest) => row.requester,
+    id: 'songTitle',
+    name: 'Song Title',
+    selector: (row: SongRequest) => row.title,
     sortable: true
-  },
-  {
-    id: 'requestTitle',
-    name: 'Request Title',
-    selector: (row: SongRequest) => row.songTitle,
-    sortable: true
-  },
-  {
-    id: 'playDate',
-    name: 'Played On',
-    selector: (row: SongRequest) => row.playDate,
-    sortable: true,
-    right: true,
-    format: (row: SongRequest) => formatDate(row.playDate)
   }
 ];
 
@@ -45,16 +26,20 @@ const SongHistory: NextPage = () => {
     );
   }
 
-  if (!data && isLoading) {
+  if (!data || isLoading) {
     return <LoadingSpinner message={'Loading Song History...'} />;
   }
 
-  const requests = data?.songRequests as SongRequest[];
+  const requests = data?.requests as SongRequest[];
 
   return (
     <>
-      <div className='container pt-5'>
+      <div className='container mt-5'>
         <SongHistoryTable data={requests} columns={columns} />
+      </div>
+      <div className='pt-3 pb-3 text-center fs-6'>
+        Last updated:
+        {new Date(data.generated).toLocaleString()}
       </div>
     </>
   );
