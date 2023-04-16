@@ -70,13 +70,13 @@ function Navigation() {
                 >
                   User Stats
                 </NavDropdown.Item>
-                <NavDropdown.Item
+                {/* <NavDropdown.Item
                   id='sotnSongsLink'
                   href={useNavLink('song-of-the-night/song-stats')}
                   disabled
                 >
                   Song Stats
-                </NavDropdown.Item>
+                </NavDropdown.Item> */}
                 <NavDropdown.Item
                   id='sotnSongsLink'
                   href={useNavLink('song-of-the-night/songs')}
