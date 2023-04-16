@@ -1,98 +1,66 @@
 import { NextPage } from 'next';
 import { Container, Row, Col } from 'react-bootstrap';
 import styles from './sotn.module.css';
-
-import sotnData from '../../data/sotn-response.json';
 import { getArtistValue, getDate } from '../../utils/sotn-utils';
 import { useKentobot } from '../../utils/kentobotApi';
+import LoadingSpinner from '../../components/LoadingSpinner';
+import { SotnWinner } from '../../@types';
 
-type SotnProps = {
-  winners: SotnWinner[];
-};
+const SongOfTheNightSongs: NextPage = () => {
+  const { data, error, isLoading } = useKentobot(`/song-of-the-night/winners`);
 
-type SotnWinner = {
-  readonly requestId: string;
-  readonly requester: string;
-  readonly youtubeId: string;
-  readonly artist: string;
-  readonly year: string;
-  readonly featuredArtist: string;
-  readonly sotsWinner: boolean;
-  readonly playDate: string;
-  readonly title?: string;
-};
-
-type SotnWinnerData = {
-  readonly username: string;
-  readonly songs: SotnWinner[];
-};
-
-const kentobotApiHost = process.env.NEXT_PUBLIC_KENTOBOT_API_HOST;
-
-export async function getServerSideProps() {
-  const res = await fetch(
-    `https://${kentobotApiHost}/dev/song-of-the-night/winners`
-  );
-  const data = await res.json();
-
-  // const data = JSON.parse(JSON.stringify(sotnData));
-
-  let sotnWinners: SotnWinnerData[] = [];
-
-  data.winners.sort(
+  const sortedWinners = data?.winners.sort(
     (song1: SotnWinner, song2: SotnWinner) =>
-      new Date(song2.playDate).getTime() - new Date(song1.playDate).getTime()
+      new Date(song1.streamDate).getTime() -
+      new Date(song2.streamDate).getTime()
   );
 
-  return {
-    props: {
-      winners: data.winners
-    }
-  };
-}
-
-const SongOfTheNightSongs: NextPage<SotnProps> = ({ winners }) => {
-  console.log(winners);
   return (
     <>
       <main>
         <div className='d-none d-xl-block mb-5'>
           <h1>Complete Song of the Night History</h1>
         </div>
-        <div className={`${styles.sotnTable}`}>
-          <Container>
-            <div className='pb-3'>
-              <Row
-                className={`${styles.winnersheading} ${styles.heading} roundedTopLeft roundedBottomLeft roundedTopRight roundedBottomRight`}
-              >
-                <Col className='roundTL' xs={4}>
-                  Song Title
-                </Col>
-                <Col xs={4}>Artist</Col>
-                <Col>Year</Col>
-                <Col>Stream Date</Col>
-              </Row>
-            </div>
-            {winners.map((song: SotnWinner, index: number) => (
-              <div className={`${styles.winnerRow}`} key={index}>
-                <a
-                  href={`https://youtu.be/${song.youtubeId}`}
-                  target='_blank'
-                  rel='noreferrer'
-                >
-                  <Row>
-                    <Col xs={4}>{`${index + 1} - ${song.title}`}</Col>
-                    <Col xs={4}>
-                      {getArtistValue(song.artist, song.featuredArtist)}
+        {!data || isLoading ? (
+          <LoadingSpinner message='Loading Song of the Night Data' />
+        ) : (
+          <>
+            <div className={`${styles.sotnTable}`}>
+              <Container>
+                <div className='pb-3'>
+                  <Row
+                    className={`${styles.winnersheading} ${styles.heading} roundedTopLeft roundedBottomLeft roundedTopRight roundedBottomRight`}
+                  >
+                    <Col className='roundTL' xs={4}>
+                      Song Title
                     </Col>
-                    <Col>{song.year}</Col>
-                    <Col>{getDate(song.playDate)}</Col>
+                    <Col xs={4}>Artist</Col>
+                    <Col>Year</Col>
+                    <Col>Stream Date</Col>
                   </Row>
-                </a>
-              </div>
-            ))}
-          </Container>
-        </div>
+                </div>
+                {data?.winners.map((song: SotnWinner, index: number) => (
+                  <div className={`${styles.winnerRow}`} key={index}>
+                    <a
+                      href={`https://youtu.be/${song.youtubeId}`}
+                      target='_blank'
+                      rel='noreferrer'
+                    >
+                      <Row>
+                        <Col xs={4}>{`${index + 1} - ${song.title}`}</Col>
+                        <Col xs={4}>
+                          {getArtistValue(song.artist, song.featuredArtist)}
+                        </Col>
+                        <Col>{song.year}</Col>
+                        <Col>{getDate(song.streamDate)}</Col>
+                      </Row>
+                    </a>
+                  </div>
+                ))}
+              </Container>
+            </div>
+          </>
+        )}
       </main>
     </>
   );

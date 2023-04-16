@@ -2,25 +2,10 @@ import { NextPage } from 'next';
 import { useState } from 'react';
 import { Accordion, Col, Container, Form, Row } from 'react-bootstrap';
 import styles from './sotn.module.css';
-import sotnData from '../../data/sotn-response.json';
 import { getArtistValue, getDate } from '../../utils/sotn-utils';
 import { useKentobot } from '../../utils/kentobotApi';
 import LoadingSpinner from '../../components/LoadingSpinner';
-
-type SotnProps = {
-  winners: SotnWinnerData[];
-};
-
-type SotnWinner = {
-  readonly youtubeId: string;
-  readonly requester: string;
-  readonly streamDate: string;
-  readonly artist: string;
-  readonly featuredArtist?: string;
-  readonly year: string;
-  readonly sotsWinner: boolean;
-  readonly title?: string;
-};
+import { SotnWinner } from '../../@types';
 
 type SotnWinnerData = {
   readonly username: string;
@@ -28,9 +13,6 @@ type SotnWinnerData = {
 };
 
 function processSotnData(winnerData: SotnWinner[]) {
-  // TODO extract this into a function(s) that can be called from the state changes as well
-
-  console.log(JSON.stringify(winnerData, null, 2));
   let winnersMap = new Map<string, any[]>();
 
   winnerData.forEach((winner: SotnWinner, index: number) => {
@@ -66,7 +48,7 @@ function processSotnData(winnerData: SotnWinner[]) {
 }
 
 const currentSeason = '12'; // TODO Get from AWS?
-const SongOfTheNightStandings: NextPage<SotnProps> = ({ winners }) => {
+const SongOfTheNightStandings: NextPage = () => {
   const [seasonState, setSeasonState] = useState(currentSeason);
 
   const handleMenuChange = async (event: any) => {

@@ -2,17 +2,10 @@ import { NextPage } from 'next';
 import Link from 'next/link';
 import { Accordion, Col, Container, Row, Table } from 'react-bootstrap';
 import { SotnStats, SotnWinner } from '../../@types';
-import sotnData from '../../data/sotn-response.json';
 import { getDate, getDateDiff } from '../../utils/sotn-utils';
 import styles from './sotn.module.css';
 import { useKentobot } from '../../utils/kentobotApi';
 import LoadingSpinner from '../../components/LoadingSpinner';
-
-type SotnProps = {
-  winners: SotnStats[];
-};
-
-const kentobotApiHost = process.env.NEXT_PUBLIC_KENTOBOT_API_HOST;
 
 function processSotnData(winnerData: SotnWinner[]) {
   let winnersMap = new Map<string, SotnStats>();
@@ -35,7 +28,7 @@ function processSotnData(winnerData: SotnWinner[]) {
       // Determine Gaps (in Days)
       const gapDays = getDateDiff(
         new Date(user!.lastWinDate!),
-        new Date(winner.playDate)
+        new Date(winner.streamDate)
       );
 
       user!.daysGap.longest =
@@ -69,7 +62,7 @@ function processSotnData(winnerData: SotnWinner[]) {
         user!.streamGap.current++;
       }
 
-      user!.lastWinDate = winner.playDate;
+      user!.lastWinDate = winner.streamDate;
 
       if (winStreakUser === requester) {
         user!.streak++;
@@ -78,7 +71,7 @@ function processSotnData(winnerData: SotnWinner[]) {
       winnersMap.set(requester, {
         user: requester,
         wins: 1,
-        lastWinDate: winner.playDate,
+        lastWinDate: winner.streamDate,
         streamGap: {
           current: 0,
           longest: 0,
@@ -105,12 +98,12 @@ function processSotnData(winnerData: SotnWinner[]) {
   return users;
 }
 
-const SongOfTheNightUsers: NextPage<SotnProps> = () => {
+const SongOfTheNightUsers: NextPage = () => {
   const { data, error, isLoading } = useKentobot(`/song-of-the-night/winners`);
 
-  let sotnData: any[];
+  let sotnData: SotnStats[] = [];
   if (data && !isLoading) {
-    sotnData = processSotnData(data.winners);
+    sotnData = processSotnData(data?.winners);
   }
 
   return (
@@ -227,7 +220,7 @@ const SongOfTheNightUsers: NextPage<SotnProps> = () => {
                         Current
                       </Col>
                     </Row>
-                    {sotnData.map((winner: SotnStats, index: number) => (
+                    {sotnData?.map((winner: SotnStats, index: number) => (
                       <Link
                         href={`/song-of-the-night/users/${winner.user}`}
                         key={index}
