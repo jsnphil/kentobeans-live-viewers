@@ -1,14 +1,13 @@
 export type SotnWinner = {
-  readonly requestId: string;
-  readonly requester: string;
   readonly youtubeId: string;
+  readonly requester: string;
+  readonly streamDate: string;
   readonly artist: string;
+  readonly featuredArtist?: string;
   readonly year: string;
-  readonly featuredArtist: string;
   readonly sotsWinner: boolean;
-  readonly playDate: string;
-  readonly title?: string;
-  readonly season: number;
+  readonly title: string;
+  readonly season?: number;
 };
 
 export type SotnStats = {
