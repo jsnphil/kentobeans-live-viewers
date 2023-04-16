@@ -84,13 +84,6 @@ function Navigation() {
                   All Songs
                 </NavDropdown.Item>
                 <NavDropdown.Divider />
-                <NavDropdown.Item
-                  id='playlistLink'
-                  href={useNavLink('song-of-the-night/playlists')}
-                >
-                  Playlists
-                </NavDropdown.Item>
-                <NavDropdown.Divider />
 
                 <NavDropdown.Item
                   id='tournamentsLink'
