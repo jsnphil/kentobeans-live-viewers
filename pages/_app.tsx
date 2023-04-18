@@ -8,6 +8,7 @@ import { SessionProvider } from 'next-auth/react';
 
 import { config } from '@fortawesome/fontawesome-svg-core';
 import '@fortawesome/fontawesome-svg-core/styles.css';
+import { GoogleAnalytics } from 'nextjs-google-analytics';
 config.autoAddCss = false;
 
 function KentobeansLiveApp({
@@ -31,6 +32,8 @@ function KentobeansLiveApp({
             <link rel='icon' href='/favicon.ico' />
           </Head>
           <Container>
+            <GoogleAnalytics trackPageViews />
+
             <Component {...pageProps} />
           </Container>
         </Layout>
