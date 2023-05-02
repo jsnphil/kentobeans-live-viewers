@@ -6,6 +6,7 @@ import { Nav, NavDropdown } from 'react-bootstrap';
 import { signOut, useSession } from 'next-auth/react';
 import UserNavItem from './UserNavItem';
 import { useRouter } from 'next/router';
+import Link from 'next/link';
 
 const useNavLink = (linkPath: string) => {
   const router = useRouter();
@@ -40,36 +41,45 @@ function Navigation() {
           <Navbar.Toggle aria-controls='responsive-navbar-nav' />
           <Navbar.Collapse id='responsive-navbar-nav'>
             <Nav className='me-auto'>
-              <Nav.Link href='/'>Home</Nav.Link>
-              <Nav.Link href={useNavLink('commands')} id='commandsLink'>
-                Kentobot Commands
-              </Nav.Link>
-              <Nav.Link
+              <Link href='/' passHref>
+                <Nav.Link as='span'>Home</Nav.Link>
+              </Link>
+              <Link href={useNavLink('commands')} id='commandsLink'>
+                <Nav.Link as='span'>Kentobot Commands</Nav.Link>
+              </Link>
+
+              <Link
                 href={useNavLink('request-rules')}
                 id='requestRulesLink'
+                passHref
               >
-                Request Rules
-              </Nav.Link>
-              <Nav.Link href={useNavLink('songlist')} id='songlistLink'>
-                Stream Songlist
-              </Nav.Link>
-              <Nav.Link href={useNavLink('song-history')} id='songHistoryLink'>
-                Song History
-              </Nav.Link>
-
+                <Nav.Link as='span'>Request Rules</Nav.Link>
+              </Link>
+              <Link href={useNavLink('songlist')} id='songlistLink' passHref>
+                <Nav.Link as='span'>Stream Songlist</Nav.Link>
+              </Link>
+              <Link
+                href={useNavLink('song-history')}
+                id='songHistoryLink'
+                passHref
+              >
+                <Nav.Link as='span'>Song History</Nav.Link>
+              </Link>
               <NavDropdown title='Song of the Night' id='sotnDropdown'>
-                <NavDropdown.Item
+                <Link
                   id='sotnStandingsLink'
                   href={useNavLink('song-of-the-night/standings')}
+                  passHref
                 >
-                  Standings
-                </NavDropdown.Item>
-                <NavDropdown.Item
+                  <NavDropdown.Item as='span'>Standings</NavDropdown.Item>
+                </Link>
+                <Link
                   id='sotnUsersLink'
                   href={useNavLink('song-of-the-night/users')}
+                  passHref
                 >
-                  User Stats
-                </NavDropdown.Item>
+                  <NavDropdown.Item as='span'>User Stats</NavDropdown.Item>
+                </Link>
                 {/* <NavDropdown.Item
                   id='sotnSongsLink'
                   href={useNavLink('song-of-the-night/song-stats')}
@@ -77,30 +87,29 @@ function Navigation() {
                 >
                   Song Stats
                 </NavDropdown.Item> */}
-                <NavDropdown.Item
+                <Link
                   id='sotnSongsLink'
                   href={useNavLink('song-of-the-night/songs')}
+                  passHref
                 >
-                  All Songs
-                </NavDropdown.Item>
+                  <NavDropdown.Item as='span'>All Songs</NavDropdown.Item>
+                </Link>
                 <NavDropdown.Divider />
 
-                <NavDropdown.Item
-                  id='tournamentsLink'
-                  href='#action/3.2'
-                  disabled
-                >
-                  Tournaments
-                </NavDropdown.Item>
+                <Link id='tournamentsLink' href='#action/3.2' passHref>
+                  <NavDropdown.Item disabled as='span'>
+                    Tournaments
+                  </NavDropdown.Item>
+                </Link>
               </NavDropdown>
 
               <NavDropdown title='Bean Rewards' id='rewardsDropdown' disabled>
-                <NavDropdown.Item id='livelearn' href='#action/3.1'>
-                  Live Learn
-                </NavDropdown.Item>
-                <NavDropdown.Item id='djhour' href='#action/3.2'>
-                  DJ Hour
-                </NavDropdown.Item>
+                <Link id='livelearn' href='#action/3.1' passHref>
+                  <NavDropdown.Item as='span'>Live Learn</NavDropdown.Item>
+                </Link>
+                <Link id='djhour' href='#action/3.2' passHref>
+                  <NavDropdown.Item as='span'>DJ Hour</NavDropdown.Item>
+                </Link>
               </NavDropdown>
             </Nav>
           </Navbar.Collapse>
