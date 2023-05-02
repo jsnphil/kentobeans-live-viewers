@@ -30,6 +30,7 @@
     "react-iframe": "^1.8.4",
     "react-use-websocket": "^4.2.0",
     "react-youtube-playlist": "^2.2.8",
+    "sharp": "^0.32.1",
     "styled-components": "^5.3.6",
     "swr": "^2.1.0"
   },
