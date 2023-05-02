@@ -6,7 +6,14 @@ const nextConfig = {
 
 module.exports = {
   images: {
-    domains: ['twitch.tv']
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'twitch.tv',
+        port: '',
+        pathname: '/**'
+      }
+    ]
   }
 };
 
