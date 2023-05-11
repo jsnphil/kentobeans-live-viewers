@@ -35,7 +35,6 @@ export function getDate(playDate: string) {
 }
 
 export const getArtistValue = (artist: string, featArtist?: string): string => {
-  console.log(artist);
   if (featArtist) {
     return `${artist.replaceAll('|', ' & ')} feat. ${featArtist.replaceAll(
       '|',

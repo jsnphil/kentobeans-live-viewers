@@ -1,8 +1,6 @@
 export function formatDate(dateString: string) {
   const date = new Date(dateString);
 
-  console.log(dateString);
-
   const splitDate = dateString.split(' ');
   const datestamp = new Date(splitDate[0]);
   const timestamp = splitDate[1];
