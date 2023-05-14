@@ -2,11 +2,13 @@ import { faDice, faStar, faTicket } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import type { NextPage } from 'next';
 import { useState, useEffect, useCallback } from 'react';
-import { Col, Container, Row, Spinner, Table } from 'react-bootstrap';
+import { Button, Col, Container, Row, Spinner, Table } from 'react-bootstrap';
 import useWebSocket, { ReadyState, Options } from 'react-use-websocket';
 import LoadingSpinner from '../components/LoadingSpinner';
 import SongRequestTable, { SongListItem } from '../components/SongRequestTable';
 import styles from '../styles/songlist.module.css';
+import RequestRules from './request-rules';
+import RequestRulesModal from '../components/RequestRulesModal';
 
 interface QueueInfo {
   status: 'Closed|Open';
@@ -114,6 +116,7 @@ const StreamSongList: NextPage = () => {
 
   return (
     <>
+      <RequestRulesModal />
       <div>
         <Container>
           <div className={`${styles.songlistSummary} pb-3 text-center`}>
@@ -186,6 +189,11 @@ const StreamSongList: NextPage = () => {
                 </Col>
                 <Col>
                   <FontAwesomeIcon icon={faTicket} /> Shuffle Entrant
+                </Col>
+              </Row>
+              <Row className='pt-2'>
+                <Col>
+                  <Button variant='primary'>View Request Rules</Button>
                 </Col>
               </Row>
             </div>
