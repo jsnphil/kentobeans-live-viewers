@@ -273,7 +273,10 @@ const StreamSongList: NextPage = () => {
               </Row>
               <Row className='pt-3'>
                 <Col>
-                  <span onClick={handleShow}>
+                  <span
+                    onClick={handleShow}
+                    className={`${styles.requestRulesLink}`}
+                  >
                     <FontAwesomeIcon icon={faCircleInfo} /> View Request Rules
                   </span>
                 </Col>
