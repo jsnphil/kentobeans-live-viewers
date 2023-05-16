@@ -48,13 +48,13 @@ function Navigation() {
                 <Nav.Link as='span'>Kentobot Commands</Nav.Link>
               </Link>
 
-              <Link
+              {/* <Link
                 href={useNavLink('request-rules')}
                 id='requestRulesLink'
                 passHref
-              >
+              > 
                 <Nav.Link as='span'>Request Rules</Nav.Link>
-              </Link>
+              </Link>*/}
               <Link href={useNavLink('songlist')} id='songlistLink' passHref>
                 <Nav.Link as='span'>Stream Songlist</Nav.Link>
               </Link>
