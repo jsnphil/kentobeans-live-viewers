@@ -1,4 +1,9 @@
-import { faDice, faStar, faTicket } from '@fortawesome/free-solid-svg-icons';
+import {
+  faDice,
+  faStar,
+  faTicket,
+  faCircleInfo
+} from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import type { NextPage } from 'next';
 import { useState, useEffect, useCallback } from 'react';
@@ -193,7 +198,7 @@ const StreamSongList: NextPage = () => {
               </Row>
               <Row className='pt-2'>
                 <Col>
-                  <Button variant='primary'>View Request Rules</Button>
+                  <FontAwesomeIcon icon={faCircleInfo} /> View Request Rules
                 </Col>
               </Row>
             </div>
