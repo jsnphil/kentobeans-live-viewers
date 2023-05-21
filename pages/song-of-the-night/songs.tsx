@@ -15,7 +15,7 @@ import { faAward, faTrophy, faCrown } from '@fortawesome/free-solid-svg-icons';
 
 const SongOfTheNightSongs: NextPage = () => {
   const { data, error, isLoading } = useKentobot(
-    `/song-of-the-night/winning-requests`
+    `song-of-the-night/winning-requests`
   );
 
   const sortedWinners = data?.winners.sort(

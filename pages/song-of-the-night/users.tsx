@@ -100,7 +100,7 @@ function processSotnData(winnerData: SotnWinner[]) {
 
 const SongOfTheNightUsers: NextPage = () => {
   const { data, error, isLoading } = useKentobot(
-    `/song-of-the-night/winning-requests`
+    `song-of-the-night/winning-requests`
   );
 
   let sotnData: SotnStats[] = [];
