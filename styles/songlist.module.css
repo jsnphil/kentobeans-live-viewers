@@ -14,3 +14,7 @@
     color: #FFFFFF;
 	letter-spacing: 1px;
 }
+
+.requestRulesLink {
+	cursor: pointer;
+}

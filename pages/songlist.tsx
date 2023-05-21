@@ -1,12 +1,28 @@
-import { faDice, faStar, faTicket } from '@fortawesome/free-solid-svg-icons';
+import {
+  faDice,
+  faStar,
+  faTicket,
+  faCircleInfo
+} from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import type { NextPage } from 'next';
 import { useState, useEffect, useCallback } from 'react';
-import { Col, Container, Row, Spinner, Table } from 'react-bootstrap';
+import {
+  Button,
+  Col,
+  Container,
+  Row,
+  Modal,
+  Spinner,
+  Table
+} from 'react-bootstrap';
 import useWebSocket, { ReadyState, Options } from 'react-use-websocket';
 import LoadingSpinner from '../components/LoadingSpinner';
 import SongRequestTable, { SongListItem } from '../components/SongRequestTable';
 import styles from '../styles/songlist.module.css';
+import RequestRules from './request-rules';
+import RequestRulesModal from '../components/RequestRulesModal';
+import { getCookie, hasCookie, setCookie } from 'cookies-next';
 
 interface QueueInfo {
   status: 'Closed|Open';
@@ -21,6 +37,39 @@ interface QueueInfo {
 const emptySongList: SongListItem[] = [];
 
 const StreamSongList: NextPage = () => {
+  /* Request Rules */
+  const ACCEPT_RULES_COOKIE_NAME = 'kb-song-rules';
+
+  const [showRules, setShowRules] = useState(false);
+
+  const handleClose = () => {
+    addCookie();
+    setShowRules(false);
+  };
+  const handleShow = () => setShowRules(true);
+
+  const addCookie = () => {
+    const expirationDate = new Date(
+      new Date().getMilliseconds() + 5 * 60 * 1000
+    );
+    setCookie(ACCEPT_RULES_COOKIE_NAME, true, {
+      // expires: expirationDate
+      maxAge: 30 * 24 * 60 * 60
+    });
+  };
+
+  useEffect(() => {
+    if (
+      hasCookie(ACCEPT_RULES_COOKIE_NAME, {}) &&
+      getCookie(ACCEPT_RULES_COOKIE_NAME)
+    ) {
+      setShowRules(false);
+    } else {
+      setShowRules(true);
+    }
+  }, []);
+
+  /* Song lists */
   const [queueStatus, setQueueStatus] = useState('Closed');
   const [playedSongs, setPlayedSongs] = useState(0);
   const [remainingChannelPointBumps, setRemainingChannelPointBumps] =
@@ -114,6 +163,40 @@ const StreamSongList: NextPage = () => {
 
   return (
     <>
+      <Modal show={showRules} backdrop='static' onHide={handleClose}>
+        <Modal.Header>
+          <Modal.Title>Song Request Rules</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <ul>
+            <li>
+              Only 1 song is allowed in the song queue per person at one time.
+            </li>
+            <li>You must be present for your request to be played.</li>
+            <li>
+              Song lyrics must be in English only, with limited exceptions for
+              songs like anime theme and/or well-known video game music
+            </li>
+            <li>
+              You can bump a request to the top of the queue for free for 300
+              beans or 6000 channel points. You can also bump with at least a
+              $3.00 tip, by subscribing, or by gifting a sub. Bump are limited
+              to 1 free and 1 one paid per person per stream. Bean bumps are
+              limited to once per week per user.
+            </li>
+            <li>
+              Please avoid requests that involve a lot double bass/kick drum
+              and/or metal songs.
+            </li>
+          </ul>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant='primary' onClick={handleClose}>
+            Accept
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
       <div>
         <Container>
           <div className={`${styles.songlistSummary} pb-3 text-center`}>
@@ -186,6 +269,16 @@ const StreamSongList: NextPage = () => {
                 </Col>
                 <Col>
                   <FontAwesomeIcon icon={faTicket} /> Shuffle Entrant
+                </Col>
+              </Row>
+              <Row className='pt-3'>
+                <Col>
+                  <span
+                    onClick={handleShow}
+                    className={`${styles.requestRulesLink}`}
+                  >
+                    <FontAwesomeIcon icon={faCircleInfo} /> View Request Rules
+                  </span>
                 </Col>
               </Row>
             </div>
