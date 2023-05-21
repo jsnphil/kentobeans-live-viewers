@@ -64,7 +64,7 @@ const SongOfTheNightStandings: NextPage = () => {
   }
 
   const { data, error, isLoading } = useKentobot(
-    `/song-of-the-night/winning-requests?season=${seasonState}`
+    `song-of-the-night/winning-requests?season=${seasonState}`
   );
 
   let sotnData;
