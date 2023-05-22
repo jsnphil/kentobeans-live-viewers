@@ -61,7 +61,10 @@ const About: NextPage = () => {
               <p className='h2 pt-3'>Powered by</p>
               <Row className='py-2 px-2 roundedTopLeft roundedTopRight'>
                 <Col>
-                  <a href='https://aws.amazon.com/what-is-cloud-computing'>
+                  <a
+                    href='https://aws.amazon.com/what-is-cloud-computing'
+                    target='_blank'
+                  >
                     <img
                       src='https://d0.awsstatic.com/logos/powered-by-aws.png'
                       alt='Powered by AWS Cloud Computing'
@@ -69,7 +72,10 @@ const About: NextPage = () => {
                   </a>
                 </Col>
                 <Col>
-                  <a href='https://github.com/PhantomBot/PhantomBot'>
+                  <a
+                    href='https://github.com/PhantomBot/PhantomBot'
+                    target='_blank'
+                  >
                     <Image
                       id='phantombotLogo'
                       src={phantombotLogo}
@@ -80,7 +86,7 @@ const About: NextPage = () => {
                   </a>
                 </Col>
                 <Col>
-                  <a href='https://www.digitalocean.com/'>
+                  <a href='https://www.digitalocean.com/' target='_blank'>
                     <Image
                       id='doLogo'
                       src={digitalOceanLogo}
@@ -93,7 +99,7 @@ const About: NextPage = () => {
               </Row>
               <Row className='pt-5'>
                 <Col>
-                  <a href='https://nextjs.org/'>
+                  <a href='https://nextjs.org/' target='_blank'>
                     <Image
                       id='nextJs'
                       src={nextJsLogo}
@@ -104,7 +110,7 @@ const About: NextPage = () => {
                   </a>
                 </Col>
                 <Col>
-                  <a href='https://vercel.com/'>
+                  <a href='https://vercel.com/' target='_blank'>
                     <Image
                       id='vercel'
                       src={vercelLogo}
