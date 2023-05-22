@@ -111,8 +111,12 @@ function Navigation() {
                   <NavDropdown.Item as='span'>DJ Hour</NavDropdown.Item>
                 </Link>
               </NavDropdown>
+              <Link href={useNavLink('about')} id='aboutLink'>
+                <Nav.Link as='span'>About</Nav.Link>
+              </Link>
             </Nav>
           </Navbar.Collapse>
+
           {/* <Navbar.Collapse className='justify-content-end'>
             <UserNavItem />
           </Navbar.Collapse> */}

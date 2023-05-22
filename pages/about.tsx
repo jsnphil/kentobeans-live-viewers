@@ -10,7 +10,7 @@ const About: NextPage = () => {
   return (
     <>
       <main>
-        <div className='d-xl-block mb-3 text-center'>
+        <div className='d-xl-block pb-3 text-center'>
           <Container>
             <div className=' pb-3 text-center'>
               <p className='h1'>Kentobeans7</p>
@@ -66,42 +66,50 @@ const About: NextPage = () => {
                   </a>
                 </Col>
                 <Col>
-                  <Image
-                    id='phantombotLogo'
-                    src={phantombotLogo}
-                    alt='Phantombot'
-                    width={200}
-                    height={50}
-                  />
+                  <a href='https://github.com/PhantomBot/PhantomBot'>
+                    <Image
+                      id='phantombotLogo'
+                      src={phantombotLogo}
+                      alt='Phantombot'
+                      width={200}
+                      height={50}
+                    />
+                  </a>
                 </Col>
                 <Col>
-                  <Image
-                    id='doLogo'
-                    src={digitalOceanLogo}
-                    alt='Digital Ocean'
-                    width={200}
-                    height={50}
-                  />
+                  <a href='https://www.digitalocean.com/'>
+                    <Image
+                      id='doLogo'
+                      src={digitalOceanLogo}
+                      alt='Digital Ocean'
+                      width={200}
+                      height={50}
+                    />
+                  </a>
                 </Col>
               </Row>
               <Row className='pt-5'>
                 <Col>
-                  <Image
-                    id='nextJs'
-                    src={nextJsLogo}
-                    alt='NextJs'
-                    width={200}
-                    height={50}
-                  />
+                  <a href='https://nextjs.org/'>
+                    <Image
+                      id='nextJs'
+                      src={nextJsLogo}
+                      alt='NextJs'
+                      width={200}
+                      height={50}
+                    />
+                  </a>
                 </Col>
                 <Col>
-                  <Image
-                    id='vercel'
-                    src={vercelLogo}
-                    alt='Vercel'
-                    width={200}
-                    height={50}
-                  />
+                  <a href='https://vercel.com/'>
+                    <Image
+                      id='vercel'
+                      src={vercelLogo}
+                      alt='Vercel'
+                      width={200}
+                      height={50}
+                    />
+                  </a>
                 </Col>
               </Row>
               <div className='pt-5'>
@@ -109,7 +117,7 @@ const About: NextPage = () => {
                   Kentobeans7, Kentobot, and Kentobeans.live is not affiliated
                   with any of brands included on this page, and inclusion of a
                   name and/or logo is not meant to imply or suggest any
-                  endorsement or sponsorship
+                  endorsement, sponsorship, or involvement, direct or indirect.
                 </p>
               </div>
             </div>
