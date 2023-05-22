@@ -29,7 +29,7 @@ const About: NextPage = () => {
               </Row>
               <Row>
                 <Col>
-                  DW Collector's Series Black Nickel over Brass 6.5&quot; x
+                  DW Collector&apos;s Series Black Nickel over Brass 6.5&quot; x
                   14&quot; snare drum
                 </Col>
                 <Col>Sony a6000</Col>
@@ -59,7 +59,7 @@ const About: NextPage = () => {
               Kentobot and Kentobeans.live is a custom-built, song request
               Twitch chat bot and stream portal
               <p className='h2 pt-3'>Powered by</p>
-              <Row className='py-2 px-2 roundedTopLeft  roundedTopRight'>
+              <Row className='py-2 px-2 roundedTopLeft roundedTopRight'>
                 <Col>
                   <a href='https://aws.amazon.com/what-is-cloud-computing'>
                     <img
