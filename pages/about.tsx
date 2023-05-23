@@ -75,7 +75,11 @@ const About: NextPage = () => {
                   </a>
                 </Col>
                 <Col xs={12} md={4} className='pt-2'>
-                  <a href='https://www.digitalocean.com/' target='_blank'>
+                  <a
+                    href='https://www.digitalocean.com/'
+                    target='_blank'
+                    rel='noreferrer'
+                  >
                     <Image
                       id='doLogo'
                       src={digitalOceanLogo}
