@@ -11,11 +11,11 @@ const About: NextPage = () => {
     <>
       <main>
         <div className='d-xl-block pb-3 text-center'>
-          <Container>
-            <div className=' pb-3 text-center'>
-              <p className='h1'>Kentobeans7</p>
-              Kentobeans7 is a music streamer and drummer from Nashville, TN.
-              <p className='h2 pt-3'>Equipment</p>
+          <div className=' pb-3 text-center'>
+            <p className='h1'>Kentobeans7</p>
+            Kentobeans7 is a music streamer and drummer from Nashville, TN.
+            <p className='h2 pt-3'>Equipment</p>
+            <Container>
               <Row className='subheading roundedTopLeft roundedBottomLeft roundedTopRight roundedBottomRight'>
                 <Col>Drums</Col>
                 <Col>Streaming</Col>
@@ -43,27 +43,30 @@ const About: NextPage = () => {
                 <Col>GVM 48&quot; camera slider</Col>
               </Row>
               <Row>
-                <Col>Zildjian K Custom Hybrid 21&quot; ride cymbal</Col>
-                <Col />
-              </Row>
-              <Row>
-                <Col>Zildjian K Custom Hybrid 21&quot; ride cymbal</Col>
-                <Col />
-              </Row>
-              <Row>
                 <Col>Sabian AA 18&quot; medium crash cymbal</Col>
+                <Col>Soundcraft Notepad-8FX</Col>
+              </Row>
+              <Row>
+                <Col>Zildjian K Custom Hybrid 21&quot; ride cymbal</Col>
+                <Col>Logitech Brio</Col>
+              </Row>
+              <Row>
+                <Col>Meinl Classics Custom 12&quot; Dark trash stack</Col>
                 <Col />
               </Row>
-              <hr />
-              <p className='h1'>Kentobot/Kentobean.live</p>
-              Kentobot and Kentobeans.live is a custom-built, song request
-              Twitch chat bot and stream portal
-              <p className='h2 pt-3'>Powered by</p>
+            </Container>
+            <hr />
+            <p className='h1'>Kentobot/Kentobean.live</p>
+            Kentobot and Kentobeans.live is a custom-built, song request Twitch
+            chat bot and stream portal
+            <p className='h2 pt-3'>Powered by</p>
+            <Container>
               <Row className='py-2 px-2 roundedTopLeft roundedTopRight'>
-                <Col>
+                <Col xs={12} md={4} className='pt-2'>
                   <a
                     href='https://aws.amazon.com/what-is-cloud-computing'
                     target='_blank'
+                    rel='noreferrer'
                   >
                     <img
                       src='https://d0.awsstatic.com/logos/powered-by-aws.png'
@@ -71,10 +74,22 @@ const About: NextPage = () => {
                     />
                   </a>
                 </Col>
-                <Col>
+                <Col xs={12} md={4} className='pt-2'>
+                  <a href='https://www.digitalocean.com/' target='_blank'>
+                    <Image
+                      id='doLogo'
+                      src={digitalOceanLogo}
+                      alt='Digital Ocean'
+                      width={300}
+                      height={50}
+                    />
+                  </a>
+                </Col>
+                <Col xs={12} md={4} className='pt-2'>
                   <a
                     href='https://github.com/PhantomBot/PhantomBot'
                     target='_blank'
+                    rel='noreferrer'
                   >
                     <Image
                       id='phantombotLogo'
@@ -85,21 +100,14 @@ const About: NextPage = () => {
                     />
                   </a>
                 </Col>
-                <Col>
-                  <a href='https://www.digitalocean.com/' target='_blank'>
-                    <Image
-                      id='doLogo'
-                      src={digitalOceanLogo}
-                      alt='Digital Ocean'
-                      width={200}
-                      height={50}
-                    />
-                  </a>
-                </Col>
               </Row>
-              <Row className='pt-5'>
-                <Col>
-                  <a href='https://nextjs.org/' target='_blank'>
+              <Row>
+                <Col xs={12} md={6} className='pt-2'>
+                  <a
+                    href='https://nextjs.org/'
+                    target='_blank'
+                    rel='noreferrer'
+                  >
                     <Image
                       id='nextJs'
                       src={nextJsLogo}
@@ -109,8 +117,12 @@ const About: NextPage = () => {
                     />
                   </a>
                 </Col>
-                <Col>
-                  <a href='https://vercel.com/' target='_blank'>
+                <Col xs={12} md={6} className='pt-2'>
+                  <a
+                    href='https://vercel.com/'
+                    target='_blank'
+                    rel='noreferrer'
+                  >
                     <Image
                       id='vercel'
                       src={vercelLogo}
@@ -121,16 +133,16 @@ const About: NextPage = () => {
                   </a>
                 </Col>
               </Row>
-              <div className='pt-5'>
-                <p className='small'>
-                  Kentobeans7, Kentobot, and Kentobeans.live is not affiliated
-                  with any of brands included on this page, and inclusion of a
-                  name and/or logo is not meant to imply or suggest any
-                  endorsement, sponsorship, or involvement, direct or indirect.
-                </p>
-              </div>
+            </Container>
+            <div className='pt-5'>
+              <p className='small'>
+                Kentobeans7, Kentobot, and Kentobeans.live is not affiliated
+                with any of brands included on this page, and inclusion of a
+                name and/or logo is not meant to imply or suggest any
+                endorsement, sponsorship, or involvement, direct or indirect.
+              </p>
             </div>
-          </Container>
+          </div>
         </div>
       </main>
     </>
