@@ -7,7 +7,9 @@ export default function Layout({ children }: any) {
   return (
     <>
       <Navbar />
-      <main>{children}</main>
+      <main>
+        <div className='pt-5'>{children}</div>
+      </main>
     </>
   );
 }
