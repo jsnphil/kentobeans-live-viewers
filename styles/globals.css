@@ -22,7 +22,7 @@ html{overflow-y: scroll;}
 
 @media (min-width: 1200px) {
 	body {
-        background-image: url("https://kentobeans.live/assets/images/pattern-l.png"), url("https://kentobeans.live/assets/images/pattern-r.png");
+        background-image: url("/pattern-l.png"), url("/pattern-r.png");
 		background-position: left top, right top;
 		background-repeat: repeat-y, repeat-y;
     }
