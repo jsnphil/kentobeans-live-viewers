@@ -82,16 +82,14 @@ const StreamSongList: NextPage = () => {
   const [contenders, setContenders] = useState<SongListItem[]>([]);
 
   //Public API that will echo messages sent to it back to the client
-  const [socketUrl, setSocketUrl] = useState(
-    'wss://kentobeans.live/ws/ytplayer'
-  );
+  const [socketUrl, setSocketUrl] = useState('wss://kentobot.app/ws/ytplayer');
 
   const { sendMessage, lastMessage, lastJsonMessage, readyState } =
     useWebSocket(socketUrl, {
       onOpen: () =>
         sendMessage(
           JSON.stringify({
-            readauth: 'xy3gUrovotadazBoRmRq6zIgQyUk8G' // Move to getStaticProps()
+            readauth: 'S6JiR0I3qa8YBRaHK04lqVEQZyS63i' // Move to getStaticProps()
           })
         ),
       shouldReconnect: (closeEvent) => true
@@ -123,6 +121,8 @@ const StreamSongList: NextPage = () => {
         refreshData('playlist');
         refreshData('songrequesthistory');
       }
+
+      console.log(websocketMessage);
 
       if (websocketMessage.queueStatus) {
         const queueStatus = websocketMessage.queueStatus as QueueInfo;
@@ -258,7 +258,17 @@ const StreamSongList: NextPage = () => {
                 Request Queue
               </Col>
             </Row>
-            <Row>{/* <Col>Requests go here</Col> */}</Row>
+            {/*<Row> <Col>Requests go here</Col> </Row>*/}
+            <Row className='pt-3'>
+              <Col md={9}>Song Title</Col>
+              <Col md={2}>Requested by</Col>
+              <Col md={1}>Length</Col>
+            </Row>
+            <SongRequestTable
+              requests={songList}
+              showIndex={false}
+              showRemoveButton={false}
+            />
             <div className='mt-3 text-center'>
               <Row>
                 <Col>
@@ -294,7 +304,11 @@ const StreamSongList: NextPage = () => {
                 Song of the Night Contenders
               </Col>
             </Row>
-            <Row>{/* <Col>Requests go here</Col> */}</Row>
+            <SongRequestTable
+              requests={contenders}
+              showIndex={false}
+              showRemoveButton={false}
+            />
           </Container>
         </div>
 
@@ -307,7 +321,11 @@ const StreamSongList: NextPage = () => {
                 Played Requests
               </Col>
             </Row>
-            <Row>{/* <Col>Requests go here</Col> */}</Row>
+            <SongRequestTable
+              requests={songHistory}
+              showIndex={false}
+              showRemoveButton={false}
+            />
           </Container>
         </div>
       </div>

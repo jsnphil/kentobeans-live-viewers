@@ -1,4 +1,4 @@
-import { Button, Table } from 'react-bootstrap';
+import { Button, Col, Row, Table } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faStar,
@@ -28,7 +28,41 @@ const SongRequestTable = (props: SongRequestProps) => {
   const session = useSession();
   const requestRows = props.requests.map((request, index) => (
     <>
-      <tr
+      <Row key={request.song}>
+        <Col md={9}>
+          {(props.showIndex || request.bump === 'true') && ++index}
+          <span>&nbsp;</span>
+          {request.bump === 'true' && (
+            <>
+              <FontAwesomeIcon icon={faStar} />
+              <span>&nbsp;</span>
+            </>
+          )}
+          {request.shuffle === 'true' && (
+            <>
+              <FontAwesomeIcon icon={faDice} />
+              <span>&nbsp;</span>
+            </>
+          )}
+          {request.shuffleEntered === 'true' && (
+            <>
+              <FontAwesomeIcon icon={faTicket} />
+              <span>&nbsp;</span>
+            </>
+          )}
+          <a
+            href={'https://youtu.be/' + request.song}
+            target='_blank'
+            rel='noreferrer'
+          >
+            {request.title}
+          </a>
+        </Col>
+        <Col md={2}>{request.requester}</Col>
+        <Col md={1}>{request.duration}</Col>
+      </Row>
+
+      {/* <tr
         className={
           isLoggedInUserRequest(request.requester, session.data?.user?.name)
             ? 'songTableHighlight'
@@ -74,17 +108,11 @@ const SongRequestTable = (props: SongRequestProps) => {
               </Button>
             </td>
           )}
-      </tr>
+      </tr> */}
     </>
   ));
 
-  return (
-    <>
-      <Table className='songRequestTable' borderless hover size='sm'>
-        <tbody>{requestRows}</tbody>
-      </Table>
-    </>
-  );
+  return <>{requestRows}</>;
 };
 
 export default SongRequestTable;
