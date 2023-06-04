@@ -89,7 +89,7 @@ const StreamSongList: NextPage = () => {
       onOpen: () =>
         sendMessage(
           JSON.stringify({
-            readauth: 'S6JiR0I3qa8YBRaHK04lqVEQZyS63i' // Move to getStaticProps()
+            readauth: 'xy3gUrovotadazBoRmRq6zIgQyUk8G' // This is ytauthro from botconfig.txt, Move to getStaticProps()
           })
         ),
       shouldReconnect: (closeEvent) => true
