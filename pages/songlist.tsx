@@ -23,6 +23,8 @@ import styles from '../styles/songlist.module.css';
 import RequestRules from './request-rules';
 import RequestRulesModal from '../components/RequestRulesModal';
 import { getCookie, hasCookie, setCookie } from 'cookies-next';
+import SongRequestTableHeading from '../components/SongRequestTableHeading';
+import mockSongList from '../data/mockSongRequestList.json';
 
 interface QueueInfo {
   status: 'Closed|Open';
@@ -218,12 +220,17 @@ const StreamSongList: NextPage = () => {
             </Row>
           </div>
         </Container>
+
+        <div className='mb-3'>
+          <Container>
+            <SongRequestTableHeading />
+          </Container>
+        </div>
+
         <div id='nowPlaying' className='mb-3'>
           <Container>
             <Row>
-              <Col
-                className={`subheading roundedTopLeft roundedBottomLeft roundedTopRight roundedBottomRight text-center`}
-              >
+              <Col className='subheading roundedTopLeft roundedBottomLeft roundedTopRight roundedBottomRight text-center'>
                 Now Playing
               </Col>
             </Row>
@@ -249,26 +256,23 @@ const StreamSongList: NextPage = () => {
           </Container>
         </div>
 
-        <div id='songQueue' className='mb-3'>
+        <div id='songQueue' className={`${styles.songlistTable} mb-3`}>
           <Container>
             <Row>
-              <Col
-                className={`subheading roundedTopLeft roundedBottomLeft roundedTopRight roundedBottomRight text-center`}
-              >
+              <Col className='subheading roundedTopLeft roundedBottomLeft roundedTopRight roundedBottomRight text-center'>
                 Request Queue
               </Col>
             </Row>
             {/*<Row> <Col>Requests go here</Col> </Row>*/}
-            <Row className='pt-3'>
-              <Col md={9}>Song Title</Col>
-              <Col md={2}>Requested by</Col>
-              <Col md={1}>Length</Col>
-            </Row>
-            <SongRequestTable
-              requests={songList}
-              showIndex={false}
-              showRemoveButton={false}
-            />
+            {songList.length == 0 ? (
+              <Col>No requests in the queue</Col>
+            ) : (
+              <SongRequestTable
+                requests={songList}
+                showIndex={false}
+                showRemoveButton={false}
+              />
+            )}
             <div className='mt-3 text-center'>
               <Row>
                 <Col>
@@ -304,11 +308,15 @@ const StreamSongList: NextPage = () => {
                 Song of the Night Contenders
               </Col>
             </Row>
-            <SongRequestTable
-              requests={contenders}
-              showIndex={false}
-              showRemoveButton={false}
-            />
+            {contenders.length == 0 ? (
+              <Col>No contenders</Col>
+            ) : (
+              <SongRequestTable
+                requests={contenders}
+                showIndex={false}
+                showRemoveButton={false}
+              />
+            )}
           </Container>
         </div>
 
@@ -321,11 +329,15 @@ const StreamSongList: NextPage = () => {
                 Played Requests
               </Col>
             </Row>
-            <SongRequestTable
-              requests={songHistory}
-              showIndex={false}
-              showRemoveButton={false}
-            />
+            {contenders.length == 0 ? (
+              <Col>No songs played</Col>
+            ) : (
+              <SongRequestTable
+                requests={songHistory}
+                showIndex={true}
+                showRemoveButton={false}
+              />
+            )}
           </Container>
         </div>
       </div>

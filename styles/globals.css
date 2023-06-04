@@ -117,3 +117,33 @@ a:hover {
 a:active {
 	text-decoration: none;
 }
+
+.songTableRow {
+	color: #0E1336;
+}
+
+.songTableRow:hover {
+	background-color: #AAAAAA;
+	text-decoration: none;
+	color: #0E1336 !important;
+}
+
+.songTable a:link {
+	text-decoration: none;
+	color: #0E1336;
+}
+
+.songTable a:visited {
+	text-decoration: none;
+	color: #0E1336;
+}
+
+.songTable a:hover {
+	text-decoration: none; 
+	color: #0E1336;
+}
+
+.songTable a:active {
+	text-decoration: none;
+	color: #0E1336;
+}
