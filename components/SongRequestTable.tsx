@@ -1,11 +1,6 @@
-import { Button, Table } from 'react-bootstrap';
+import { Col, Row } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faStar,
-  faTicket,
-  faDice,
-  faTrash
-} from '@fortawesome/free-solid-svg-icons';
+import { faStar, faTicket, faDice } from '@fortawesome/free-solid-svg-icons';
 import { useSession } from 'next-auth/react';
 
 export interface SongListItem {
@@ -28,63 +23,55 @@ const SongRequestTable = (props: SongRequestProps) => {
   const session = useSession();
   const requestRows = props.requests.map((request, index) => (
     <>
-      <tr
-        className={
-          isLoggedInUserRequest(request.requester, session.data?.user?.name)
-            ? 'songTableHighlight'
-            : ''
-        }
-        key={request.song}
+      <a
+        href={'https://youtu.be/' + request.song}
+        target='_blank'
+        rel='noreferrer'
       >
-        <td>{(props.showIndex || request.bump === 'true') && ++index}</td>
-        <td>
-          {request.bump === 'true' && (
-            <>
-              <FontAwesomeIcon icon={faStar} />
-              <span>&nbsp;</span>
-            </>
-          )}
-          {request.shuffle === 'true' && (
-            <>
-              <FontAwesomeIcon icon={faDice} />
-              <span>&nbsp;</span>
-            </>
-          )}
-          {request.shuffleEntered === 'true' && (
-            <>
-              <FontAwesomeIcon icon={faTicket} />
-              <span>&nbsp;</span>
-            </>
-          )}
-          <a
-            href={'https://youtu.be/' + request.song}
-            target='_blank'
-            rel='noreferrer'
-          >
+        <Row key={request.song} className='songTableRow'>
+          <Col md={9}>
+            {(props.showIndex || request.bump === 'true') && ++index + ` - `}
+            <span>&nbsp;</span>
+            {request.bump === 'true' && (
+              <>
+                <FontAwesomeIcon icon={faStar} />
+                <span>&nbsp;</span>
+              </>
+            )}
+            {request.shuffle === 'true' && (
+              <>
+                <FontAwesomeIcon icon={faDice} />
+                <span>&nbsp;</span>
+              </>
+            )}
+            {request.shuffleEntered === 'true' && (
+              <>
+                <FontAwesomeIcon icon={faTicket} />
+                <span>&nbsp;</span>
+              </>
+            )}
+
             {request.title}
-          </a>
-        </td>
-        <td>{request.requester}</td>
-        <td>{request.duration}</td>
-        {isLoggedInUserRequest(request.requester, session.data?.user?.name) &&
-          props.showRemoveButton && (
-            <td>
-              <Button variant='danger' size='sm'>
-                <FontAwesomeIcon icon={faTrash} />
-              </Button>
-            </td>
-          )}
-      </tr>
+          </Col>
+
+          <Col md={2}>
+            <span className='d-inline d-sm-none'>
+              <i>Requested By:</i> {request.requester}
+            </span>
+            <span className='d-none d-sm-inline'>{request.requester}</span>
+          </Col>
+          <Col className='d-none d-sm-inline' md={1}>
+            {request.duration}
+          </Col>
+          <Col className='d-block d-sm-none'>
+            <hr />
+          </Col>
+        </Row>
+      </a>
     </>
   ));
 
-  return (
-    <>
-      <Table className='songRequestTable' borderless hover size='sm'>
-        <tbody>{requestRows}</tbody>
-      </Table>
-    </>
-  );
+  return <>{requestRows}</>;
 };
 
 export default SongRequestTable;

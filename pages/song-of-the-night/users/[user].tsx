@@ -24,6 +24,8 @@ const SotnUserStats: NextPage = () => {
 
   const { data, error, isLoading } = useKentobot(`/users/${user}`);
 
+  console.log(data);
+
   return (
     <>
       <main>

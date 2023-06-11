@@ -23,6 +23,8 @@ import styles from '../styles/songlist.module.css';
 import RequestRules from './request-rules';
 import RequestRulesModal from '../components/RequestRulesModal';
 import { getCookie, hasCookie, setCookie } from 'cookies-next';
+import SongRequestTableHeading from '../components/SongRequestTableHeading';
+import mockSongList from '../data/mockSongRequestList.json';
 
 interface QueueInfo {
   status: 'Closed|Open';
@@ -82,16 +84,14 @@ const StreamSongList: NextPage = () => {
   const [contenders, setContenders] = useState<SongListItem[]>([]);
 
   //Public API that will echo messages sent to it back to the client
-  const [socketUrl, setSocketUrl] = useState(
-    'wss://kentobeans.live/ws/ytplayer'
-  );
+  const [socketUrl, setSocketUrl] = useState('wss://kentobot.app/ws/ytplayer');
 
   const { sendMessage, lastMessage, lastJsonMessage, readyState } =
     useWebSocket(socketUrl, {
       onOpen: () =>
         sendMessage(
           JSON.stringify({
-            readauth: 'xy3gUrovotadazBoRmRq6zIgQyUk8G' // Move to getStaticProps()
+            readauth: 'xy3gUrovotadazBoRmRq6zIgQyUk8G' // This is ytauthro from botconfig.txt, Move to getStaticProps()
           })
         ),
       shouldReconnect: (closeEvent) => true
@@ -123,6 +123,8 @@ const StreamSongList: NextPage = () => {
         refreshData('playlist');
         refreshData('songrequesthistory');
       }
+
+      console.log(websocketMessage);
 
       if (websocketMessage.queueStatus) {
         const queueStatus = websocketMessage.queueStatus as QueueInfo;
@@ -218,12 +220,17 @@ const StreamSongList: NextPage = () => {
             </Row>
           </div>
         </Container>
+
+        <div className='mb-3'>
+          <Container>
+            <SongRequestTableHeading />
+          </Container>
+        </div>
+
         <div id='nowPlaying' className='mb-3'>
           <Container>
             <Row>
-              <Col
-                className={`subheading roundedTopLeft roundedBottomLeft roundedTopRight roundedBottomRight text-center`}
-              >
+              <Col className='subheading roundedTopLeft roundedBottomLeft roundedTopRight roundedBottomRight text-center'>
                 Now Playing
               </Col>
             </Row>
@@ -249,16 +256,23 @@ const StreamSongList: NextPage = () => {
           </Container>
         </div>
 
-        <div id='songQueue' className='mb-3'>
+        <div id='songQueue' className={`${styles.songlistTable} mb-3`}>
           <Container>
             <Row>
-              <Col
-                className={`subheading roundedTopLeft roundedBottomLeft roundedTopRight roundedBottomRight text-center`}
-              >
+              <Col className='subheading roundedTopLeft roundedBottomLeft roundedTopRight roundedBottomRight text-center'>
                 Request Queue
               </Col>
             </Row>
-            <Row>{/* <Col>Requests go here</Col> */}</Row>
+            {/*<Row> <Col>Requests go here</Col> </Row>*/}
+            {songList.length == 0 ? (
+              <Col>No requests in the queue</Col>
+            ) : (
+              <SongRequestTable
+                requests={songList}
+                showIndex={false}
+                showRemoveButton={false}
+              />
+            )}
             <div className='mt-3 text-center'>
               <Row>
                 <Col>
@@ -294,7 +308,15 @@ const StreamSongList: NextPage = () => {
                 Song of the Night Contenders
               </Col>
             </Row>
-            <Row>{/* <Col>Requests go here</Col> */}</Row>
+            {contenders.length == 0 ? (
+              <Col>No contenders</Col>
+            ) : (
+              <SongRequestTable
+                requests={contenders}
+                showIndex={false}
+                showRemoveButton={false}
+              />
+            )}
           </Container>
         </div>
 
@@ -307,7 +329,15 @@ const StreamSongList: NextPage = () => {
                 Played Requests
               </Col>
             </Row>
-            <Row>{/* <Col>Requests go here</Col> */}</Row>
+            {contenders.length == 0 ? (
+              <Col>No songs played</Col>
+            ) : (
+              <SongRequestTable
+                requests={songHistory}
+                showIndex={true}
+                showRemoveButton={false}
+              />
+            )}
           </Container>
         </div>
       </div>

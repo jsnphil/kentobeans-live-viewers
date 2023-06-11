@@ -15,6 +15,13 @@
 	letter-spacing: 1px;
 }
 
+.songlistHeading {
+	background-color: #5C9240;
+	font-size: 15px;
+	/* font-weight: bold; */
+	color: #FFFFFF;
+	letter-spacing: 1px;
+}
 .requestRulesLink {
 	cursor: pointer;
 }
