@@ -20,12 +20,12 @@
     "cookies-next": "^2.1.1",
     "i": "^0.3.7",
     "moment": "^2.29.4",
-    "next": "^13.1.6",
-    "next-auth": "^4.20.1",
+    "next": "^14.0.3",
+    "next-auth": "^4.24.5",
     "nextjs-google-analytics": "^2.3.3",
     "npm": "^9.6.4",
     "react": "^18.2.0",
-    "react-bootstrap": "^2.5.0",
+    "react-bootstrap": "^2.9.1",
     "react-data-table-component": "^7.5.3",
     "react-dom": "^18.2.0",
     "react-iframe": "^1.8.4",
@@ -42,7 +42,7 @@
     "@types/react-dom": "18.0.6",
     "@types/styled-components": "^5.1.26",
     "eslint": "8.22.0",
-    "eslint-config-next": "^13.1.6",
+    "eslint-config-next": "^14.0.3",
     "typescript": "4.7.4"
   }
 }
