@@ -1,0 +1,11 @@
+import Commands from './Commands';
+
+export default async function Page() {
+  return (
+    <div>
+      <main>
+        <Commands />
+      </main>
+    </div>
+  );
+}
