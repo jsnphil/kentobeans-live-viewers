@@ -2,11 +2,11 @@
 
 import { useState } from 'react';
 import { Form } from 'react-bootstrap';
-import CommandTable from '../../components/CommandTable';
-import SongRequestCommands from '../../data/songRequest.json';
-import SoundEffectsCommands from '../../data/soundEffects.json';
-import RewardRedemptionCommands from '../../data/rewardRedemptions.json';
-import OtherCommands from '../../data/otherCommands.json';
+import CommandTable from './CommandTable';
+import SongRequestCommands from '../data/songRequest.json';
+import SoundEffectsCommands from '../data/soundEffects.json';
+import RewardRedemptionCommands from '../data/rewardRedemptions.json';
+import OtherCommands from '../data/otherCommands.json';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleInfo } from '@fortawesome/free-solid-svg-icons';
 
