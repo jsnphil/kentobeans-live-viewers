@@ -1,9 +1,9 @@
 /* eslint-disable @next/next/no-img-element */
 import { Container, Row, Col } from 'react-bootstrap';
-import phantombotLogo from '../public/phantombot_logo.png';
-import digitalOceanLogo from '../public/DigitalOcean_logo.png';
-import nextJsLogo from '../public/nextjs-logotype-light-background.svg';
-import vercelLogo from '../public/vercel.svg';
+import phantombotLogo from '../../../public/phantombot_logo.png';
+import digitalOceanLogo from '../../../public/DigitalOcean_logo.png';
+import nextJsLogo from '../../../public/nextjs-logotype-light-background.svg';
+import vercelLogo from '../../../public/vercel.svg';
 import Image from 'next/image';
 
 export default function PoweredByTechnology() {

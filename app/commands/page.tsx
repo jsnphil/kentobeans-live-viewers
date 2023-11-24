@@ -1,4 +1,4 @@
-import Commands from '../../components/Commands';
+import Commands from './_components/Commands';
 
 export default async function Page() {
   return (

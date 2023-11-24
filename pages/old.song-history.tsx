@@ -2,7 +2,7 @@ import { NextPage } from 'next';
 import { Alert } from 'react-bootstrap';
 import { TableColumn } from 'react-data-table-component';
 import LoadingSpinner from '../components/LoadingSpinner';
-import SongHistoryTable from '../components/SongHistoryTable';
+import SongHistoryTable from '../app/song-history/_components/SongHistoryTable';
 import { useKentobot } from '../utils/kentobotApi';
 import { SongRequest } from '../@types';
 

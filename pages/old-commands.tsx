@@ -1,7 +1,7 @@
 import type { NextPage } from 'next';
 import { useState } from 'react';
 import { Form } from 'react-bootstrap';
-import CommandTable from '../components/CommandTable';
+import CommandTable from '../app/commands/_components/CommandTable';
 import SongRequestCommands from '../data/songRequest.json';
 import SoundEffectsCommands from '../data/soundEffects.json';
 import RewardRedemptionCommands from '../data/rewardRedemptions.json';

@@ -1,6 +1,6 @@
-import BrandDisclaimer from '../../components/BrandDisclaimer';
-import Equipment from '../../components/Equipment';
-import PoweredByTechnology from '../../components/PoweredByTechnology';
+import BrandDisclaimer from './_components/BrandDisclaimer';
+import Equipment from './_components/Equipment';
+import PoweredByTechnology from './_components/PoweredByTechnology';
 
 export default async function Page() {
   return (

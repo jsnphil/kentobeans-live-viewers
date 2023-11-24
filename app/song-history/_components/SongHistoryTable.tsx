@@ -1,3 +1,5 @@
+'use client';
+
 import { useMemo, useState } from 'react';
 import Iframe from 'react-iframe';
 import DataTable, {
@@ -8,19 +10,27 @@ import DateTableFilter from './DataTableFilter';
 import { Card, Col, Container, Row } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAward, faTrophy, faCrown } from '@fortawesome/free-solid-svg-icons';
-import { formatDate } from '../libs/common';
-import { SongRequest } from '../@types';
+import { formatDate } from '../../../libs/common';
+import { SongRequest } from '../../../@types';
 
 export interface SongHistoryTableProps {
-  data: SongRequest[];
-  columns: TableColumn<SongRequest>[];
+  songData: SongRequest[];
 }
+
+const columns: TableColumn<SongRequest>[] = [
+  {
+    id: 'songTitle',
+    name: 'Song Title',
+    selector: (row: SongRequest) => row.song.title
+    // sortable: true
+  }
+];
 
 const SongHistoryTable = (props: SongHistoryTableProps) => {
   const [filterText, setFilterText] = useState('');
   const [resetPaginationToggle, setResetPaginationToggle] = useState(false);
 
-  const filteredItems = props.data?.filter(
+  const filteredItems = props.songData?.filter(
     (item) =>
       JSON.stringify(item).toLowerCase().indexOf(filterText.toLowerCase()) !==
       -1
@@ -47,12 +57,12 @@ const SongHistoryTable = (props: SongHistoryTableProps) => {
     <>
       <Card className='text-center'>
         <Card.Body>
-          <Card.Title>{data.title}</Card.Title>
+          <Card.Title>{data.song.title}</Card.Title>
 
           <Card.Text className='pt-2'>
             <Iframe
-              url={`https://www.youtube.com/embed/${data.youtubeId}`}
-              title={data.youtubeId}
+              url={`https://www.youtube.com/embed/${data.song.youtubeId}`}
+              title={data.song.youtubeId}
               loading={'lazy'}
             />
           </Card.Text>
@@ -62,11 +72,11 @@ const SongHistoryTable = (props: SongHistoryTableProps) => {
                 <Col>Requested By</Col>
                 <Col>Requested On</Col>
               </Row>
-              {data.plays.map((play, index) => (
+              {data.songPlays.map((play, index) => (
                 <Row key={index}>
-                  <Col>{play.requester}</Col>
+                  <Col>{play.username}</Col>
                   <Col>
-                    {formatDate(play.playDate)}
+                    {formatDate(play.date)}
                     {play.sotnContender && (
                       <>
                         &nbsp;
@@ -107,10 +117,10 @@ const SongHistoryTable = (props: SongHistoryTableProps) => {
   return (
     <DataTable
       title='Song Request History'
-      columns={props.columns}
+      columns={columns}
       data={filteredItems}
-      defaultSortFieldId='playDate'
-      defaultSortAsc={false}
+      // defaultSortFieldId='playDate'
+      // defaultSortAsc={false}
       striped
       pagination
       subHeader
