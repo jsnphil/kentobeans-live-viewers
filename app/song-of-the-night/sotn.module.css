@@ -1,0 +1,81 @@
+.sotnSeasonButton{
+	font-size: 18px;
+	font-weight: bold;
+	color: #0E1336;
+	letter-spacing: 1px;
+	text-align: center;
+	box-sizing: border-box;
+	border: 2px solid #0E1336;
+	display: inline-block;
+	padding: 0px;
+	width: 50px;
+	height: 32px;
+	line-height: 28px;
+	float: left;
+}
+
+.sotnSeasonButton:hover{
+	color: #F57E20;
+	border: 2px solid #F57E20;
+}
+
+#titleSeason{
+	width: 100%;
+	border-bottom: 0px;
+}
+
+/* .userHeading {
+	font-size: 15px;
+	font-weight: bold;
+	color: #FFFFFF;
+	letter-spacing: 1px;
+	text-align: center;
+	background-color: #523877;
+} */
+
+.winnersheading {
+	background-color: #5C9240;
+	font-size: 15px;
+    font-weight: bold;
+    color: #FFFFFF;
+    letter-spacing: 1px;
+    /* text-align: center; */
+    border: 2px solid #0E1336;
+    line-height: 28px;
+}
+
+
+
+.winnerRow {
+	color: #0E1336;
+}
+
+.winnerRow:hover {
+	background-color: #AAAAAA;
+	text-decoration: none;
+	color: #0E1336 !important;
+}
+
+.sotnTable a:link {
+	text-decoration: none;
+	color: #0E1336;
+}
+
+.sotnTable a:visited {
+	text-decoration: none;
+	color: #0E1336;
+}
+
+.sotnTable a:hover {
+	text-decoration: none; 
+	color: #0E1336;
+}
+
+.sotnTable a:active {
+	text-decoration: none;
+	color: #0E1336;
+}
+
+.mostRecent {
+	background-color: #4376BB;	
+}

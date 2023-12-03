@@ -1,7 +1,4 @@
 import SongHistoryTable from './_components/SongHistoryTable';
-import { SongRequest } from '../../@types';
-import { TableColumn } from 'react-data-table-component';
-import SongHistoryList from './_components/SongHistoryList';
 
 async function getSongData() {
   // TODO Update with prod and staging domains
@@ -21,11 +18,7 @@ export default async function Page() {
   return (
     <>
       <div className='container mt-5'>
-        <SongHistoryTable songData={songHistoryData.requests} />
-        {/* <SongHistoryList songData={songHistoryData.requests} /> */}
-      </div>
-      <div className='pt-3 pb-3 text-center fs-6'>
-        Last updated: {new Date(songHistoryData.generated).toLocaleString()}
+        <SongHistoryTable songData={songHistoryData.requests} />{' '}
       </div>
     </>
   );
