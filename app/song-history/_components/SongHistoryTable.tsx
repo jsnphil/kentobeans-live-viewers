@@ -1,6 +1,6 @@
 'use client';
 
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import Iframe from 'react-iframe';
 import DataTable, {
   ExpanderComponentProps,
@@ -12,6 +12,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAward, faTrophy, faCrown } from '@fortawesome/free-solid-svg-icons';
 import { formatDate } from '../../../libs/common';
 import { SongRequest } from '../../../@types';
+import LoadingSpinner from '../../../components/LoadingSpinner';
 
 export interface SongHistoryTableProps {
   songData: SongRequest[];
@@ -22,11 +23,11 @@ const columns: TableColumn<SongRequest>[] = [
     id: 'songTitle',
     name: 'Song Title',
     selector: (row: SongRequest) => row.song.title
-    // sortable: true
   }
 ];
 
 const SongHistoryTable = (props: SongHistoryTableProps) => {
+  const [loader, setLoader] = useState(true);
   const [filterText, setFilterText] = useState('');
   const [resetPaginationToggle, setResetPaginationToggle] = useState(false);
 
@@ -75,7 +76,7 @@ const SongHistoryTable = (props: SongHistoryTableProps) => {
               {data.songPlays.map((play, index) => (
                 <Row key={index}>
                   <Col>{play.username}</Col>
-                  <Col>
+                  <Col suppressHydrationWarning>
                     {formatDate(play.date)}
                     {play.sotnContender && (
                       <>
@@ -114,24 +115,32 @@ const SongHistoryTable = (props: SongHistoryTableProps) => {
     </>
   );
 
-  return (
-    <DataTable
-      title='Song Request History'
-      columns={columns}
-      data={filteredItems}
-      // defaultSortFieldId='playDate'
-      // defaultSortAsc={false}
-      striped
-      pagination
-      subHeader
-      subHeaderComponent={subHeaderComponent}
-      expandableRows
-      expandableRowsComponent={SongInfoCard}
-      responsive
-      fixedHeader
-      highlightOnHover
-    />
-  );
+  // Hold loading the table until the page is rendered
+  useEffect(() => {
+    setLoader(false);
+  }, []);
+
+  // render
+  if (loader) {
+    return <LoadingSpinner message='Loading song request history' />;
+  } else {
+    return (
+      <DataTable
+        title='Song Request History'
+        columns={columns}
+        data={filteredItems}
+        striped
+        pagination
+        subHeader
+        subHeaderComponent={subHeaderComponent}
+        expandableRows
+        expandableRowsComponent={SongInfoCard}
+        responsive
+        fixedHeader
+        highlightOnHover
+      />
+    );
+  }
 };
 
 export default SongHistoryTable;
