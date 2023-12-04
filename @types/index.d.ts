@@ -46,3 +46,8 @@ export type SongPlay = {
   sotnWinner?: boolean;
   sotsWinner?: boolean;
 };
+
+type SotnWinnerData = {
+  readonly username: string;
+  readonly songs: SotnWinner[];
+};

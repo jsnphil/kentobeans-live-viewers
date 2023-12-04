@@ -4,11 +4,24 @@ import SotnPlaylists from './SotnPlaylists';
 import styles from '../../sotn.module.css';
 import { getArtistValue, getDate } from '../../../../utils/sotn-utils';
 
-export interface SotnSonglistData {
-  songlist: SotnWinner[];
+interface SotnWinnerData {
+  count: number;
+  winners: SotnWinner[];
 }
 
-export default function SotnSonglist(props: SotnSonglistData) {
+async function getSotnSonglist() {
+  // TODO Update with prod and staging domains
+  const res = await fetch(
+    `https://6dpo5kprt9.execute-api.us-east-1.amazonaws.com/prod/song-of-the-night/winning-requests`
+  );
+
+  const sotnSonglistData = await res.json();
+  return sotnSonglistData as SotnWinnerData;
+}
+
+export default async function SotnSonglist() {
+  const sotnSonglistData = await getSotnSonglist();
+
   return (
     <>
       <div className='d-none d-xl-block mb-3'>
@@ -27,7 +40,7 @@ export default function SotnSonglist(props: SotnSonglistData) {
             <Col>Stream Date</Col>
           </Row>
         </div>
-        {props.songlist.map((song: SotnWinner, index: number) => (
+        {sotnSonglistData.winners.map((song: SotnWinner, index: number) => (
           <div className={`${styles.winnerRow}`} key={index}>
             <a
               href={`https://youtu.be/${song.youtubeId}`}

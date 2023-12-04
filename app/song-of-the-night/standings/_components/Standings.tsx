@@ -1,18 +1,53 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Form } from 'react-bootstrap';
 import styles from '../../sotn.module.css';
 import WinnersList from './WinnersList';
+import { SotnWinner } from '../../../../@types';
+import { get } from 'lodash';
+import LoadingSpinner from '../../../../components/LoadingSpinner';
+
+export interface SotnStandingsData {
+  data: SotnWinnerData;
+}
+
+interface SotnWinnerData {
+  count: number;
+  winners: SotnWinner[];
+  latestSeason: string;
+}
 
 const currentSeason = '12'; // TODO Get from AWS?
-export default function Standings() {
-  const [seasonState, setSeasonState] = useState(currentSeason);
+export default function Standings(standings: SotnWinnerData) {
+  const [season, setSeason] = useState(currentSeason);
+  const [data, setData] = useState(standings.winners);
+  const [loading, setLoading] = useState(true);
+  const hasPageBeenRendered = useRef(false);
 
+  // Fetching the SOTN data
+  useEffect(() => {
+    // Prevent calling the API on the first render, since it was already called on the server
+    if (hasPageBeenRendered.current) {
+      fetch(
+        `https://6dpo5kprt9.execute-api.us-east-1.amazonaws.com/prod/song-of-the-night/winning-requests?season=${season}`
+      )
+        .then((res) => res.json())
+        .then((data) => {
+          setData(data.winners);
+          setLoading(false);
+        });
+    } else {
+      hasPageBeenRendered.current = true;
+    }
+  }, [season, standings.latestSeason]);
+
+  // Season selector controls
   const handleMenuChange = async (event: any) => {
     event.preventDefault();
 
-    setSeasonState(event.target.value);
+    setSeason(event.target.value);
+    setLoading(true);
   };
 
   const seasons = [];
@@ -41,7 +76,7 @@ export default function Standings() {
             </Form.Group>
           </Form>
         </div>
-        <WinnersList />
+        <WinnersList winners={data} />
       </div>
       <div className='d-none d-xl-block'>
         <div className='container d-flex aligns-items-center justify-content-center mb-5'>
@@ -51,9 +86,7 @@ export default function Standings() {
             <button
               name={`season${seasonNumber}`}
               className={`button ${styles.sotnSeasonButton} ${
-                seasonState === Number(seasonNumber).toString()
-                  ? 'selected'
-                  : ''
+                season === Number(seasonNumber).toString() ? 'selected' : ''
               }
                   
                   ${index === 0 ? `roundedTopLeft roundedBottomLeft` : ''}
@@ -66,7 +99,7 @@ export default function Standings() {
                   
                   `}
               onClick={(e) => {
-                setSeasonState(Number(seasonNumber).toString());
+                setSeason(Number(seasonNumber).toString());
               }}
               key={index}
             >
@@ -75,7 +108,11 @@ export default function Standings() {
           ))}
           {/* </div> */}
         </div>
-        <WinnersList />
+        {!data || loading ? (
+          <LoadingSpinner message='Loading SOTN Data' />
+        ) : (
+          <WinnersList winners={data} />
+        )}
       </div>
     </>
   );
