@@ -78,9 +78,7 @@ const SongHistoryTable = (props: SongHistoryTableProps) => {
 
     if (playDataResp.isLoading) {
       return <LoadingSpinner message='Loading song data' />;
-    }
-
-    if (playDataResp.data) {
+    } else {
       return (
         <>
           <Card className='text-center'>
