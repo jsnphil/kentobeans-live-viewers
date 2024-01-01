@@ -5,7 +5,7 @@ import useSWRImmutable from 'swr/immutable';
 const baseUrl = process.env.NEXT_PUBLIC_KENTOBOT_API_HOST;
 const env = process.env.NEXT_PUBLIC_ENVIRONMENT;
 
-const fetcher = async (url: string) =>
+export const fetcher = async (url: string) =>
   await axios.get(url).then((res) => res.data);
 
 export const useKentobot = (path: string) => {

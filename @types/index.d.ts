@@ -30,7 +30,7 @@ export type WinGap = {
 
 export type SongRequest = {
   song: Song;
-  songPlays: SongPlay[];
+  songPlays?: SongPlay[];
 };
 
 export type Song = {
