@@ -21,6 +21,15 @@ export interface SongHistoryTableProps {
   songData: Song[];
 }
 
+interface SongPlay {
+  requestedBy: string;
+  date: string;
+  season: number;
+  sotnWinner: boolean;
+  sotsWinner: boolean;
+  sotnContender: boolean;
+}
+
 const columns: TableColumn<Song>[] = [
   {
     id: 'songTitle',
@@ -91,41 +100,43 @@ const SongHistoryTable = (props: SongHistoryTableProps) => {
                     <Col>Requested By</Col>
                     <Col>Requested On</Col>
                   </Row>
-                  {playDataResp.data.items.map((play, index: number) => (
-                    <Row key={index}>
-                      <Col>{play.requestedBy}</Col>
-                      <Col suppressHydrationWarning>
-                        {formatDate(play.date)}
-                        {play.sotnContender && (
-                          <>
-                            &nbsp;
-                            <FontAwesomeIcon
-                              icon={faAward}
-                              title='Song of the Night Contender'
-                            />
-                          </>
-                        )}
-                        {play.sotnContender && (
-                          <>
-                            &nbsp;
-                            <FontAwesomeIcon
-                              icon={faTrophy}
-                              title='Song of the Night Winner'
-                            />
-                          </>
-                        )}
-                        {play.sotnContender && (
-                          <>
-                            &nbsp;
-                            <FontAwesomeIcon
-                              icon={faCrown}
-                              title='Song of the Season Winner'
-                            />
-                          </>
-                        )}
-                      </Col>
-                    </Row>
-                  ))}
+                  {playDataResp.data.items.map(
+                    (play: SongPlay, index: number) => (
+                      <Row key={index}>
+                        <Col>{play.requestedBy}</Col>
+                        <Col suppressHydrationWarning>
+                          {formatDate(play.date)}
+                          {play.sotnContender && (
+                            <>
+                              &nbsp;
+                              <FontAwesomeIcon
+                                icon={faAward}
+                                title='Song of the Night Contender'
+                              />
+                            </>
+                          )}
+                          {play.sotnContender && (
+                            <>
+                              &nbsp;
+                              <FontAwesomeIcon
+                                icon={faTrophy}
+                                title='Song of the Night Winner'
+                              />
+                            </>
+                          )}
+                          {play.sotnContender && (
+                            <>
+                              &nbsp;
+                              <FontAwesomeIcon
+                                icon={faCrown}
+                                title='Song of the Season Winner'
+                              />
+                            </>
+                          )}
+                        </Col>
+                      </Row>
+                    )
+                  )}
                 </Container>
               </Card.Text>
             </Card.Body>
