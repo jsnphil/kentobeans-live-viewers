@@ -2,7 +2,12 @@
 import { useState, useEffect } from 'react';
 import useWebSocket, { ReadyState, Options } from 'react-use-websocket';
 import { SongListItem } from './SongRequestTable';
-import YouTube, { YouTubeProps } from 'react-youtube';
+import YouTube, {
+  YouTubeEvent,
+  YouTubePlayer,
+  YouTubeProps
+} from 'react-youtube';
+import { set } from 'lodash';
 
 interface QueueInfo {
   status: 'Closed|Open';
@@ -94,29 +99,77 @@ export default function SongPlayerQueue() {
     [ReadyState.UNINSTANTIATED]: 'Uninstantiated'
   }[readyState];
 
-  let video;
-  const onPlayerReady: YouTubeProps['onReady'] = (event) => {
-    // access to player in all event handlers via event.target
-    event.target.pauseVideo();
-    video = event.target.getVideoEmbedCode();
+  const [player, setPlayer] = useState<YouTubePlayer>(null);
+  const [playerVolume, setPlayerVolume] = useState(0);
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  const onReady = (event: YouTubeEvent) => {
+    setPlayer(event.target);
+    setPlayerVolume(event.target.getVolume());
   };
 
-  const playVideo: YouTubeProps['onPlay'] = (event) => {
-    event.target.playVideo();
+  const onPlayHandler = () => {
+    player.playVideo();
+    setIsPlaying(true);
+  };
+
+  const onPauseHandler = () => {
+    player.pauseVideo();
+    setIsPlaying(false);
+  };
+
+  const volumnUpHandler = () => {
+    player.setVolume(player.getVolume() + 10);
+    setPlayerVolume(player.getVolume());
+  };
+
+  const volumnDownHandler = () => {
+    player.setVolume(player.getVolume() - 10);
+    setPlayerVolume(player.getVolume());
+  };
+
+  const muteHandler = () => {
+    if (player.isMuted()) {
+      player.unMute();
+      setPlayerVolume(player.getVolume());
+    } else {
+      player.mute();
+      setPlayerVolume(0);
+    }
+  };
+
+  const stopHandler = () => {
+    player.stopVideo();
+    setIsPlaying(false);
   };
 
   return (
     <div>
-      <YouTube videoId={songList[0]?.youtubeId} onReady={onPlayerReady} />;
-      <h1>Queue</h1>
-      <button
-        onClick={(e) => {
-          console.log('Starting YouTube video');
-          playVideo();
+      <YouTube
+        videoId={songList[0]?.youtubeId}
+        onReady={onReady}
+        title='Kentobot Player'
+        opts={{
+          playerVars: {
+            controls: 0
+          }
         }}
-      >
-        Play
-      </button>
+      />
+      <h1>Queue</h1>
+
+      {isPlaying ? (
+        <button onClick={onPauseHandler}>Pause</button>
+      ) : (
+        <button onClick={onPlayHandler}>Play</button>
+      )}
+
+      <button onClick={volumnUpHandler}>Volume Up</button>
+      <button onClick={volumnDownHandler}>Volume Down</button>
+      <button onClick={muteHandler}>Mute</button>
+      <button onClick={stopHandler}>Stop</button>
+      <button>Open Shuffle</button>
+      <button>Next Song</button>
+      <p>Volume: {playerVolume}</p>
       {songList.map((song) => (
         <div key={song.youtubeId}>
           <h2>{song.title}</h2>
