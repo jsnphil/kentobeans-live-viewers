@@ -15,3 +15,13 @@ export function formatDate(dateString: string) {
 function padTo2Digits(num: number) {
   return num.toString().padStart(2, '0');
 }
+
+export const secondsToMinutes = (seconds: number | string) => {
+  if (typeof seconds === 'string') {
+    seconds = parseInt(seconds);
+  }
+
+  return (
+    Math.floor(seconds / 60) + ':' + ('0' + Math.floor(seconds % 60)).slice(-2)
+  );
+};

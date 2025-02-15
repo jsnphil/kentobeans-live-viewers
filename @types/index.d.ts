@@ -1,3 +1,5 @@
+import { type } from 'os';
+
 export type SotnWinner = {
   readonly youtubeId: string;
   readonly requester: string;
@@ -27,16 +29,25 @@ export type WinGap = {
 };
 
 export type SongRequest = {
+  song: Song;
+  songPlays?: SongPlay[];
+};
+
+export type Song = {
   youtubeId: string;
   title: string;
   length?: number;
-  plays: SongPlay[];
 };
 
 export type SongPlay = {
-  playDate: string;
-  requester: string;
+  date: string;
+  username: string;
   sotnContender?: boolean;
   sotnWinner?: boolean;
   sotsWinner?: boolean;
+};
+
+type SotnWinnerData = {
+  readonly username: string;
+  readonly songs: SotnWinner[];
 };

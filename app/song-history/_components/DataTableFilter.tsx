@@ -34,7 +34,7 @@ const DataTableFilter = ({ filterText, onFilter, onClear }: any) => (
     <Input
       id='search'
       type='text'
-      placeholder='Filter song data...'
+      placeholder='Find by title or user'
       value={filterText}
       onChange={onFilter}
     />

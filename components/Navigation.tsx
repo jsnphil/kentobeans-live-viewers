@@ -1,18 +1,17 @@
+'use client';
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
 import logo from '../public/logo.png';
 import Image from 'next/image';
 import { Nav, NavDropdown } from 'react-bootstrap';
-import { signOut, useSession } from 'next-auth/react';
-import UserNavItem from './UserNavItem';
-import { useRouter } from 'next/router';
+import { usePathname } from 'next/navigation';
+
 import Link from 'next/link';
 
 const useNavLink = (linkPath: string) => {
-  const router = useRouter();
-  const activePage = router.asPath;
+  const activePage = usePathname();
 
-  const numberOfParts = activePage.split('/').length - 1;
+  const numberOfParts = activePage!.split('/').length - 1;
 
   let link = linkPath;
   for (let i = 0; i < numberOfParts; i++) {
@@ -23,8 +22,6 @@ const useNavLink = (linkPath: string) => {
 };
 
 function Navigation() {
-  const { data: session } = useSession();
-
   return (
     <>
       <Navbar id='navbar' expand='lg' bg='dark' variant='dark'>
@@ -47,14 +44,6 @@ function Navigation() {
               <Link href={useNavLink('commands')} id='commandsLink'>
                 <Nav.Link as='span'>Kentobot Commands</Nav.Link>
               </Link>
-
-              {/* <Link
-                href={useNavLink('request-rules')}
-                id='requestRulesLink'
-                passHref
-              > 
-                <Nav.Link as='span'>Request Rules</Nav.Link>
-              </Link>*/}
               <Link href={useNavLink('songlist')} id='songlistLink' passHref>
                 <Nav.Link as='span'>Stream Songlist</Nav.Link>
               </Link>
