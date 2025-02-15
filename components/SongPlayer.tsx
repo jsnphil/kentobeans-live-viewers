@@ -27,6 +27,8 @@ import {
 import { secondsToMinutes } from '../libs/common';
 import SongQueueTableHeading from './SongQueueTableHeading';
 import { SongRequest } from '../libs/types';
+import SongRequestTable from './SongRequestTable';
+import { CurrentSong } from './CurrentSong';
 
 export default function SongPlayer() {
   const [requestsEnabled, setRequestsEnabled] = useState(false);
@@ -281,34 +283,15 @@ export default function SongPlayer() {
       </Row>
 
       <div id='nowPlaying' className='mt-4'>
-        <Row>
-          <SongQueueTableHeading>Now Playing</SongQueueTableHeading>
-        </Row>
-        <Row>
-          {currentSong ? (
-            <>
-              <Col md={9}>{currentSong.title}</Col>
-              <Col md={2}>{currentSong.requestedBy}</Col>
-              <Col md={1}>{secondsToMinutes(currentSong.length)}</Col>
-            </>
-          ) : (
-            <Col md={12}>Nothing playing</Col>
-          )}
-        </Row>
+        <CurrentSong currentSong={currentSong} />
       </div>
 
       <div id='songQueue' className='mt-3'>
-        <Row>
-          <SongQueueTableHeading>Request Queue</SongQueueTableHeading>
-        </Row>
-
-        {songList.map((song) => (
-          <Row key={song.youtubeId} className='songTableRow'>
-            <Col md={9}>{song.title}</Col>
-            <Col md={2}>{song.requestedBy}</Col>
-            <Col md={1}>{secondsToMinutes(song.length)}</Col>
-          </Row>
-        ))}
+        <SongRequestTable
+          requests={songList}
+          showIndex={false}
+          showRemoveButton={false}
+        />
       </div>
 
       <div id='sotnContenders' className='mt-3'>

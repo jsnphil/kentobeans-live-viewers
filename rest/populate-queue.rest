@@ -1,0 +1,118 @@
+POST https://nmhcpvbj53.execute-api.us-east-1.amazonaws.com/dev/song-queue/request HTTP/1.1
+Content-Type: application/json
+X-API-Key: hoqnGWpCrL5ora4kdBtds2mZXpYuCGxs91Rai0JZ
+
+{
+    "youtubeId": "GmS3ieOOL-4",
+    "requestedBy": "jsnphil"
+}
+
+###
+
+POST https://nmhcpvbj53.execute-api.us-east-1.amazonaws.com/dev/song-queue/request HTTP/1.1
+Content-Type: application/json
+X-API-Key: hoqnGWpCrL5ora4kdBtds2mZXpYuCGxs91Rai0JZ
+
+{
+    "youtubeId": "CKJ-Oa80_vY",
+    "requestedBy": "Kaladin"
+}
+
+###
+
+POST https://nmhcpvbj53.execute-api.us-east-1.amazonaws.com/dev/song-queue/request HTTP/1.1
+Content-Type: application/json
+X-API-Key: hoqnGWpCrL5ora4kdBtds2mZXpYuCGxs91Rai0JZ
+
+{
+    "youtubeId": "yUbYhKnzUfM",
+    "requestedBy": "Dalinar"
+}
+
+###
+
+POST https://nmhcpvbj53.execute-api.us-east-1.amazonaws.com/dev/song-queue/request HTTP/1.1
+Content-Type: application/json
+X-API-Key: hoqnGWpCrL5ora4kdBtds2mZXpYuCGxs91Rai0JZ
+
+{
+      "youtubeId": "eMcY8-A5wtg",
+      "requestedBy": "Shallan"
+}
+
+###
+
+POST https://nmhcpvbj53.execute-api.us-east-1.amazonaws.com/dev/song-queue/request HTTP/1.1
+Content-Type: application/json
+X-API-Key: hoqnGWpCrL5ora4kdBtds2mZXpYuCGxs91Rai0JZ
+
+{
+    "youtubeId": "oIN58Ntg4Hg",
+    "requestedBy": "Adolin"
+}
+
+###
+
+POST https://nmhcpvbj53.execute-api.us-east-1.amazonaws.com/dev/song-queue/request HTTP/1.1
+Content-Type: application/json
+X-API-Key: hoqnGWpCrL5ora4kdBtds2mZXpYuCGxs91Rai0JZ
+
+{
+    "youtubeId": "ar3DqO4nO3Q",
+    "requestedBy": "Navani"
+}
+
+###
+
+POST https://nmhcpvbj53.execute-api.us-east-1.amazonaws.com/dev/song-queue/request HTTP/1.1
+Content-Type: application/json
+X-API-Key: hoqnGWpCrL5ora4kdBtds2mZXpYuCGxs91Rai0JZ
+
+{
+      "youtubeId": "USGMvV1O-IE",
+      "requestedBy": "Jasnah"
+}
+
+###
+
+POST https://nmhcpvbj53.execute-api.us-east-1.amazonaws.com/dev/song-queue/request HTTP/1.1
+Content-Type: application/json
+X-API-Key: hoqnGWpCrL5ora4kdBtds2mZXpYuCGxs91Rai0JZ
+
+{
+    "youtubeId": "ZMtw1n8tL4I",
+    "requestedBy": "Renarin"
+}
+
+###
+
+POST https://nmhcpvbj53.execute-api.us-east-1.amazonaws.com/dev/song-queue/request HTTP/1.1
+Content-Type: application/json
+X-API-Key: hoqnGWpCrL5ora4kdBtds2mZXpYuCGxs91Rai0JZ
+
+{
+    "youtubeId": "ZMPh5aFuTp0",
+    "requestedBy": "Lift"
+}
+
+###
+
+POST https://nmhcpvbj53.execute-api.us-east-1.amazonaws.com/dev/song-queue/request HTTP/1.1
+Content-Type: application/json
+X-API-Key: hoqnGWpCrL5ora4kdBtds2mZXpYuCGxs91Rai0JZ
+
+{
+    "youtubeId": "ZMtw1n8tL4I",
+    "requestedBy": "Renarin"
+}
+
+###
+
+POST https://nmhcpvbj53.execute-api.us-east-1.amazonaws.com/dev/song-queue/request HTTP/1.1
+Content-Type: application/json
+X-API-Key: hoqnGWpCrL5ora4kdBtds2mZXpYuCGxs91Rai0JZ
+
+{
+    "youtubeId": "pkJvk6vtSck",
+    "requestedBy": "Wit"
+}
