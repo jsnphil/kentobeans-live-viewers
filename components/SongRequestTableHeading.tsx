@@ -3,6 +3,9 @@ import styles from '../styles/songlist.module.css';
 
 export interface SongRequestTableHeadingProps {}
 
+/**
+ * @deprecated This component is deprecated and will be removed in future releases.
+ */
 const SongRequestTableHeading = (props: SongRequestTableHeadingProps) => {
   return (
     <>
