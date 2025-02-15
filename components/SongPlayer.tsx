@@ -294,6 +294,7 @@ export default function SongPlayer() {
         />
       </div>
 
+      {/* TODO Put this in its own component */}
       <div id='sotnContenders' className='mt-3'>
         <Row>
           <SongQueueTableHeading>

@@ -14,6 +14,7 @@ interface SongRequestProps {
 
 const SongRequestTable = (props: SongRequestProps) => {
   // const session = useSession();
+
   const requestRows = props.requests.map((request, index) => (
     <>
       <a
