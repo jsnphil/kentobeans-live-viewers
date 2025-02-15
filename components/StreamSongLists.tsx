@@ -36,11 +36,15 @@ export const StreamSongLists = () => {
         console.log(event);
         const message = JSON.parse(event.data);
         console.log(message);
+        if (message.songData) {
+          setCurrentSong(message.songData.currentSong);
+          setSongList(message.songData.songQueue);
+        }
         if (message.songQueue) {
           setSongList(message.songQueue);
         }
         if (message.currentSong) {
-          setCurrentSong(message.currentSong);
+          setCurrentSong(message.songData.currentSong);
         }
       },
       shouldReconnect: (closeEvent) => true,
