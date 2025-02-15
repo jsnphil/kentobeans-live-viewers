@@ -29,6 +29,7 @@ import SongQueueTableHeading from './SongQueueTableHeading';
 import { SongRequest } from '../libs/types';
 import SongRequestTable from './SongRequestTable';
 import { CurrentSong } from './CurrentSong';
+import { set } from 'lodash';
 
 export default function SongPlayer() {
   const [requestsEnabled, setRequestsEnabled] = useState(false);
@@ -61,11 +62,15 @@ export default function SongPlayer() {
         console.log(event);
         const message = JSON.parse(event.data);
         console.log(message);
+        if (message.songData) {
+          setCurrentSong(message.songData.currentSong);
+          setSongList(message.songData.songQueue);
+        }
         if (message.songQueue) {
           setSongList(message.songQueue);
         }
         if (message.currentSong) {
-          setCurrentSong(message.currentSong);
+          setCurrentSong(message.songData.currentSong);
         }
       },
       shouldReconnect: (closeEvent) => true,
