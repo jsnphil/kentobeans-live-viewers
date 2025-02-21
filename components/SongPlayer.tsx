@@ -11,7 +11,9 @@ import {
   Container,
   Form,
   ListGroup,
-  Row
+  Row,
+  Toast,
+  ToastContainer
 } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -27,9 +29,6 @@ import {
 import { secondsToMinutes } from '../libs/common';
 import SongQueueTableHeading from './SongQueueTableHeading';
 import { SongRequest } from '../libs/types';
-import SongRequestTable from './SongRequestTable';
-import { CurrentSong } from './CurrentSong';
-import { set } from 'lodash';
 
 export default function SongPlayer() {
   const [requestsEnabled, setRequestsEnabled] = useState(false);
@@ -41,6 +40,7 @@ export default function SongPlayer() {
   const [sotnContenders, setSotnContenders] = useState(0);
   const [streamStarted, setStreamStarted] = useState(false);
   const [playedSongs, setPlayedSongs] = useState(0);
+  const [showRequestStatusToast, setShowRequestStatusToast] = useState(false);
 
   const [socketUrl, setSocketUrl] = useState(
     'wss://i0qhsp6cw3.execute-api.us-east-1.amazonaws.com/dev'
@@ -59,18 +59,24 @@ export default function SongPlayer() {
       onClose: () => console.log('closed'),
       onMessage: (event) => {
         // TODO Move this to a separate function/hook
+        // TODO Needs error handling
         console.log(event);
         const message = JSON.parse(event.data);
         console.log(message);
-        if (message.songData) {
-          setCurrentSong(message.songData.currentSong);
-          setSongList(message.songData.songQueue);
-        }
         if (message.songQueue) {
           setSongList(message.songQueue);
         }
         if (message.currentSong) {
+          setCurrentSong(message.currentSong);
+        }
+        if (message.queueStatus) {
+          const queueStatus = message.queueStatus === 'open' ? true : false;
+          setRequestsEnabled(queueStatus);
+          setShowRequestStatusToast(true);
+        }
+        if (message.songData) {
           setCurrentSong(message.songData.currentSong);
+          setSongList(message.songData.songQueue);
         }
       },
       shouldReconnect: (closeEvent) => true,
@@ -146,13 +152,17 @@ export default function SongPlayer() {
   const enableRequestsHandler = () => {
     if (requestsEnabled) {
       console.log('Disabling requests');
-      setRequestsEnabled(false);
+      sendJsonMessage({
+        action: 'sendmessage',
+        message: 'songqueue:close'
+      });
     } else {
       console.log('Enabling requests');
-      setRequestsEnabled(true);
+      sendJsonMessage({
+        action: 'sendmessage',
+        message: 'songqueue:open'
+      });
     }
-
-    // TODO Send message to WSS to toggle queue
   };
 
   const streamHandler = () => {
@@ -287,19 +297,59 @@ export default function SongPlayer() {
         </Col>
       </Row>
 
+      <Row>
+        <Col md={12}>
+          <ToastContainer position='bottom-center' className='p-3'>
+            <Toast
+              onClose={() => setShowRequestStatusToast(false)}
+              show={showRequestStatusToast}
+              delay={5000}
+              autohide
+              bg='dark'
+            >
+              <Toast.Body className={'dark text-white'}>
+                <div className='text-center'>
+                  {requestsEnabled
+                    ? 'Requests are now enabled'
+                    : 'Requests are now disabled'}
+                </div>
+              </Toast.Body>
+            </Toast>
+          </ToastContainer>
+        </Col>
+      </Row>
+
       <div id='nowPlaying' className='mt-4'>
-        <CurrentSong currentSong={currentSong} />
+        <Row>
+          <SongQueueTableHeading>Now Playing</SongQueueTableHeading>
+        </Row>
+        <Row>
+          {currentSong ? (
+            <>
+              <Col md={9}>{currentSong.title}</Col>
+              <Col md={2}>{currentSong.requestedBy}</Col>
+              <Col md={1}>{secondsToMinutes(currentSong.length)}</Col>
+            </>
+          ) : (
+            <Col md={12}>Nothing playing</Col>
+          )}
+        </Row>
       </div>
 
       <div id='songQueue' className='mt-3'>
-        <SongRequestTable
-          requests={songList}
-          showIndex={false}
-          showRemoveButton={false}
-        />
+        <Row>
+          <SongQueueTableHeading>Request Queue</SongQueueTableHeading>
+        </Row>
+
+        {songList.map((song) => (
+          <Row key={song.youtubeId} className='songTableRow'>
+            <Col md={9}>{song.title}</Col>
+            <Col md={2}>{song.requestedBy}</Col>
+            <Col md={1}>{secondsToMinutes(song.length)}</Col>
+          </Row>
+        ))}
       </div>
 
-      {/* TODO Put this in its own component */}
       <div id='sotnContenders' className='mt-3'>
         <Row>
           <SongQueueTableHeading>
