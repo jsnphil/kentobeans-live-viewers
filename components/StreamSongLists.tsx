@@ -46,6 +46,9 @@ export const StreamSongLists = () => {
         if (message.currentSong) {
           setCurrentSong(message.songData.currentSong);
         }
+        if (message.queueStatus) {
+          setQueueStatus(message.queueStatus === 'open' ? 'Open' : 'Closed');
+        }
       },
       shouldReconnect: (closeEvent) => true,
       heartbeat: {
