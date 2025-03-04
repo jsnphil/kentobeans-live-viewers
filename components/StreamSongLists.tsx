@@ -49,6 +49,12 @@ export const StreamSongLists = () => {
         if (message.queueStatus) {
           setQueueStatus(message.queueStatus === 'open' ? 'Open' : 'Closed');
         }
+        if (message.bumpData) {
+          setRemainingBeanBumps(message.bumpData.beanBumpsAvailable);
+          setRemainingChannelPointBumps(
+            message.bumpData.channelPointBumpsAvailable
+          );
+        }
       },
       shouldReconnect: (closeEvent) => true,
       heartbeat: {

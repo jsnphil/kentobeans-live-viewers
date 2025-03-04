@@ -29,6 +29,7 @@ import {
 import { secondsToMinutes } from '../libs/common';
 import SongQueueTableHeading from './SongQueueTableHeading';
 import { SongRequest } from '../libs/types';
+import SongRequestTable from './SongRequestTable';
 
 export default function SongPlayer() {
   const [requestsEnabled, setRequestsEnabled] = useState(false);
@@ -337,17 +338,23 @@ export default function SongPlayer() {
       </div>
 
       <div id='songQueue' className='mt-3'>
-        <Row>
+        {/* <Row>
           <SongQueueTableHeading>Request Queue</SongQueueTableHeading>
-        </Row>
+        </Row> */}
 
-        {songList.map((song) => (
+        <SongRequestTable
+          requests={songList}
+          showIndex={false}
+          showRemoveButton={false}
+        />
+
+        {/* {songList.map((song) => (
           <Row key={song.youtubeId} className='songTableRow'>
             <Col md={9}>{song.title}</Col>
             <Col md={2}>{song.requestedBy}</Col>
             <Col md={1}>{secondsToMinutes(song.length)}</Col>
           </Row>
-        ))}
+        ))} */}
       </div>
 
       <div id='sotnContenders' className='mt-3'>
